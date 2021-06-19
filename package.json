@@ -1,0 +1,17 @@
+{
+  "name": "nearme",
+  "version": "0.0.1",
+  "description": "A web-based app to find locations of anything near me.",
+  "main": "parser.js",
+  "dependencies": {
+    "csv-writer": "^1.6.0",
+    "jsdom": "^16.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "parser": "node parser.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alicia michael",
+  "license": "MIT"
+}
