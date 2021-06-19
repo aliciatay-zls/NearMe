@@ -22,4 +22,14 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 SELECT * FROM `outlets`;
-# INSERT INTO `outlets` (`OutletName`, `Latitude`, `Longitude`, `Postal`, `Contact`, `Closing`) VALUES ('FAIRPRICE HUB', '1.327351', '103.678836', '629117', '63974262', '9:00:00 PM');
+
+SET GLOBAL log_bin_trust_function_creators = 1;
+SELECT DISTANCE( 37.7756, -122.4193, 40.71448, -74.00598, 'KM' );
+
+# 1.3104680812609208, 103.86246226812166
+SELECT DISTANCE( 1.3104680812609208, 103.86246226812166, 1.327351,103.678836, 'KM' );
+
+select outlets.*, DISTANCE(1.3104680812609208, 103.86246226812166, outlets.Latitude, outlets.Longitude, 'KM' ) as distance 
+from outlets
+order by distance ASC;
+
