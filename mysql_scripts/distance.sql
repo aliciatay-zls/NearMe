@@ -16,6 +16,10 @@
  *
  * ORDER BY DISTANCE( userInput.lat, userInput.lon, locations.lat, locations.lon ) ASC;
  */
+ 
+# added 
+SET GLOBAL log_bin_trust_function_creators = 1;
+ 
 DROP FUNCTION IF EXISTS DISTANCE;
 DELIMITER $$
 CREATE FUNCTION DISTANCE( lat1 DOUBLE, lon1 DOUBLE, lat2 DOUBLE, lon2 DOUBLE, unit ENUM( 'MILE', 'KILOMETER', 'MI', 'KM' ) )
