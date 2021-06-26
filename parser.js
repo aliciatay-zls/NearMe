@@ -45,6 +45,7 @@ function parseForLatLong(domObj) {
     const csvWriter = createCsvWriter({
         path: "./data/data.csv",
         header: [
+            {id: "id", title: "ID"}, 
             {id: "name", title: "NAME"},
             {id: "lat", title: "LAT"},
             {id: "long", title: "LONG"},
@@ -58,21 +59,37 @@ function parseForLatLong(domObj) {
     //scan DOM to collect the records/data
     //for each restaurant, get values of the relevant nodes to form an entry
     const allRestaurants = domObj.window.document.querySelectorAll("div.restaurantDetails");
+    let index = 1;
     for (let restaurant of allRestaurants) {
         let entry = {};
+
+        entry.id = index;
+
         entry.name = restaurant.getAttribute("data-restaurantname");
-        entry.lat = restaurant.getAttribute("data-latitude");
-        entry.long = restaurant.getAttribute("data-longitude");
+
+        let latitude = restaurant.getAttribute("data-latitude");
+        entry.lat = parseFloat(latitude);
+        if (entry.lat == NaN) {
+            entry.lat = 0.0;
+        }
+
+        let longitude = restaurant.getAttribute("data-longitude");
+        entry.long = parseFloat(longitude);
+        if (entry.long == NaN) {
+            entry.long = 0.0;
+        }
 
         let postalCode = restaurant.getAttribute("data-address-pincode");
         entry.postal = postalCode.replace(/[^0-9]/g, '');
 
         let contactNum = restaurant.getAttribute("data-phoneno");
         entry.contact = contactNum.replace(/\s/g, '');
+
         entry.closing = restaurant.getAttribute("data-timing");
+
         data.push(entry);
+        index++;
     }
-    // console.log(data[1].closing); //NTU should be 6pm but get 12am?
 
     //write the collected data to a CSV file
     csvWriter.writeRecords(data).then( () => {

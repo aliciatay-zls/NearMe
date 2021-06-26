@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Near Me</title>
+</head>
+<body>
+    <form>
+        <input type="text" placeholder="Find this near me">
+        <input type="submit" value="Go!">
+    </form>
+    <p id="locationStatus">Your location: </p>
+    <script>
+        function geoGetCurrentLocation() {
+            const status = document.querySelector("#locationStatus");
+
+            function success(pos) {
+                var latitude = pos.coords.latitude;
+                var longitude = pos.coords.longitude;
+                status.textContent = latitude + " " + longitude;
+            }
+
+            function error() {
+                status.textContent += "Error (unable to retrieve)";
+            }
+
+            if (!navigator.geolocation) {
+                status.textContent += "Error (geolocation not supported)";
+            } else {
+                console.log('Trying to get location')
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+
+        }
+
+        geoGetCurrentLocation();
+    </script>
+</body>
+</html>
