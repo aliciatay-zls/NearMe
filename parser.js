@@ -45,7 +45,6 @@ function parseForLatLong(domObj) {
     const csvWriter = createCsvWriter({
         path: "./data/data.csv",
         header: [
-            {id: "id", title: "ID"}, 
             {id: "name", title: "NAME"},
             {id: "lat", title: "LAT"},
             {id: "long", title: "LONG"},
@@ -59,11 +58,8 @@ function parseForLatLong(domObj) {
     //scan DOM to collect the records/data
     //for each restaurant, get values of the relevant nodes to form an entry
     const allRestaurants = domObj.window.document.querySelectorAll("div.restaurantDetails");
-    let index = 1;
     for (let restaurant of allRestaurants) {
         let entry = {};
-
-        entry.id = index;
 
         entry.name = restaurant.getAttribute("data-restaurantname");
 
