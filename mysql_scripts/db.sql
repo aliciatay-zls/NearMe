@@ -4,7 +4,8 @@ LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/data.csv'
 INTO TABLE `outlets`
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;
+IGNORE 1 ROWS
+(@col1, @col2, @col3, @col4, @col5, @col6, @col7) set OutletName=@col2, Latitude=@col3, Longitude=@col4, Postal=@col5, Contact=@col6, Closing=@col7;
 
 SELECT * FROM `outlets`;
 
