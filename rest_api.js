@@ -19,7 +19,7 @@ const knex = require('knex')({
       user : process.env.DB_USER,
       password : process.env.DB_PASSWORD
     }
-  });
+});
 
 // Create a new Route http://localhost:3000/outlets
 // Return the 2D array outlets as JSON
@@ -32,16 +32,26 @@ app.get('/outlets', (req, res) => {
         }
     };
 
-    knex.raw("SELECT *, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance FROM outlets ORDER BY distance ASC", [parseFloat(req.query.currentLatitude), parseFloat(req.query.currentLongitude)])
+    knex.raw("SELECT *, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance FROM outlets ORDER BY distance ASC", [results.currentLocation.latitude, results.currentLocation.longitude])
         .then(function(rows) {
             rows[0].forEach((row) => {
                 results.outlets.push({ name: row['OutletName'], distance: row['distance'], postal: row['Postal'], contact: row['Contact'], closing: row['Closing']});
             });
-            res.send(results)
+            res.send(results);
         })
-        .catch((error) => console.error(error))
+        .catch((error) => console.error(error));
         // .finally(() => knex.destroy());
 });
+
+app.use(express.urlencoded({
+    extended: true
+  }));
+  
+  app.use(express.json());
+  
+  app.post('/outlets', (req, res) => {
+    res.send(req.body.searchWord); //sends back the word that was searched
+  });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)

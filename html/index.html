@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Near Me</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <form>
-        <input type="text" placeholder="Find this near me">
+        <input type="text" name="searchWord" placeholder="Find this near me">
         <input type="submit" value="Go!">
     </form>
     <p id="locationStatus">Your location: </p>
@@ -16,7 +17,7 @@
             function success(pos) {
                 var latitude = pos.coords.latitude;
                 var longitude = pos.coords.longitude;
-                status.textContent = latitude + " " + longitude;
+                status.textContent += latitude + " " + longitude;
             }
 
             function error() {
@@ -26,13 +27,22 @@
             if (!navigator.geolocation) {
                 status.textContent += "Error (geolocation not supported)";
             } else {
-                console.log('Trying to get location')
+                console.log('Trying to get location');
                 navigator.geolocation.getCurrentPosition(success, error);
             }
-
         }
-
         geoGetCurrentLocation();
+
+        $(document).ready(function(){
+            $(":submit").click(function(){
+                var params = {
+                    searchWord: $("input[name=searchWord]").val()
+                };
+                $.post("/outlets", params, function(res, status) {
+                    alert(res);
+                });
+            });
+        });
     </script>
 </body>
 </html>
