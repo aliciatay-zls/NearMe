@@ -2,7 +2,9 @@ const https = require("https");
 const jsdom = require("jsdom");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 
-https.get("https://www.kfc.com.sg/Location/Search", (response) => {
+const url = "https://www.kfc.com.sg/Location/Search";
+
+https.get(url, (response) => {
     const {statusCode} = response;
     const contentType = response.headers["content-type"];
 
@@ -33,12 +35,14 @@ https.get("https://www.kfc.com.sg/Location/Search", (response) => {
         } catch (e) {
             console.error(e.message);
         }
+        getBrandName();
     });
 
 }).on("error", (e) => {
     console.error(`Got error: ${e.message}`);
 });
 
+//generates a .csv file containing all outlets
 function parseForLatLong(domObj) {
 
     //initialise CSV writer and array to hold all records (each record is an object)
@@ -61,34 +65,54 @@ function parseForLatLong(domObj) {
     for (let restaurant of allRestaurants) {
         let entry = {};
 
-        entry.name = restaurant.getAttribute("data-restaurantname");
+        entry.name = restaurant.getAttribute("data-restaurantname").trim();
 
-        let latitude = restaurant.getAttribute("data-latitude");
+        let latitude = restaurant.getAttribute("data-latitude").trim();
         entry.lat = parseFloat(latitude);
         if (entry.lat == NaN) {
             entry.lat = 0.0;
         }
 
-        let longitude = restaurant.getAttribute("data-longitude");
+        let longitude = restaurant.getAttribute("data-longitude").trim();
         entry.long = parseFloat(longitude);
         if (entry.long == NaN) {
             entry.long = 0.0;
         }
 
-        let postalCode = restaurant.getAttribute("data-address-pincode");
+        let postalCode = restaurant.getAttribute("data-address-pincode").trim();
         entry.postal = postalCode.replace(/[^0-9]/g, '');
 
-        let contactNum = restaurant.getAttribute("data-phoneno");
+        console.log(entry.postal);
+
+        let contactNum = restaurant.getAttribute("data-phoneno").trim();
         entry.contact = contactNum.replace(/\s/g, '');
 
-        entry.closing = restaurant.getAttribute("data-timing");
+        entry.closing = restaurant.getAttribute("data-timing").trim();
 
         data.push(entry);
-        index++;
     }
 
     //write the collected data to a CSV file
     csvWriter.writeRecords(data).then( () => {
         console.log(`Written ${data.length} entries to "data.csv".`);
+    });
+}
+
+//generates a .csv file containing the brand name
+function getBrandName() {
+
+    const csvWriter = createCsvWriter({
+        path: "./data/brands.csv",
+        header: [
+            {id: "brandName", title: "BRAND"}
+        ]
+    });
+    let data = [], entry = {};
+    let urlObj = (new URL(url));
+    entry.brandName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').toUpperCase().trim();
+    data.push(entry);
+
+    csvWriter.writeRecords(data).then( () => {
+        console.log(`Written ${entry.brandName} to "brands.csv".`);
     });
 }
