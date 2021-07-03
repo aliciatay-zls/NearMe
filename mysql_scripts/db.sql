@@ -1,17 +1,34 @@
 USE `locationsDB`;
 
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/brands.csv' 
+INTO TABLE `brands`
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@col1, @col2) SET BrandName=@col1;
+
 LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/data.csv' 
 INTO TABLE `outlets`
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;
+IGNORE 1 ROWS
+(@col1, @col2, @col3, @col4, @col5, @col6, @col7) SET OutletName=@col1, Latitude=@col2, Longitude=@col3, Postal=@col4, Contact=@col5, Closing=@col6, BrandId=@col7;
 
-SELECT * FROM `outlets`;
+SET SQL_SAFE_UPDATES = 0;
 
-SELECT DISTANCE( 37.7756, -122.4193, 40.71448, -74.00598, 'KM' );
+UPDATE `outlets`
+SET `BrandId` = 1;
 
-SELECT DISTANCE( 1.3104680812609208, 103.86246226812166, 1.327351,103.678836, 'KM' );
-
-SELECT *, DISTANCE(1.3104680812609208, 103.86246226812166, Latitude, Longitude, 'KM' ) AS `distance` 
-FROM `outlets`
+SELECT 
+	o.OutletId,
+    o.OutletName,
+    o.Latitude,
+    o.Longitude,
+    o.Postal,
+    o.Contact,
+    o.Closing,
+    b.BrandId,
+    b.BrandName, 
+	DISTANCE(1.3104680812609208, 103.86246226812166, Latitude, Longitude, 'KM' ) AS `distance` 
+FROM `outlets` o
+INNER JOIN `brands` b USING(BrandId)
 ORDER BY `distance` ASC;
