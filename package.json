@@ -13,6 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "dev": "nodemon rest_api.js",
     "parser": "node parser.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
