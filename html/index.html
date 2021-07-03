@@ -35,27 +35,20 @@
             }
         }
 
-        // Endpoint: http://localhost:3000/outlets?searchWord=kfc&currentLatitude=1.3730702&currentLongitude=103.9028103
-        // NOTE: code not working
-        // 1) Able to complete getJSON request, but the url being visited is still /outlets?searchWord=kfc. Form action attribute value?
-        // 2) Failed to find a way to call geoGetCurrentLocation() so that actual Lat Long (not hardcoded) can be sent as the query params.
         $(document).ready(function() {
             geoGetCurrentLocation();
 
-            $(":submit").click(function() {
+            $(":submit").click(function(event) {
+                event.preventDefault(); //prevent the form from posting
+
                 var params = {
                     searchWord: $("input[name=searchWord]").val(),
                     currentLatitude: currentLatitude,
                     currentLongitude: currentLongitude
                 };
-                const url = new URL("http://localhost:3000/outlets");
-                $.each(params, function(key, val){
-                    url.searchParams.append(key, val);
-                });
+                const url = "/outlets";
 
-                $.getJSON(url, function(data) {
-                    // alert(url); //correct url, built url is ready at this time
-                    // alert("requesting");
+                $.getJSON(url, params, function(data) {
                     var toDisplay = [];
                     $.each(data.outlets, function(key, val) {
                         toDisplay.push( "<li id='" + key + "'>" + val.name + " (" + val.distance + ")</li>" );
@@ -64,30 +57,12 @@
                         html: toDisplay.join("")
                     }).appendTo("body");
                 }).fail(function() {
-                    // alert("failed");
+                    console.error("failed");
                 }).always(function() {
-                    // alert("complete");
+                    console.log("complete");
                 });
-
-                event.preventDefault(); //prevent the form from posting
             });
         });
-        
-        // $("form[name=myForm]").submit(function(event) {
-        //     alert("submitted");
-
-        //     $.ajax({
-        //         url: "http://localhost:3000/outlets",
-        //         data: {searchWord: $("input[name=searchWord]").val()},
-        //         type: "POST"
-        //     })
-        //     .promise()
-        //     .then(function(data){
-        //         console.log(data);
-        //     });
-
-        //     event.preventDefault();
-        // });
     </script>
 </body>
 </html>
