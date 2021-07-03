@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <form>
+    <form action="/outlets">
         <input type="text" name="searchWord" placeholder="Find this near me">
         <input type="submit" value="Go!">
     </form>
@@ -33,16 +33,55 @@
         }
         geoGetCurrentLocation();
 
-        $(document).ready(function(){
-            $(":submit").click(function(){
+        // Endpoint: http://localhost:3000/outlets?searchWord=kfc&currentLatitude=1.3730702&currentLongitude=103.9028103
+        // NOTE: code not working
+        // 1) Able to complete getJSON request, but the url being visited is still /outlets?searchWord=kfc. Form action attribute value?
+        // 2) Failed to find a way to call geoGetCurrentLocation() so that actual Lat Long (not hardcoded) can be sent as the query params.
+        $(document).ready(function() {
+            $(":submit").click(function() {
                 var params = {
-                    searchWord: $("input[name=searchWord]").val()
+                    searchWord: $("input[name=searchWord]").val(),
+                    currentLatitude: 1.3104680812609208,
+                    currentLongitude: 103.86246226812166
                 };
-                $.post("/outlets", params, function(res, status) {
-                    alert(res);
+                const url = new URL("http://localhost:3000/outlets");
+                $.each(params, function(key, val){
+                    url.searchParams.append(key, val);
+                });
+
+                $.getJSON(url, function(data) {
+                    alert(url); //correct url, built url is ready at this time
+                    alert("requesting");
+                    var toDisplay = [];
+                    $.each(data, function(key, val) {
+                        toDisplay.push( "<li id='" + key + "'>" + val + "</li>" );
+                    });
+                    $("<ul/>", {
+                        html: toDisplay.join("")
+                    }).appendTo("body");
+                }).fail(function() {
+                    alert("failed");
+                }).always(function() {
+                    alert("complete");
                 });
             });
         });
+        
+        // $("form[name=myForm]").submit(function(event) {
+        //     alert("submitted");
+
+        //     $.ajax({
+        //         url: "http://localhost:3000/outlets",
+        //         data: {searchWord: $("input[name=searchWord]").val()},
+        //         type: "POST"
+        //     })
+        //     .promise()
+        //     .then(function(data){
+        //         console.log(data);
+        //     });
+
+        //     event.preventDefault();
+        // });
     </script>
 </body>
 </html>

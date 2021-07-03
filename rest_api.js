@@ -25,7 +25,7 @@ const knex = require('knex')({
 // Return the 2D array outlets as JSON
 app.get('/outlets', (req, res) => {
     const results = {
-        sectionTitle: 'BRAND',
+        sectionTitle: req.query.searchWord,
         outlets: [],
         currentLocation: {
             latitude: parseFloat(req.query.currentLatitude),
@@ -34,12 +34,12 @@ app.get('/outlets', (req, res) => {
     };
 
     //retrieves the brand name for the results that will follow
-    knex('brands')
-    .where('BrandId', 1)
-    .select('BrandName')
-    .then(function(rows) {
-        results.sectionTitle = rows[0]['BrandName'];
-    });
+    // knex('brands')
+    // .where('BrandId', 1)
+    // .select('BrandName')
+    // .then(function(rows) {
+    //     results.sectionTitle = rows[0]['BrandName'];
+    // });
 
     //retrieves details of outlets sorted by increasing distance from user's current position
     //then sends everything as JSON
@@ -64,15 +64,15 @@ app.get('/outlets', (req, res) => {
         // .finally(() => knex.destroy());
 });
 
-app.use(express.urlencoded({
-    extended: true
-  }));
+// app.use(express.urlencoded({
+//     extended: true
+//   }));
   
-  app.use(express.json());
+//   app.use(express.json());
   
-  app.post('/outlets', (req, res) => {
-    res.send(req.body.searchWord); //sends back the word that was searched
-});
+//   app.post('/outlets', (req, res) => {
+//     res.send(req.body.searchWord); //sends back the word that was searched
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
