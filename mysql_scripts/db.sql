@@ -2,9 +2,10 @@ USE `locationsDB`;
 
 LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/brands.csv' 
 INTO TABLE `brands`
+FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
-(@col1, @col2) SET BrandName=@col1;
+(@col1, @col2) SET BrandName=@col1, ShortName=@col2;
 
 LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/data.csv' 
 INTO TABLE `outlets`
@@ -31,4 +32,5 @@ SELECT
 	DISTANCE(1.3104680812609208, 103.86246226812166, Latitude, Longitude, 'KM' ) AS `distance` 
 FROM `outlets` o
 INNER JOIN `brands` b USING(BrandId)
+WHERE o.BrandId = 1
 ORDER BY `distance` ASC;

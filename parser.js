@@ -104,12 +104,14 @@ function getBrandName() {
     const csvWriter = createCsvWriter({
         path: "./data/brands.csv",
         header: [
-            {id: "brandName", title: "BRAND"}
+            {id: "brandName", title: "BRAND"},
+            {id: "shortName", title: "SHORTNAME"}
         ]
     });
     let data = [], entry = {};
     let urlObj = (new URL(url));
     entry.brandName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').toUpperCase().trim();
+    entry.shortName = "kfc";
     data.push(entry);
 
     csvWriter.writeRecords(data).then( () => {

@@ -5,7 +5,9 @@ USE `locationsDB`;
 CREATE TABLE `brands` (
 	`BrandId` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`BrandName` VARCHAR(100) NOT NULL,
-    PRIMARY KEY (`BrandId`)
+    `ShortName` CHAR(3) NOT NULL,
+    PRIMARY KEY (`BrandId`),
+    INDEX (`ShortName`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `outlets` (
@@ -17,7 +19,6 @@ CREATE TABLE `outlets` (
     `Contact` CHAR(8) NOT NULL,
     `Closing` CHAR(100) NOT NULL,
     `BrandId` INT unsigned,
-    `BrandName` VARCHAR(100) NOT NULL,
     PRIMARY KEY (`OutletId`),
     FOREIGN KEY (`BrandId`) REFERENCES `brands`(`BrandId`) ON UPDATE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

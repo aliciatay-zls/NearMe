@@ -21,11 +21,11 @@ const knex = require('knex')({
     }
 });
 
-// Create a new Route http://localhost:3000/outlets
+// Create a new Route http://nearme.aliciatay.com/outlets
 // Return the 2D array outlets as JSON
 app.get('/outlets', (req, res) => {
     const results = {
-        sectionTitle: req.query.searchWord,
+        sectionTitle: req.query.brand,
         outlets: [],
         currentLocation: {
             latitude: parseFloat(req.query.currentLatitude),
@@ -33,46 +33,45 @@ app.get('/outlets', (req, res) => {
         }
     };
 
+    let selectedBrandId = null;
+
     //retrieves the brand name for the results that will follow
-    // knex('brands')
-    // .where('BrandId', 1)
-    // .select('BrandName')
-    // .then(function(rows) {
-    //     results.sectionTitle = rows[0]['BrandName'];
-    // });
-
-    //retrieves details of outlets sorted by increasing distance from user's current position
-    //then sends everything as JSON
-    const part1 = "SELECT o.OutletId, o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.BrandId, b.BrandName, ";
-    const part2 = "DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance FROM outlets o INNER JOIN brands b USING(BrandId) ORDER BY distance ASC";
-    const fullQuery = part1.concat(part2);
-
-    knex.raw(fullQuery, [results.currentLocation.latitude, results.currentLocation.longitude])
-        .then(function(rows) {
-            rows[0].forEach((row) => {
-                results.outlets.push({ 
-                    name: row['OutletName'], 
-                    distance: row['distance'], 
-                    postal: row['Postal'], 
-                    contact: row['Contact'], 
-                    closing: row['Closing']
-                });
-            });
+    knex('brands')
+    .where('ShortName', req.query.brand)
+    .select('BrandId')
+    .then(function(rows) {
+        if (rows.length == 0) {
+            console.log("Could not find brand in DB.");
             res.send(results);
-        })
-        .catch((error) => console.error(error));
-        // .finally(() => knex.destroy());
-});
+            return;
+        }
+        selectedBrandId = rows[0]['BrandId'];
 
-// app.use(express.urlencoded({
-//     extended: true
-//   }));
-  
-//   app.use(express.json());
-  
-//   app.post('/outlets', (req, res) => {
-//     res.send(req.body.searchWord); //sends back the word that was searched
-// });
+        //retrieves details of outlets sorted by increasing distance from user's current position
+        //then sends everything as JSON
+        const part1 = "SELECT o.OutletId, o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.BrandId, b.BrandName, ";
+        const part2 = "DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance FROM outlets o INNER JOIN brands b USING(BrandId) ";
+        const part3 = "WHERE o.BrandId = ? "
+        const part4 = "ORDER BY distance ASC"
+        const fullQuery = part1 + part2 + part3 + part4;
+
+        knex.raw(fullQuery, [results.currentLocation.latitude, results.currentLocation.longitude, selectedBrandId])
+            .then(function(rows) {
+                rows[0].forEach((row) => {
+                    results.outlets.push({ 
+                        name: row['OutletName'], 
+                        distance: row['distance'], 
+                        postal: row['Postal'], 
+                        contact: row['Contact'], 
+                        closing: row['Closing']
+                    });
+                });
+                res.send(results);
+            })
+            .catch((error) => console.error(error));
+            // .finally(() => knex.destroy());
+    });
+});
 
 app.listen(port, () => {
   console.log(`NearMe app listening on port ${port}!`)
