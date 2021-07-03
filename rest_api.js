@@ -75,5 +75,5 @@ app.get('/outlets', (req, res) => {
 // });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`)
+  console.log(`NearMe app listening on port ${port}!`)
 });
