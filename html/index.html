@@ -6,10 +6,21 @@
 </head>
 <body>
     <form action="/outlets">
-        <input type="text" name="searchWord" placeholder="Find this near me">
+        <label for="brandSelect">Choose a brand:</label>
+        <!-- <input type="text" name="searchWord" placeholder="Find this near me"> -->
+        <select name="brand" id="brandSelect">
+            <option value="">--Please choose an option--</option>
+            <option value="kfc">KFC</option>
+            <option value="mcd">McDonalds</option>
+            <option value="bgk">Burger King</option>
+        </select>
+
         <input type="submit" value="Go!">
     </form>
     <p id="locationStatus">Your location: </p>
+
+    <h3>Results</h3>
+    <div id="outletResults"></div>
     <script>
         let currentLatitude = null;
         let currentLongitude = null;
@@ -40,9 +51,10 @@
 
             $(":submit").click(function(event) {
                 event.preventDefault(); //prevent the form from posting
+                $("#outletResults").html("");
 
                 var params = {
-                    searchWord: $("input[name=searchWord]").val(),
+                    brand: $("#brandSelect").val(),
                     currentLatitude: currentLatitude,
                     currentLongitude: currentLongitude
                 };
@@ -50,12 +62,16 @@
 
                 $.getJSON(url, params, function(data) {
                     var toDisplay = [];
-                    $.each(data.outlets, function(key, val) {
-                        toDisplay.push( "<li id='" + key + "'>" + val.name + " (" + val.distance + ")</li>" );
-                    });
+                    if (data.outlets.length == 0) {
+                        toDisplay.push("Could not find brand in DB.");
+                    } else {
+                        $.each(data.outlets, function(key, val) {
+                            toDisplay.push( "<li id='" + key + "'>" + val.name + " (" + val.distance + ")</li>" );
+                        });
+                    }
                     $("<ul/>", {
                         html: toDisplay.join("")
-                    }).appendTo("body");
+                    }).appendTo("#outletResults");
                 }).fail(function() {
                     console.error("failed");
                 }).always(function() {
