@@ -19,7 +19,7 @@
   },
   "nodemonConfig": {
     "watch": [
-      "html/index.html",
+      "html",
       "rest_api.js"
     ]
   },
