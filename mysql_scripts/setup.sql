@@ -32,7 +32,7 @@ CREATE TABLE `outlets` (
     `Longitude` FLOAT NOT NULL,
     `Postal` CHAR(6) NOT NULL,
     `Contact` CHAR(8) NOT NULL,
-    `Closing` CHAR(100) NOT NULL,
+    `Closing` VARCHAR(255) NOT NULL,
     `BrandId` INT unsigned,
     PRIMARY KEY (`OutletId`),
     FOREIGN KEY (`BrandId`) REFERENCES `brands`(`BrandId`) ON UPDATE CASCADE

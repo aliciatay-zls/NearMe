@@ -14,6 +14,15 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
 (@col1, @col2, @col3, @col4, @col5, @col6, @col7) SET OutletName=@col1, Latitude=@col2, Longitude=@col3, Postal=@col4, Contact=@col5, Closing=@col6, BrandId=@col7;
 
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/outlets_mcd.csv' 
+INTO TABLE `outlets`
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@col1, @col2, @col3, @col4, @col5, @col6, @col7) SET OutletName=@col1, Latitude=@col2, Longitude=@col3, Postal=@col4, Contact=@col5, Closing=@col6, BrandId=@col7;
+
+SELECT * FROM `outlets`;
+
 SET SQL_SAFE_UPDATES = 0;
 
 UPDATE `outlets`
