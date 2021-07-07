@@ -15,7 +15,8 @@
   "devDependencies": {},
   "scripts": {
     "dev": "nodemon rest_api.js",
-    "parser": "node parser.js",
+    "parse-kfc": "node parser_kfc.js",
+    "parse-mcd": "node parser_mcd.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {
