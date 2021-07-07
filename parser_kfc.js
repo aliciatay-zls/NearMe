@@ -10,6 +10,7 @@ const createCsvWriter = csvWriter.createObjectCsvWriter;
 const url = "https://www.kfc.com.sg/Location/Search";
 const dataFilePath = "./data/outlets_kfc.csv";
 
+// Main logic of the code
 https.get(url, (response) => {
     const {statusCode} = response;
     const contentType = response.headers["content-type"];

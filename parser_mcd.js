@@ -1,10 +1,15 @@
 const fetch = require("node-fetch");
-const utf = require("utf8");
-const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+const csvWriter = require("csv-writer");
+const brandsManager = require("./brands_manager.js");
 
+// Declare CSV writer
+const createCsvWriter = csvWriter.createObjectCsvWriter;
+
+// Global variables specific to McDonald's
 const url = "https://www.mcdonalds.com.sg/wp/wp-admin/admin-ajax.php?action=store_locator_locations";
-const filePath = "./data/outlets_mcd.csv";
+const dataFilePath = "./data/outlets_mcd.csv";
 
+// Main logic of the code
 fetch(url, {
   "headers": {
     "accept": "application/json, text/javascript, */*; q=0.01",
@@ -25,14 +30,15 @@ fetch(url, {
   "mode": "cors"
 })
 .then(res => res.json()) //get the response as json
-.then(jsonObj => parseForLatLong(jsonObj));
+.then(jsonObj => parseForLatLong(jsonObj))
+.then(brandsManager(url, "mcd", createCsvWriter));
 
-//generates a .csv file containing all outlets
+// Creates a unique CSV file containing all outlets
 function parseForLatLong(allOutlets) {
 
-    //initialise CSV writer and array to hold all records (each record is an object)
+    // Initialise CSV writer and array to hold all records (each record is an object)
     const csvWriter = createCsvWriter({
-        path: filePath,
+        path: dataFilePath,
         header: [
             {id: "name", title: "NAME"},
             {id: "lat", title: "LAT"},
@@ -44,8 +50,8 @@ function parseForLatLong(allOutlets) {
     });
     const data = [];
 
-    //scan json to collect the records/data
-    //for each restaurant, get values of the relevant keys to form an entry
+    // Scan json to collect the records/data
+    // For each outlet, get values of the relevant keys to form an entry
     for (outlet of allOutlets) {
         let entry = {};
 
@@ -89,8 +95,8 @@ function parseForLatLong(allOutlets) {
         data.push(entry);
     };
 
-    //write the collected data to a CSV file
+    // Write the collected data to a unique CSV file
     csvWriter.writeRecords(data).then( () => {
-        console.log(`Written ${data.length} entries to ${filePath}.`);
+        console.log(`Written ${data.length} entries to ${dataFilePath}.`);
     });
 }
