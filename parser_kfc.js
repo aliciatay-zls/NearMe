@@ -1,7 +1,7 @@
 const https = require("https");
 const jsdom = require("jsdom");
 const csvWriter = require("csv-writer");
-const fs = require("fs");
+const brandsManager = require("./brands_manager.js");
 
 // Declare CSV writer
 const createCsvWriter = csvWriter.createObjectCsvWriter;
@@ -9,7 +9,6 @@ const createCsvWriter = csvWriter.createObjectCsvWriter;
 // Global variables specific to KFC
 const url = "https://www.kfc.com.sg/Location/Search";
 const dataFilePath = "./data/outlets_kfc.csv";
-const brandsFilePath = "./data/brands.csv";
 
 https.get(url, (response) => {
     const {statusCode} = response;
@@ -42,14 +41,14 @@ https.get(url, (response) => {
         } catch (e) {
             console.error(e.message);
         }
-        getBrandName();
+        brandsManager(url, "kfc", createCsvWriter);
     });
 
 }).on("error", (e) => {
     console.error(`Got error: ${e.message}`);
 });
 
-// Creates a .csv file containing all outlets.
+// Creates a unique CSV file containing all outlets.
 function parseForLatLong(domObj) {
     
     // Initialise CSV writer and array to hold all records (each record is an object)
@@ -66,8 +65,8 @@ function parseForLatLong(domObj) {
     });
     const data = [];
 
-    // Scan DOM to collect the records/data for each outlet,
-    // get values of the relevant nodes to form an entry
+    // Scan DOM to collect the records/data
+    // For each outlet, get values of the relevant nodes to form an entry
     const allRestaurants = domObj.window.document.querySelectorAll("div.restaurantDetails");
     for (let restaurant of allRestaurants) {
         let entry = {};
@@ -106,45 +105,8 @@ function parseForLatLong(domObj) {
         data.push(entry);
     }
 
-    // Write the collected data to a CSV file
+    // Write the collected data to unique CSV file
     csvWriter.writeRecords(data).then( () => {
         console.log(`Written ${data.length} entries to ${dataFilePath}.`);
     });
-}
-
-// Creates a .csv file containing the brand name.
-// If file already exists, append the brand name.
-function getBrandName() {
-    let data = [], entry = {};
-    let urlObj = (new URL(url));
-
-    // Obtain brand name from the url
-    entry.brandName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').toUpperCase().trim();
-    entry.shortName = "kfc";
-    data.push(entry);
-
-    if (fs.existsSync(brandsFilePath)) {
-        const csvAppender = csvWriter.createObjectCsvWriter({
-            append: true,
-            path: brandsFilePath,
-            header: [
-                {id: "brandName", title: "BRAND"},
-                {id: "shortName", title: "SHORTNAME"}
-            ]
-        });
-        csvAppender.writeRecords(data).then( () => {
-            console.log("File exists. " + `Written "${entry.brandName}" to ${brandsFilePath}.`);
-        });
-    } else {
-        const csvWriter = createCsvWriter({
-            path: brandsFilePath,
-            header: [
-                {id: "brandName", title: "BRAND"},
-                {id: "shortName", title: "SHORTNAME"}
-            ]
-        });
-        csvWriter.writeRecords(data).then( () => {
-            console.log("New file created. " + `Written "${entry.brandName}" to ${brandsFilePath}.`);
-        });
-    }
 }

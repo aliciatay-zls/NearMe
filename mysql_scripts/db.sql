@@ -7,7 +7,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
 (@col1, @col2) SET BrandName=@col1, ShortName=@col2;
 
-LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/data.csv' 
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/outlets_kfc.csv' 
 INTO TABLE `outlets`
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
