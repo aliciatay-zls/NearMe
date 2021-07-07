@@ -1,4 +1,3 @@
-const csvWriter = require("csv-writer");
 const fs = require("fs");
 
 const brandsFilePath = "./data/brands.csv";
@@ -15,7 +14,7 @@ function addBrandToFile(url, shortName, createCsvWriter) {
     data.push(entry);
 
     if (fs.existsSync(brandsFilePath)) {
-        const csvAppender = csvWriter.createObjectCsvWriter({
+        const csvAppender = createCsvWriter({
             append: true,
             path: brandsFilePath,
             header: [
