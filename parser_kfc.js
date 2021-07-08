@@ -1,14 +1,10 @@
 const https = require("https");
 const jsdom = require("jsdom");
-const csvWriter = require("csv-writer");
-const brandsManager = require("./brands_manager.js");
-
-// Declare CSV writer
-const createCsvWriter = csvWriter.createObjectCsvWriter;
+const mysql = require("mysql");
+require('dotenv').config();
 
 // Global variables specific to KFC
 const url = "https://www.kfc.com.sg/Location/Search";
-const dataFilePath = "./data/outlets_kfc.csv";
 
 // Main logic of the code
 https.get(url, (response) => {
@@ -38,46 +34,35 @@ https.get(url, (response) => {
     response.on('end', () => {
         try {
             const dom = new jsdom.JSDOM(rawData);
-            parseForLatLong(dom);
+            parseForLatLong(dom, writeToDb);
         } catch (e) {
             console.error(e.message);
         }
-        brandsManager(url, "kfc", createCsvWriter);
+        // brandsManager(url, "kfc", createCsvWriter);
     });
 
 }).on("error", (e) => {
     console.error(`Got error: ${e.message}`);
 });
 
-// Creates a unique CSV file containing all outlets.
-function parseForLatLong(domObj) {
-    
-    // Initialise CSV writer and array to hold all records (each record is an object)
-    const csvWriter = createCsvWriter({
-        path: dataFilePath,
-        header: [
-            {id: "name", title: "NAME"},
-            {id: "lat", title: "LAT"},
-            {id: "long", title: "LONG"},
-            {id: "postal", title: "POSTAL"},
-            {id: "contact", title: "CONTACT"},
-            {id: "closing", title: "CLOSING"}
-        ]
-    });
+// 
+function parseForLatLong(domObj, callback) {
+
+    // Initialise array to hold all records
     const data = [];
 
     // Scan DOM to collect the records/data
     // For each outlet, get values of the relevant nodes to form an entry
     const allRestaurants = domObj.window.document.querySelectorAll("div.restaurantDetails");
     for (let restaurant of allRestaurants) {
-        let entry = {};
+        let entry = [];
 
         let name = restaurant.getAttribute("data-restaurantname").trim();
         if (name.length == 0) {
             console.log("Entry removed. Outlet name unknown.");
             continue;
         }
-        entry.name = name;
+        entry.push(name);
 
         let latitude = restaurant.getAttribute("data-latitude").trim();
         latitude = parseFloat(latitude);
@@ -85,7 +70,7 @@ function parseForLatLong(domObj) {
             console.log(`Entry for ${entry.name} removed. Latitude unknown/invalid.`);
             continue;
         }
-        entry.lat = latitude;
+        entry.push(latitude);
 
         let longitude = restaurant.getAttribute("data-longitude").trim();
         longitude = parseFloat(longitude);
@@ -93,21 +78,40 @@ function parseForLatLong(domObj) {
             console.log(`Entry for ${entry.name} removed. Longitude unknown/invalid.`);
             continue;
         }
-        entry.long = longitude;
+        entry.push(longitude);
 
         let postalCode = restaurant.getAttribute("data-address-pincode").trim();
-        entry.postal = postalCode.replace(/[^0-9]/g, '');
+        entry.push(postalCode.replace(/[^0-9]/g, ''));
 
         let contactNum = restaurant.getAttribute("data-phoneno").trim();
-        entry.contact = contactNum.replace(/\s/g, '');
+        entry.push(contactNum.replace(/\s/g, ''));
 
-        entry.closing = restaurant.getAttribute("data-timing").trim();
+        entry.push(restaurant.getAttribute("data-timing").trim());
 
         data.push(entry);
     }
 
-    // Write the collected data to unique CSV file
-    csvWriter.writeRecords(data).then( () => {
-        console.log(`Written ${data.length} entries to ${dataFilePath}.`);
+    callback(data);
+}
+
+function writeToDb(data) {
+    var connection = mysql.createConnection({
+        host : process.env.DB_HOST,
+        database : process.env.DB_NAME,
+        user : process.env.DB_USER,
+        password : process.env.DB_PASSWORD
     });
+
+    connection.connect(function(err) {
+        if (err) throw err;
+        const insertQuery = "INSERT INTO outlets (OutletName, Latitude, Longitude, Postal, Contact, Closing) VALUES ?";
+        connection.query(insertQuery, [data], function(err, results) {
+            if (err) throw err;
+            console.log(results); //to-fix in the morning (not inserting values correctly)
+        });
+    }, endConnectionToDb);
+}
+
+function endConnectionToDb() {
+    connection.end();
 }
