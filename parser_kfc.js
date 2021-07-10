@@ -1,18 +1,11 @@
 const https = require("https");
 const jsdom = require("jsdom");
-require('dotenv').config();
-const knex = require('knex')({
-    client: 'mysql',
-    connection: {
-      host : process.env.DB_HOST,
-      database : process.env.DB_NAME,
-      user : process.env.DB_USER,
-      password : process.env.DB_PASSWORD
-    }
-});
+const db = require("./db-config.js");
+
 
 // Global variables specific to KFC
 const url = "https://www.kfc.com.sg/Location/Search";
+
 
 // Requests the page, checks the response header and collects raw html
 // before converting it into a DOM to be parsed.
@@ -99,12 +92,13 @@ function parseForLatLong(domObj, callback) {
     callback(data);
 }
 
-// Writes datato db, displays the data in the db and ends connection to db.
-function writeToDb(allOutlets) {
-    knex('outlets')
-    .insert(allOutlets)
+
+// Writes data to db, displays the data in the db and ends connection to db.
+function writeToDb(kfcOutlets) {
+    db('outlets')
+    .insert(kfcOutlets)
     .then(function() {
-        knex('outlets')
+        db('outlets')
         .select('*')
         .then(function(rows) {
             console.log(rows);
@@ -112,6 +106,6 @@ function writeToDb(allOutlets) {
     })
     .catch((error) => console.error(error))
     .finally (() => {
-        knex.destroy();
+        db.destroy();
     });
 }
