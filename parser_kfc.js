@@ -45,9 +45,9 @@ https
 });
 
 
-// Parses the DOM object for the outlet details, then writes the
-// collected data into locationsDB.
-function parseForLatLong(domObj, callback) {
+// Parses the DOM object for the outlet details for KFC,
+// then writes the collected data into locationsDB.
+function parseForLatLong(domObj, writeToDb) {
     const data = [];
 
     const allOutlets = domObj.window.document.querySelectorAll("div.restaurantDetails");
@@ -88,5 +88,5 @@ function parseForLatLong(domObj, callback) {
         data.push(entry);
     }
 
-    callback(data);
+    writeToDb(data);
 }
