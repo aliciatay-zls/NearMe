@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 module.exports = {
 
-  development: { //to-fix: encountering error "Access denied for user ''@'localhost' (using password: NO)""
+  development: {
     client: 'mysql',
     connection: {
       host : process.env.DB_HOST,
@@ -10,6 +12,9 @@ module.exports = {
     },
     migrations: {
       directory : "./data/migrations"
+    },
+    seeds: {
+      directory : "./data/seeds"
     }
   },
 
