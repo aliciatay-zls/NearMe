@@ -1,0 +1,2023 @@
+[
+	{
+		"id": "417",
+		"name": "McDonald\u2019s JCube",
+		"address": "2 Jurong East Central 1\r\n#01-09\r\nJCube",
+		"city": "Singapore",
+		"lat": "1.33352",
+		"long": "103.740277",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2230<br><br>\r\n<b>Dessert Kiosk:<\/b><br> \r\nClosed<br><br>",
+		"phone": "66844228",
+		"region": "west",
+		"types": [
+			"3"
+		],
+		"zip": "609731"
+	},
+	{
+		"id": "458",
+		"name": "McDonald\u2019s Seletar Mall",
+		"address": "33 Sengkang West Ave\r\n#01-04\/05\/06\r\nSeletar Mall",
+		"city": "Singapore",
+		"lat": "1.3913773",
+		"long": "103.8761854",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thurs,PH : 0700 - 0000<br\/>\r\nFri,Sat,PH Eve :  0700 - 0200<br\/><br\/>\r\n<b>McCafe:<\/b><br\/>\r\nSun to Thurs,PH : 0700 - 0000<br\/>\r\nFri,Sat,PH Eve :  0700 - 0200<br\/><br\/>\r\n",
+		"phone": "67022967",
+		"region": "north",
+		"types": [
+			"6"
+		],
+		"zip": "797653"
+	},
+	{
+		"id": "459",
+		"name": "McDonald\u2019s City Square Mall",
+		"address": "180 Kitchener Rd\r\n#B1-03\/05\r\nCity Square Mall",
+		"city": "Singapore",
+		"lat": "1.311064",
+		"long": "103.856388",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2300<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed",
+		"phone": "65096397",
+		"region": "north",
+		"types": [
+			"3"
+		],
+		"zip": "208539"
+	},
+	{
+		"id": "462",
+		"name": "McDonald\u2019s Clifford Centre",
+		"address": "24 Raffles place Singapore 048621\r\n#B1-01\/10 Clifford centre",
+		"city": "Singapore",
+		"lat": "1.283732",
+		"long": "103.852091",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nMon-Fri : 0730 - 1700<br>\r\nSat,Sun,PH : Closed<br><br>",
+		"phone": "64383943",
+		"region": "central",
+		"types": "",
+		"zip": "048621"
+	},
+	{
+		"id": "464",
+		"name": "McDonald\u2019s PSA",
+		"address": "460 Alexandra Road\r\n#01-25\r\nPSA Building",
+		"city": "Singapore",
+		"lat": "1.273673",
+		"long": "103.801381",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0600 - 0200<br\/><br\/>\r\n<b>Drive Thru:<\/b><br\/>\r\nDaily : 0600 - 0200<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0200<br><br>",
+		"phone": "62747089",
+		"region": "west",
+		"types": [
+			"4",
+			"6"
+		],
+		"zip": "119963"
+	},
+	{
+		"id": "465",
+		"name": "McDonald\u2019s LIDO",
+		"address": "350 Orchard Road #05-12\/13 and #05\/21 Shaw House,",
+		"city": "Singapore",
+		"lat": "1.3056077",
+		"long": "103.8314764",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu, PH : 1200 - 2000<br>\r\nFri, Sat, PH Eve : 1100 - 2200<br>\r\nBreakfast menu not available<br><br>\r\n\r\n<b>McCafe:<\/b><\/br>\r\nSun to Thu, PH : 1200 - 2000<br>\r\nFri, Sat, PH Eve : 1100 - 2200<br><br>",
+		"phone": "62350936",
+		"region": "south",
+		"types": [
+			"6"
+		],
+		"zip": "238868"
+	},
+	{
+		"id": "466",
+		"name": "McDonald\u2019s Temasek Polytechnic",
+		"address": "21 Tampines Avenue1\r\n30B-01-02\r\nTemasek Polytechnic",
+		"city": "Singapore",
+		"lat": "1.345555",
+		"long": "103.932462",
+		"op_hours": "School Term :<br>\r\nMon to Fri : 0800 - 1600<br>\r\nSat,Sun,PH : Closed<br>",
+		"phone": "67857158",
+		"region": "east",
+		"types": "",
+		"zip": "529757"
+	},
+	{
+		"id": "470",
+		"name": "McDonald\u2019s Bedok Reservoir Park",
+		"address": "Blk 744 Bedok Reservoir Road\r\n#01-3019",
+		"city": "Singapore",
+		"lat": "1.33746",
+		"long": "103.92161",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0700 - 0000<br>\r\nFri,Sat,PH Eve : 0700 - 0200<br><br>\r\n",
+		"phone": "62428951",
+		"region": "east",
+		"types": "",
+		"zip": "470744"
+	},
+	{
+		"id": "471",
+		"name": "McDonald\u2019s Plaza Singapura",
+		"address": "68 Orchard Road\r\n#B1-23\/24\r\nPlaza Singapura",
+		"city": "Singapore",
+		"lat": "1.3001",
+		"long": "103.8448",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0730 - 2300<br><br>\r\n<b>Dessert Kiosk :<\/b><br>\r\nClosed",
+		"phone": "62387785",
+		"region": "south",
+		"types": [
+			"3"
+		],
+		"zip": "238839"
+	},
+	{
+		"id": "474",
+		"name": "McDonald\u2019s SAFRA Toa Payoh",
+		"address": "293 Toa Payoh Lorong 6\r\n#01-02 SAFRA Clubhouse",
+		"city": "Singapore",
+		"lat": "1.330238",
+		"long": "103.854294",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0700 - 0000<br>\r\nFri,Sat,PH Eve :0700 - 0200<br><br>\r\n<b>Drive Thru<\/b><br>\r\nSun to Thu,PH : 0700 - 0000<br>\r\nFri,Sat,PH Eve :0700 - 0200<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nSun to Thu,PH : 0700 - 0000<br>\r\nFri,Sat,PH Eve :0700 - 0200<br><br>",
+		"phone": "62591260",
+		"region": "north",
+		"types": [
+			"4",
+			"6"
+		],
+		"zip": "319387"
+	},
+	{
+		"id": "475",
+		"name": "McDonald\u2019s Woodlands Mart",
+		"address": "768 Woodlands Ave 6\r\n#01-01",
+		"city": "Singapore",
+		"lat": "1.446031",
+		"long": "103.798157",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thurs,PH : 0600 - 0000<br>\r\nFri,Sat,PH Eve :  24 Hours",
+		"phone": "63632950",
+		"region": "north",
+		"types": [
+			"2",
+			"5"
+		],
+		"zip": "730768"
+	},
+	{
+		"id": "478",
+		"name": "McDonald\u2019s TradeHub 21",
+		"address": "28 Boon Lay Way\r\n#01-173\/174",
+		"city": "Singapore",
+		"lat": "1.328461",
+		"long": "103.751661",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0600 - 0000<br><br>\r\n<b>Drive-Thru:<\/b><br>\r\nDaily : 0600 - 0000\r\n",
+		"phone": "67958981",
+		"region": "west",
+		"types": [
+			"4"
+		],
+		"zip": "609971"
+	},
+	{
+		"id": "479",
+		"name": "McDonald\u2019s Clementi Mall",
+		"address": "3155 Commonwealth Ave West\r\n#01-06\/07\/08\/09 &amp;02-06\/07\/08\r\nThe Clementi Mall",
+		"city": "Singapore",
+		"lat": "1.314366",
+		"long": "103.765242",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0000",
+		"phone": "66594360",
+		"region": "west",
+		"types": [
+			"2",
+			"6"
+		],
+		"zip": "129588"
+	},
+	{
+		"id": "480",
+		"name": "McDonald\u2019s West Coast Park",
+		"address": "71 West Coast Highway",
+		"city": "Singapore",
+		"lat": "1.298621",
+		"long": "103.763095",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Drive Thru:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0000<\/br><\/br>",
+		"phone": "67791413",
+		"region": "west",
+		"types": [
+			"2",
+			"4",
+			"6",
+			"7"
+		],
+		"zip": "126844"
+	},
+	{
+		"id": "481",
+		"name": "McDonald\u2019s Jurong Central Park",
+		"address": "291 Boon Lay Way",
+		"city": "Singapore",
+		"lat": "1.339373",
+		"long": "103.708478",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Drive Thru:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>",
+		"phone": "6861 0684",
+		"region": "west",
+		"types": [
+			"2",
+			"4",
+			"6"
+		],
+		"zip": "649849"
+	},
+	{
+		"id": "482",
+		"name": "McDonald\u2019s JEM",
+		"address": "50 Jurong Gateway Road\r\n#01-63, #02-55\r\nJEM<sup>\u00ae<\/sup>",
+		"city": "Singapore",
+		"lat": "1.33341",
+		"long": "103.743725",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0600 - 0000<br\/><br\/>\r\n<b>Dessert Kiosk:<\/b><br\/>\r\nClosed<br\/><br\/>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0000\r\n",
+		"phone": "63394006",
+		"region": "west",
+		"types": [
+			"3"
+		],
+		"zip": "608549"
+	},
+	{
+		"id": "494",
+		"name": "McDonald\u2019s Chinatown Point",
+		"address": "133 New Bridge Road\r\n#01-03\r\nChinatown Point",
+		"city": "Singapore",
+		"lat": "1.285604",
+		"long": "103.84494",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun \u2013 Thu, PH : 0730 - 2300<br\/<br\/>\r\nFri,Sat,PH Eve : 0730 - 0000",
+		"phone": "67020038",
+		"region": "central",
+		"types": "",
+		"zip": "059432"
+	},
+	{
+		"id": "496",
+		"name": "McDonald\u2019s Toa Payoh Central",
+		"address": "600 Toa Payoh\r\n#01-02\r\n(formerly known as 600 Lor 4 Toa Payoh #01-02)",
+		"city": "Singapore",
+		"lat": "1.342612",
+		"long": "103.84964",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>",
+		"phone": "62596362",
+		"region": "north",
+		"types": [
+			"2"
+		],
+		"zip": "319515"
+	},
+	{
+		"id": "508",
+		"name": "McDonald\u2019s Clementi Avenue 3",
+		"address": "451 Clementi Ave 3\r\n# 01-309",
+		"city": "Singapore",
+		"lat": "1.312693",
+		"long": "103.765641",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0600 - 0000<br><br>\r\n<span style=\"background-color: yellow;\">Store will be closed on the following dates for renovation works :<br\/>\r\n31 May\u201921 (0600 hours) to 1 Jun\u201921 (0600 hours)<\/span>\r\n",
+		"phone": "67798834",
+		"region": "west",
+		"types": "",
+		"zip": "120451"
+	},
+	{
+		"id": "513",
+		"name": "McDonald\u2019s Regal",
+		"address": "3501 Jalan Bukit Merah\r\n#01-01 Regal Theatre",
+		"city": "Singapore",
+		"lat": "1.283943",
+		"long": "103.818317",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0700 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n",
+		"phone": "62740535",
+		"region": "south",
+		"types": [
+			"2"
+		],
+		"zip": "159460"
+	},
+	{
+		"id": "514",
+		"name": "McDonald\u2019s Ang Mo Kio Park",
+		"address": "10 Ang Mo Kio Street 12",
+		"city": "Singapore",
+		"lat": "1.372388",
+		"long": "103.844766",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0000<\/br><\/br>\r\n<b>Drive-Thru:<\/b><\/br>\r\nDaily : 0600 - 0200",
+		"phone": "64513365",
+		"region": "north",
+		"types": [
+			"2",
+			"4",
+			"5",
+			"6",
+			"7"
+		],
+		"zip": "567740"
+	},
+	{
+		"id": "515",
+		"name": "McDonald\u2019s Elias Community Centre",
+		"address": "93 Pasir Ris Drive 3\r\n#01-02\r\nPasir Ris Elias Community Centre",
+		"city": "Singapore",
+		"lat": "1.378544",
+		"long": "103.942582",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>",
+		"phone": "65817671",
+		"region": "east",
+		"types": [
+			"2"
+		],
+		"zip": "519498"
+	},
+	{
+		"id": "516",
+		"name": "McDonald\u2019s SCAPE",
+		"address": "2 Orchard Link\r\n#02-43\r\n*SCAPE",
+		"city": "Singapore",
+		"lat": "1.300873",
+		"long": "103.836237",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu, PH : 0800 - 0000<br>\r\nFri,Sat,PH Eve : 24 Hours\r\n",
+		"phone": "66349498",
+		"region": "south",
+		"types": [
+			"2"
+		],
+		"zip": "237978"
+	},
+	{
+		"id": "518",
+		"name": "McDonald\u2019s Bishan Park",
+		"address": "1378 Ang Mo Kio Ave 1",
+		"city": "Singapore",
+		"lat": "1.360891",
+		"long": "103.846444",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 0000<\/br><\/br>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0700 - 0000<\/br><\/br>",
+		"phone": "64569839",
+		"region": "north",
+		"types": [
+			"6"
+		],
+		"zip": "569981"
+	},
+	{
+		"id": "519",
+		"name": "McDonald\u2019s Tampines West CC",
+		"address": "5 Tampines Avenue 3\r\n#01-01",
+		"city": "Singapore",
+		"lat": "1.34903",
+		"long": "103.93574",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri, Sat,PH Eve : 24 Hours\r\n\r\n\r\n",
+		"phone": "67837366",
+		"region": "east",
+		"types": [
+			"2"
+		],
+		"zip": "529705"
+	},
+	{
+		"id": "520",
+		"name": "McDonald\u2019s Sengkang Sports Complex",
+		"address": "57 Anchorvale Road\r\n#02-03\r\nSengkang Sport &amp; Recreation Centre",
+		"city": "Singapore",
+		"lat": "1.396318",
+		"long": "103.886456",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Drive Thru:<\/b><br\/>\r\nSun to Thu,PH :  0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0200<br><br>\r\n",
+		"phone": "64898971",
+		"region": "north",
+		"types": [
+			"2",
+			"3",
+			"4",
+			"5",
+			"6"
+		],
+		"zip": "544964"
+	},
+	{
+		"id": "521",
+		"name": "McDonald\u2019s Raffles City",
+		"address": "252 North Bridge Road\r\n#01-49\/50\/51\r\nRaffles City Shopping Centre",
+		"city": "Singapore",
+		"lat": "1.29336",
+		"long": "103.852847",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0730 - 0000<br>\r\nFri,Sat,PH Eve : 0730 - 0200",
+		"phone": "63343937",
+		"region": "south",
+		"types": "",
+		"zip": "179103"
+	},
+	{
+		"id": "525",
+		"name": "McDonald\u2019s SAFRA Yishun",
+		"address": "60 Yishun Avenue 4\r\n#01-11",
+		"city": "Singapore",
+		"lat": "1.423924",
+		"long": "103.840628",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Drive Thru:<\/b><br\/>\r\nDaily :  0600 - 0200<br\/><br\/>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0000",
+		"phone": "67585632",
+		"region": "north",
+		"types": [
+			"2",
+			"4",
+			"5",
+			"6"
+		],
+		"zip": "769027"
+	},
+	{
+		"id": "526",
+		"name": "McDonald\u2019s VivoCity",
+		"address": "1 Harbour Front Walk\r\n#B2-40\/41, Vivocity",
+		"city": "Singapore",
+		"lat": "1.264505",
+		"long": "103.82285",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2300<br><br>\r\n<b>Dessert Kiosk:<\/b><br> \r\nClosed<br><br>",
+		"phone": "63768197",
+		"region": "south",
+		"types": [
+			"3"
+		],
+		"zip": "098585"
+	},
+	{
+		"id": "528",
+		"name": "McDonald\u2019s Toa Payoh Lorong 1",
+		"address": "109 Toa Payoh Lorong 1\r\n#01-318",
+		"city": "Singapore",
+		"lat": "1.341123",
+		"long": "103.845819",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily, PH : 0600 - 0200<br><br>\r\n",
+		"phone": "62589049",
+		"region": "north",
+		"types": "",
+		"zip": "310109"
+	},
+	{
+		"id": "529",
+		"name": "McDonald\u2019s Tampines Neighborhood 3",
+		"address": "5 Tampines Street 32\r\n#01-01",
+		"city": "Singapore",
+		"lat": "1.3549",
+		"long": "103.96021",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>",
+		"phone": "67883225",
+		"region": "east",
+		"types": [
+			"2",
+			"5"
+		],
+		"zip": "529284"
+	},
+	{
+		"id": "530",
+		"name": "McDonald\u2019s Tampines East CC",
+		"address": "10 Tampines St 23\r\n#01-01\r\nTampines East Community Centre",
+		"city": "Singapore",
+		"lat": "1.353414",
+		"long": "103.954873",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 0000<br>",
+		"phone": "62230729",
+		"region": "east",
+		"types": [
+			"5"
+		],
+		"zip": "529341"
+	},
+	{
+		"id": "531",
+		"name": "McDonald\u2019s Tampines",
+		"address": "513 Tampines Central 1\r\n#01-150",
+		"city": "Singapore",
+		"lat": "1.353596",
+		"long": "103.942908",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH Eve : 0600 - 0200<br\/>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nSun to Thu,PH Eve : 0600 - 0200<br\/>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n",
+		"phone": "67841398",
+		"region": "east",
+		"types": [
+			"2",
+			"6"
+		],
+		"zip": "521512"
+	},
+	{
+		"id": "534",
+		"name": "McDonald\u2019s Sun Plaza",
+		"address": "30,Sembawang Drive #01-16 \/17",
+		"city": "Singapore",
+		"lat": "1.448116",
+		"long": "103.820348",
+		"op_hours": "<b>Main Store: <\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Dessert Kiosk: <\/b><br>\r\nClosed",
+		"phone": "6754 2644",
+		"region": "north",
+		"types": [
+			"2",
+			"3"
+		],
+		"zip": "757713"
+	},
+	{
+		"id": "535",
+		"name": "McDonald\u2019s SpringLeaf Tower",
+		"address": "3 Anson Road\r\n#01-03\r\nSpringleaf Tower",
+		"city": "Singapore",
+		"lat": "1.275224",
+		"long": "103.846291",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2200<br><br>\r\n<b>Drive Thru:<\/b><br>\r\nDaily : 0700 - 2200<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0700 - 2200<br>",
+		"phone": "62218903",
+		"region": "south",
+		"types": [
+			"4",
+			"6"
+		],
+		"zip": "079909"
+	},
+	{
+		"id": "537",
+		"name": "McDonald\u2019s Siglap",
+		"address": "55 Siglap Road\r\n#01-07, #01-08 &amp; #01-09\r\nSiglap Centre",
+		"city": "Singapore",
+		"lat": "1.312674",
+		"long": "103.923272",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri, Sat,PH Eve : 24 Hours",
+		"phone": "64494179",
+		"region": "east",
+		"types": [
+			"2"
+		],
+		"zip": "455871"
+	},
+	{
+		"id": "538",
+		"name": "McDonald\u2019s Serangoon Avenue 3",
+		"address": "267 Serangoon Ave 3\r\n#01-37",
+		"city": "Singapore",
+		"lat": "1.3529806",
+		"long": "103.8708061",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>",
+		"phone": "62812079",
+		"region": "north-east",
+		"types": [
+			"2",
+			"7"
+		],
+		"zip": "550267"
+	},
+	{
+		"id": "539",
+		"name": "McDonald\u2019s Sengkang Rivervale Plaza",
+		"address": "118 Rivervale Drive\r\n#01-32",
+		"city": "Singapore",
+		"lat": "1.38537",
+		"long": "103.90189",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>",
+		"phone": "68810380",
+		"region": "north",
+		"types": [
+			"2",
+			"3",
+			"5"
+		],
+		"zip": "540118"
+	},
+	{
+		"id": "768",
+		"name": "McDonald\u2019s Queensway Shopping Centre",
+		"address": "1 Queensway\r\n#02-46\r\nQueensway Shopping Centre",
+		"city": "Singapore",
+		"lat": "1.28754",
+		"long": "103.803415",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2200",
+		"phone": "64798095",
+		"region": "south",
+		"types": "",
+		"zip": "149053"
+	},
+	{
+		"id": "769",
+		"name": "McDonald\u2019s Queensway",
+		"address": "#01-580\r\nRidout Tea Garden",
+		"city": "Singapore",
+		"lat": "1.303809",
+		"long": "103.801886",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0700 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n",
+		"phone": "64756102",
+		"region": "west",
+		"types": [
+			"2"
+		],
+		"zip": "149066"
+	},
+	{
+		"id": "770",
+		"name": "McDonald\u2019s Pioneer Mall",
+		"address": "638 Jurong West Street 61\r\n#01-01\/02\r\nPioneer Mall",
+		"city": "Singapore",
+		"lat": "1.341863",
+		"long": "103.696775",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0600 - 0000",
+		"phone": "67958902",
+		"region": "west",
+		"types": [
+			"2",
+			"6"
+		],
+		"zip": "640638"
+	},
+	{
+		"id": "771",
+		"name": "McDonald\u2019s Pasir Ris Sports Complex",
+		"address": "120 Pasir Ris Central\r\n#01-12\r\nPasir Ris Sports and Recreation Centre",
+		"city": "Singapore",
+		"lat": "1.373186",
+		"long": "103.951193",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Drive Thru:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>",
+		"phone": "65840949",
+		"region": "east",
+		"types": [
+			"2",
+			"4",
+			"5"
+		],
+		"zip": "519640"
+	},
+	{
+		"id": "772",
+		"name": "McDonald\u2019s Northpoint",
+		"address": "930 Yishun Avenue 2\r\n#01-12\/13\r\nNorthpoint City North Wing",
+		"city": "Singapore",
+		"lat": "1.430166",
+		"long": "103.835596",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0200<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed",
+		"phone": "67546043",
+		"region": "north",
+		"types": [
+			"2",
+			"3",
+			"6"
+		],
+		"zip": "769098"
+	},
+	{
+		"id": "774",
+		"name": "McDonald\u2019s NEX",
+		"address": "23 Serangoon Central\r\n#B2-05\/06\/07\/08\r\nNEX",
+		"city": "Singapore",
+		"lat": "1.349738",
+		"long": "103.872909",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2300<br><br>\r\n<b>Dessert Kiosk:<\/b><br> \r\nClosed<br><br>\r\n",
+		"phone": "66344921",
+		"region": "north",
+		"types": [
+			"3"
+		],
+		"zip": "556083"
+	},
+	{
+		"id": "778",
+		"name": "McDonald\u2019s Khatib",
+		"address": "846 Yishun Ring Road\r\n#01-3669",
+		"city": "Singapore",
+		"lat": "1.417499",
+		"long": "103.834974",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<!--<span style=\"background-color: yellow;\">Store will be closed on the following dates for renovation works :<br\/>\r\n23 Nov\u201920 2200 hours to 24 Nov\u201920  1800 hours.<\/span>-->",
+		"phone": "67561271",
+		"region": "north",
+		"types": [
+			"2"
+		],
+		"zip": "760846"
+	},
+	{
+		"id": "780",
+		"name": "McDonald\u2019s Jurong East 24",
+		"address": "Blk 256 Jurong East Street 24\r\n#01-381",
+		"city": "Singapore",
+		"lat": "1.3442946",
+		"long": "103.738513",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<!--<span style=\"background-color: yellow;\">Store will be closed on the following dates for renovation works :<br>\r\n12 Oct\u201920 0830 hours to 1700 hours.<\/span>-->",
+		"phone": "66655527",
+		"region": "west",
+		"types": [
+			"2",
+			"5"
+		],
+		"zip": "600256"
+	},
+	{
+		"id": "781",
+		"name": "McDonald\u2019s Hougang Mall",
+		"address": "90 Hougang Avenue 10\r\n#01-17\r\nHougang Mall",
+		"city": "Singapore",
+		"lat": "1.3728277",
+		"long": "103.893567",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0800 - 2200<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0800 - 2200",
+		"phone": "63873162",
+		"region": "north-east",
+		"types": [
+			"3",
+			"6"
+		],
+		"zip": "538766"
+	},
+	{
+		"id": "782",
+		"name": "McDonald\u2019s Hougang",
+		"address": "208 Hougang Street 21\r\n#01-217",
+		"city": "Singapore",
+		"lat": "1.358969",
+		"long": "103.886697",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>",
+		"phone": "62865219",
+		"region": "north",
+		"types": [
+			"2",
+			"5",
+			"6",
+			"7"
+		],
+		"zip": "530208"
+	},
+	{
+		"id": "783",
+		"name": "McDonald\u2019s Geylang East Central",
+		"address": "113 Aljunied Ave 2\r\n#01-01",
+		"city": "Singapore",
+		"lat": "1.320348",
+		"long": "103.8856878",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n",
+		"phone": "67427613",
+		"region": "east",
+		"types": [
+			"2",
+			"5"
+		],
+		"zip": "380113"
+	},
+	{
+		"id": "784",
+		"name": "McDonald\u2019s Forum Galleria",
+		"address": "583 Orchard Road\r\n#B1-25, #B1-33 to #B1-35\r\nForum The Shopping Mall",
+		"city": "Singapore",
+		"lat": "1.305994",
+		"long": "103.829416",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0800 - 0200<br>\r\n\r\n<b>McCafe:<\/b><br>\r\nDaily : 0800 - 0200<br>",
+		"phone": "67385528",
+		"region": "south",
+		"types": [
+			"6"
+		],
+		"zip": "238884"
+	},
+	{
+		"id": "785",
+		"name": "McDonald\u2019s Farrer Road",
+		"address": "10 Jalan Serene\r\n#01-01\r\nSerene Centre",
+		"city": "Singapore",
+		"lat": "1.322823",
+		"long": "103.813999",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n",
+		"phone": "64654352",
+		"region": "west",
+		"types": [
+			"2"
+		],
+		"zip": "258748"
+	},
+	{
+		"id": "786",
+		"name": "McDonald\u2019s Fajar",
+		"address": "445 Fajar Road\r\n#01-520",
+		"city": "Singapore",
+		"lat": "1.3839773",
+		"long": "103.7702901",
+		"op_hours": "<b>Main Store<\/b><\/br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br><br>",
+		"phone": "67641080",
+		"region": "west",
+		"types": [
+			"2",
+			"5"
+		],
+		"zip": "670445"
+	},
+	{
+		"id": "788",
+		"name": "McDonald\u2019s Chua Chu Kang CC",
+		"address": "35 Teck Whye Avenue\r\n#01-01\r\nChua Chu Kang Community Club",
+		"city": "Singapore",
+		"lat": "1.381245",
+		"long": "103.751908",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<!--<span style=\"background-color: yellow;\">Store will be closed on the following dates for renovation works :<br>2 Dec\u201920 0600 hours to 2 Dec\u201920  1800 hours<\/span>-->",
+		"phone": "67630401",
+		"region": "north",
+		"types": [
+			"2"
+		],
+		"zip": "688892"
+	},
+	{
+		"id": "789",
+		"name": "McDonald\u2019s Choa Chu Kang  62",
+		"address": "Blk 624 Choa Chu Kang Street 62 #01-262\/264. Singapore 680624",
+		"city": "Singapore",
+		"lat": "1.3985506",
+		"long": "103.7474302",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0600 - 0000",
+		"phone": "67628779",
+		"region": "north",
+		"types": [
+			"2",
+			"3",
+			"6"
+		],
+		"zip": "680623"
+	},
+	{
+		"id": "790",
+		"name": "McDonald\u2019s Changi City Point",
+		"address": "5 Changi Business Park Central 1\r\n#01-10\/11\r\nChangi City Point",
+		"city": "Singapore",
+		"lat": "1.335566",
+		"long": "103.964615",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2200<br><br>\r\n\r\n",
+		"phone": "66360681",
+		"region": "east",
+		"types": "",
+		"zip": "486038"
+	},
+	{
+		"id": "795",
+		"name": "McDonald\u2019s Bukit Panjang Plaza",
+		"address": "1 Jelebu Road\r\n#02-01\r\nBukit Panjang Plaza",
+		"city": "Singapore",
+		"lat": "1.38004",
+		"long": "103.76442",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0600 - 0000<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily 0600 - 0000",
+		"phone": "68928572",
+		"region": "west",
+		"types": [
+			"3",
+			"6"
+		],
+		"zip": "677743"
+	},
+	{
+		"id": "796",
+		"name": "McDonald\u2019s Bukit Gombak",
+		"address": "374 Bukit Batok Street 31\r\n#01-198 &amp; #01-202",
+		"city": "Singapore",
+		"lat": "1.358181",
+		"long": "103.750393",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve :24 Hours<br><br>",
+		"phone": "65612830",
+		"region": "west",
+		"types": [
+			"2"
+		],
+		"zip": "650374"
+	},
+	{
+		"id": "797",
+		"name": "McDonald\u2019s Bukit Batok",
+		"address": "632 Bukit Batok Central\r\n#01-138\/#01-140 \/ #01-142",
+		"city": "Singapore",
+		"lat": "1.350539",
+		"long": "103.751211",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Dessert Kiosk:<\/b><br\/>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0600 - 0000<br><br>",
+		"phone": "65632441",
+		"region": "west",
+		"types": [
+			"2",
+			"3",
+			"6",
+			"7"
+		],
+		"zip": "650632"
+	},
+	{
+		"id": "798",
+		"name": "McDonald\u2019s Bugis Village",
+		"address": "151\/152 Rochor Road",
+		"city": "Singapore",
+		"lat": "1.300915",
+		"long": "103.855224",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0800 - 0000<br>\r\nFri,Sat,PH Eve : 0800 - 0100<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>\r\n<span style=\"background-color: yellow;\">Shakes not available <\/span>",
+		"phone": "63382986",
+		"region": "south",
+		"types": [
+			"2",
+			"3"
+		],
+		"zip": "188426"
+	},
+	{
+		"id": "799",
+		"name": "McDonald\u2019s Bugis Junction",
+		"address": "200 Victoria Street\r\n#01-66\r\nBugis Junction",
+		"city": "Singapore",
+		"lat": "1.29906",
+		"long": "103.85544",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0730 - 2300<br><br>\r\n\r\n<b>Dessert Kiosk<\/b><br>\r\nClosed\r\n\r\n",
+		"phone": "63393690",
+		"region": "south",
+		"types": [
+			"3"
+		],
+		"zip": "188024"
+	},
+	{
+		"id": "800",
+		"name": "McDonald\u2019s Boat Quay",
+		"address": "1 South Canal Road",
+		"city": "Singapore",
+		"lat": "1.285588",
+		"long": "103.848854",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nMon-Thu : 0730 -  0200<br\/>\r\nFri,Sat,PH Eve : 0730 -  0200<br\/>\r\nSun, PH : 0730 - 2200<br\/><br\/>",
+		"phone": "65344350",
+		"region": "south",
+		"types": "",
+		"zip": "048508"
+	},
+	{
+		"id": "801",
+		"name": "McDonald\u2019s Bishan Junction 8",
+		"address": "9 Bishan Place\r\n#01-20\r\nJunction 8",
+		"city": "Singapore",
+		"lat": "1.35068",
+		"long": "103.848845",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2300<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed",
+		"phone": "62505898",
+		"region": "north",
+		"types": [
+			"3"
+		],
+		"zip": "579837"
+	},
+	{
+		"id": "803",
+		"name": "McDonald\u2019s Bedok Reservoir",
+		"address": "632 Bedok Reservoir Road\r\n#01-850",
+		"city": "Singapore",
+		"lat": "1.332058",
+		"long": "103.914238",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0800 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0800 - 0200",
+		"phone": "62440227",
+		"region": "east",
+		"types": [
+			"2",
+			"5",
+			"6"
+		],
+		"zip": "470632"
+	},
+	{
+		"id": "804",
+		"name": "McDonald\u2019s Bedok North",
+		"address": "539 Bedok North Street 3\r\n#01-643",
+		"city": "Singapore",
+		"lat": "1.330857",
+		"long": "103.924098",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n",
+		"phone": "64493787",
+		"region": "east",
+		"types": [
+			"2"
+		],
+		"zip": "460539"
+	},
+	{
+		"id": "805",
+		"name": "McDonald\u2019s Beauty World",
+		"address": "144 Upper Bukit Timah Road\r\n#01-39 &amp; #01-40\r\nBeauty World Centre",
+		"city": "Singapore",
+		"lat": "1.342634",
+		"long": "103.776469",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0600 - 0000<br><br>\r\n\r\n",
+		"phone": "63140630",
+		"region": "west",
+		"types": "",
+		"zip": "588177"
+	},
+	{
+		"id": "807",
+		"name": "McDonald\u2019s Ang Mo Kio Ave 10",
+		"address": "448 Ang Mo Kio Avenue 10\r\n#01-1693",
+		"city": "Singapore",
+		"lat": "1.36785",
+		"long": "103.856592",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0600 - 0200<br><br>\r\n\r\n",
+		"phone": "64568781",
+		"region": "central",
+		"types": [
+			"2",
+			"7"
+		],
+		"zip": "560448"
+	},
+	{
+		"id": "808",
+		"name": "McDonald\u2019s Ang Mo Kio 4",
+		"address": "163 Ang Mo Kio Avenue 4\r\n#01-438",
+		"city": "Singapore",
+		"lat": "1.37357",
+		"long": "103.83802",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>",
+		"phone": "64555672",
+		"region": "north",
+		"types": [
+			"2",
+			"5"
+		],
+		"zip": "560163"
+	},
+	{
+		"id": "809",
+		"name": "McDonald\u2019s Ang Mo Kio",
+		"address": "51 Ang Mo Kio Avenue 3\r\n#01-04\r\n51 @ AMK",
+		"city": "Singapore",
+		"lat": "1.369566",
+		"long": "103.847655",
+		"op_hours": "<b>Main Store:<\/b><\/br>\r\nSun-Thu,PH : 0600 - 0200<br\/>\r\nFri, Sat,PH Eve : 24 Hours<br><br>\r\n<b>McCafe:<\/b><\/br>\r\nDaily : 0600 \u2013 0200<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed",
+		"phone": "64586218",
+		"region": "north",
+		"types": [
+			"2",
+			"3",
+			"5",
+			"6"
+		],
+		"zip": "569922"
+	},
+	{
+		"id": "811",
+		"name": "McDonald\u2019s Jurong Bowl",
+		"address": "1 Yuan Ching Road\r\nJurong Family Bowl",
+		"city": "Singapore",
+		"lat": "1.325687",
+		"long": "103.724885",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Drive Thru:<\/b><br\/>\r\nDaily : 0600 - 0200<br><br> \r\n",
+		"phone": "62659104",
+		"region": "west",
+		"types": [
+			"2",
+			"4",
+			"5"
+		],
+		"zip": "618640"
+	},
+	{
+		"id": "812",
+		"name": "McDonald\u2019s Jurong Point",
+		"address": "1 Jurong West Central 2\r\n#01-31\r\nJurong Point",
+		"city": "Singapore",
+		"lat": "1.339534",
+		"long": "103.706356",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thur,PH : 0600 - 0000<br>\r\nFri,Sat,PH Eve : 0600 - 0100<br><br>\r\n<b>Dessert Kiosk:<\/b><br> \r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nSun-Thur,PH : 0600 - 0000<br>\r\nFri,Sat,PH Eve : 0600 - 0100",
+		"phone": "67935481",
+		"region": "west",
+		"types": [
+			"3",
+			"6"
+		],
+		"zip": "648886"
+	},
+	{
+		"id": "813",
+		"name": "McDonald\u2019s Resorts World Sentosa",
+		"address": "8 Sentosa Gateway, #B1-211, 212, 213, 214, Resorts World Sentosa",
+		"city": "Singapore",
+		"lat": "1.258134",
+		"long": "103.822281",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0800 - 2100<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0800 - 2100<br><br>\r\n\r\n<b>Dessert Kiosk :<\/b><br>\r\nClosed<\/br><\/br>",
+		"phone": "68845108",
+		"region": "south",
+		"types": [
+			"3",
+			"6"
+		],
+		"zip": "098138"
+	},
+	{
+		"id": "814",
+		"name": "McDonald\u2019s Metropolis",
+		"address": "9 Buona Vista Drive, Tower 1, #01-08, The Metropolis",
+		"city": "Singapore",
+		"lat": "1.306292",
+		"long": "103.790969",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0600 - 0000<br\/><br\/>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0000\r\n",
+		"phone": "66597958",
+		"region": "west",
+		"types": [
+			"6"
+		],
+		"zip": "138588"
+	},
+	{
+		"id": "817",
+		"name": "McDonald\u2019s Yishun Ring Road",
+		"address": "293 Yishun Street 22\r\n#01-237",
+		"city": "Singapore",
+		"lat": "1.4369362",
+		"long": "103.8376456",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0700 - 0000<br>\r\nFri,Sat,PH Eve :  24 Hours<br><br>\r\n",
+		"phone": "67538382",
+		"region": "north",
+		"types": [
+			"2"
+		],
+		"zip": "760293"
+	},
+	{
+		"id": "818",
+		"name": "McDonald\u2019s Yishun",
+		"address": "369 Sembawang Road\r\n#01-01",
+		"city": "Singapore",
+		"lat": "1.426831",
+		"long": "103.826315",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thurs,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve :  24 Hours<br><br>\r\n<b>Drive-Thru:<\/b><br>\r\nDaily : 0600 \u2013 0200",
+		"phone": "62574276",
+		"region": "north",
+		"types": [
+			"2",
+			"4",
+			"7"
+		],
+		"zip": "758382"
+	},
+	{
+		"id": "819",
+		"name": "McDonald\u2019s Woodlands Civic Centre",
+		"address": "900 South Woodlands Drive\r\n#01-01\r\nWoodlands Civic Centre",
+		"city": "Singapore",
+		"lat": "1.434975",
+		"long": "103.786913",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 0000<br\/><br\/>\r\n\r\n",
+		"phone": "67641700",
+		"region": "north",
+		"types": "",
+		"zip": "730900"
+	},
+	{
+		"id": "821",
+		"name": "McDonald\u2019s United Square",
+		"address": "101 Thomson Road\r\n#B1-11\/12\r\nUnited Square Shopping Mall",
+		"city": "Singapore",
+		"lat": "1.317578",
+		"long": "103.843707",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0730 - 2200<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0730 - 2200<br><br>\r\n<!--<span style=\"background-color: yellow;\">Store will be closed on the following dates for renovation works :<br>26 Nov\u201920 0730 hours to 27 Nov\u201920  1100 hours<\/span>-->\r\n",
+		"phone": "63526197",
+		"region": "central",
+		"types": [
+			"6"
+		],
+		"zip": "307591"
+	},
+	{
+		"id": "822",
+		"name": "McDonald\u2019s Toa Payoh HDB Center",
+		"address": "490, Lorong 6 Toa Payoh\r\n#01-11",
+		"city": "Singapore",
+		"lat": "1.33248",
+		"long": "103.848383",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0600 - 0000<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0600 - 0000",
+		"phone": "63972392",
+		"region": "north",
+		"types": [
+			"3",
+			"6"
+		],
+		"zip": "310490"
+	},
+	{
+		"id": "825",
+		"name": "McDonald\u2019s Alocassia",
+		"address": "383 Bukit Timah Road\r\n#01-09B\r\nAlocassia Apartments",
+		"city": "Singapore",
+		"lat": "1.319752",
+		"long": "103.827398",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0600 - 0000<br\/><br\/>\r\n<b>Drive Thru:<\/b><br\/>\r\nDaily : 0600 - 0200\r\n",
+		"phone": "68874961",
+		"region": "west",
+		"types": [
+			"4"
+		],
+		"zip": "259727"
+	},
+	{
+		"id": "826",
+		"name": "McDonald\u2019s Bukit Batok West",
+		"address": "152 Bukit Batok Street 11\r\n#01-280",
+		"city": "Singapore",
+		"lat": "1.348233",
+		"long": "103.744226",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0600 - 0200<br><br>",
+		"phone": "65651987",
+		"region": "west",
+		"types": "",
+		"zip": "650152"
+	},
+	{
+		"id": "827",
+		"name": "McDonald\u2019s Causeway Point",
+		"address": "1 Woodlands Square\r\n#01-35\r\nCauseway Point",
+		"city": "Singapore",
+		"lat": "1.4358206",
+		"long": "103.7867411",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0600 - 0000\r\n\r\n",
+		"phone": "68941461",
+		"region": "north",
+		"types": [
+			"2",
+			"3",
+			"6"
+		],
+		"zip": "738099"
+	},
+	{
+		"id": "829",
+		"name": "McDonald\u2019s Choa Chu Kang 4",
+		"address": "21 Choa Chu Kang Avenue 4\r\nLot 1 Shopper's Mall #01-20",
+		"city": "Singapore",
+		"lat": "1.384552",
+		"long": "103.7448922",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun- Thur,PH : 0600 - 0000<br>\r\nFri & Sat,PH Eve : 0600 - 0200<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0600 - 0000<br><br>\r\n\r\n\r\n\r\n",
+		"phone": "67635908",
+		"region": "north",
+		"types": [
+			"3",
+			"6"
+		],
+		"zip": "689812"
+	},
+	{
+		"id": "831",
+		"name": "McDonald\u2019s Chong Pang CC",
+		"address": "21 Yishun Ring Road\r\n#01-01 &amp; outside seating area\r\nChong Pang Community Club",
+		"city": "Singapore",
+		"lat": "1.430543",
+		"long": "103.829018",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 0000",
+		"phone": "67552100",
+		"region": "north",
+		"types": "",
+		"zip": "768677"
+	},
+	{
+		"id": "833",
+		"name": "McDonald\u2019s Great World City",
+		"address": "1 Kim Seng Promenade\r\n#01-124 Great World City",
+		"city": "Singapore",
+		"lat": "1.293",
+		"long": "103.83178",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 0000<br\/><br\/>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0700 - 0000<br\/><br\/>",
+		"phone": "62193029",
+		"region": "south",
+		"types": [
+			"6"
+		],
+		"zip": "237994"
+	},
+	{
+		"id": "834",
+		"name": "McDonald\u2019s HarbourFront Centre",
+		"address": "1 Maritime Square\r\n#01-87, #01-88 and #01-89\r\nHarbourFront Centre",
+		"city": "Singapore",
+		"lat": "1.264823",
+		"long": "103.820585",
+		"op_hours": "<b>Main Store:<\/b><br>\t\r\nSun-Thu,PH :  0700 - 2200<br>\r\nFri, Sat,PH Eve : 0700 - 2300<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nSun to Thu,PH :  0700 - 2200<br>\r\nFri, Sat,PH Eve : 0700 - 2300<br><br>",
+		"phone": "62718809",
+		"region": "south",
+		"types": [
+			"3"
+		],
+		"zip": "099253"
+	},
+	{
+		"id": "835",
+		"name": "McDonald\u2019s Hougang 8",
+		"address": "684 Hougang Avenue 8\r\n#01-999",
+		"city": "Singapore",
+		"lat": "1.374211",
+		"long": "103.886858",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0600 - 0200<br>\r\n\r\n",
+		"phone": "63852703",
+		"region": "north",
+		"types": [
+			"2",
+			"5"
+		],
+		"zip": "530684"
+	},
+	{
+		"id": "836",
+		"name": "McDonald\u2019s Hougang 1",
+		"address": "1 Hougang Street 91\r\n#01-26\/39\r\nHougang 1",
+		"city": "Singapore",
+		"lat": "1.376022",
+		"long": "103.879482",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 0000<br\/><br\/>\r\n<b>Dessert Kiosk :<\/b><br\/>\r\nClosed<br><br>\r\n\r\n",
+		"phone": "63845824",
+		"region": "north",
+		"types": [
+			"3"
+		],
+		"zip": "538692"
+	},
+	{
+		"id": "838",
+		"name": "McDonald\u2019s IMM",
+		"address": "2 Jurong East St 21\r\n#01-18\r\nIMM Building",
+		"city": "Singapore",
+		"lat": "1.334296",
+		"long": "103.746339",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0730 - 2200<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>",
+		"phone": "68992698",
+		"region": "west",
+		"types": [
+			"3"
+		],
+		"zip": "609601"
+	},
+	{
+		"id": "839",
+		"name": "McDonald\u2019s Tampines Mall",
+		"address": "4 Tampines Central 5\r\n#01-33\r\nTampines Mall",
+		"city": "Singapore",
+		"lat": "1.35267",
+		"long": "103.94472",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2300<br><br>\r\n<b>Dessert Kiosk :<\/b><br>\r\nClosed",
+		"phone": "67812654",
+		"region": "east",
+		"types": [
+			"3"
+		],
+		"zip": "529510"
+	},
+	{
+		"id": "842",
+		"name": "McDonald\u2019s Jurong Green CC",
+		"address": "6A Jurong West Avenue 1",
+		"city": "Singapore",
+		"lat": "1.350547",
+		"long": "103.725398",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n\r\n",
+		"phone": "65692887",
+		"region": "west",
+		"types": [
+			"2"
+		],
+		"zip": "649520"
+	},
+	{
+		"id": "843",
+		"name": "McDonald\u2019s Marina Square",
+		"address": "6 Raffles Boulevard\r\n#02-156\/ #02-157\/ #02-166\r\nMarina Square",
+		"city": "Singapore",
+		"lat": "1.291138",
+		"long": "103.857767",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0730 - 2130<br>\r\nFri,Sat,PH Eve : 0730 - 2200<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed",
+		"phone": "68832286",
+		"region": "south",
+		"types": [
+			"3"
+		],
+		"zip": "039594"
+	},
+	{
+		"id": "844",
+		"name": "McDonald\u2019s Lucky Plaza",
+		"address": "304 Orchard Road\r\n#B1-19 to #B1-24, #B1-44 to #B1-46\r\nLucky Plaza",
+		"city": "Singapore",
+		"lat": "1.304439",
+		"long": "103.834029",
+		"op_hours": "<b>Main store:<\/b><br\/>\r\nDaily : 0700 - 2300<br\/><br\/>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0700 - 2300<br\/><br\/>\r\n",
+		"phone": "62359208",
+		"region": "south",
+		"types": [
+			"6"
+		],
+		"zip": "238863"
+	},
+	{
+		"id": "845",
+		"name": "McDonald\u2019s Parkway Centre",
+		"address": "1 Marine Parade Central\r\n#01-01\r\nParkway Centre",
+		"city": "Singapore",
+		"lat": "1.302229",
+		"long": "103.906084",
+		"op_hours": "<b>Main store:<\/b><br>\r\nDaily : 0700 - 0100<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0700 - 0100<br><br>",
+		"phone": "63456517",
+		"region": "east",
+		"types": [
+			"6"
+		],
+		"zip": "449408"
+	},
+	{
+		"id": "848",
+		"name": "McDonald\u2019s Singapore Polytechnic",
+		"address": "500 Dover Road\r\n#01-13 Teaching Block 16\r\nSingapore Polytechnic",
+		"city": "Singapore",
+		"lat": "1.309483",
+		"long": "103.774772",
+		"op_hours": "<b>Main Store :<\/b><br\/>\r\n\r\nMon-Fri : 0730 - 1900<br>\r\nSat,Sun,PH : Closed<br>\r\n\r\n\r\n",
+		"phone": "68723135",
+		"region": "west",
+		"types": "",
+		"zip": "139651"
+	},
+	{
+		"id": "850",
+		"name": "McDonald\u2019s Rivervale Mall",
+		"address": "11 Rivervale Crescent\r\n#01-27\r\nRivervale Mall",
+		"city": "Singapore",
+		"lat": "1.392349",
+		"long": "103.904598",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0700 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n\r\n",
+		"phone": "63887320",
+		"region": "north",
+		"types": [
+			"2"
+		],
+		"zip": "545082"
+	},
+	{
+		"id": "851",
+		"name": "McDonald\u2019s Punggol 21 Community Centre",
+		"address": "80 Punggol Field\r\n#01-02",
+		"city": "Singapore",
+		"lat": "1.393473",
+		"long": "103.913677",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0630 - 0000",
+		"phone": "63154584",
+		"region": "north",
+		"types": "",
+		"zip": "828815"
+	},
+	{
+		"id": "852",
+		"name": "McDonald\u2019s Potong Pasir",
+		"address": "148 Potong Pasir Ave 1\r\n#01-43",
+		"city": "Singapore",
+		"lat": "1.3328173",
+		"long": "103.8681333",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 0000<br\/><br\/>",
+		"phone": "62814486",
+		"region": "east",
+		"types": "",
+		"zip": "350148"
+	},
+	{
+		"id": "853",
+		"name": "McDonald\u2019s People\u2019s Park",
+		"address": "1 Park Road\r\n#01-69 to #01-75\r\nPeople's Park Complex",
+		"city": "Singapore",
+		"lat": "1.286427",
+		"long": "103.84438",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0700 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n",
+		"phone": "65360410",
+		"region": "south",
+		"types": [
+			"2"
+		],
+		"zip": "059108"
+	},
+	{
+		"id": "856",
+		"name": "McDonald\u2019s Parklane",
+		"address": "35 Selegie Road\r\n#B1-38\r\nParklane Shopping Mall",
+		"city": "Singapore",
+		"lat": "1.300626",
+		"long": "103.84956",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0800 - 2200<br><br>\r\n",
+		"phone": "63339095",
+		"region": "south",
+		"types": "",
+		"zip": "188307"
+	},
+	{
+		"id": "857",
+		"name": "McDonald\u2019s Nanyang Technological University",
+		"address": "76 Nanyang Drive, Block N2.1\r\n#01-08\r\nNanyang Technological University",
+		"city": "Singapore",
+		"lat": "1.347269",
+		"long": "103.680092",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nMon to Sat,PH Eve : 0700 - 2100<br>\r\nSun,PH :  1000 - 2000<br>\r\n<span style=\"background-color: yellow;\">Breakfast menu not available on Sun and PH",
+		"phone": "67929917",
+		"region": "west",
+		"types": "",
+		"zip": "637331"
+	},
+	{
+		"id": "860",
+		"name": "McDonald\u2019s Gek Poh",
+		"address": "762 Jurong West Street 75\r\n#02-250",
+		"city": "Singapore",
+		"lat": "1.3484335",
+		"long": "103.6978952",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0600 - 2300",
+		"phone": "67934649",
+		"region": "central",
+		"types": [
+			"7"
+		],
+		"zip": "640762"
+	},
+	{
+		"id": "861",
+		"name": "McDonald\u2019s Suntec City",
+		"address": "3 Temasek Boulevard #02-732\/733\r\nSuntec City Mall",
+		"city": "Singapore",
+		"lat": "1.295751",
+		"long": "103.858877",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0730 - 2200<br><br>\r\n\r\n<b>McCafe:<\/b><br>\r\nDaily : 0730 - 2200",
+		"phone": "68873979",
+		"region": "central",
+		"types": [
+			"6"
+		],
+		"zip": "038983"
+	},
+	{
+		"id": "1526",
+		"name": "McDonald\u2019s V Hotel",
+		"address": "70 Jellicoe Road #01-20 V Hotel Lavender",
+		"city": "Singapore",
+		"lat": "1.308034",
+		"long": "103.86262",
+		"op_hours": "<b>Main Store: <\/b><br>\r\nDaily : 0700 - 0100<br><br>\r\n<b>Dessert Kiosk: <\/b><br>\r\nClosed<br><br>",
+		"phone": "62913762",
+		"region": "east",
+		"types": [
+			"3"
+		],
+		"zip": "208767"
+	},
+	{
+		"id": "4460",
+		"name": "McDonald\u2019s Fairprice Hub",
+		"address": "1 Joo Koon Circle, Provisional Unit\r\n#01-27\/28\/29\/30\/31",
+		"city": "Singapore",
+		"lat": "1.327406",
+		"long": "103.678322",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 2100<br\/>\r\n\r\n",
+		"phone": "67104678",
+		"region": "west",
+		"types": "",
+		"zip": "629117"
+	},
+	{
+		"id": "4669",
+		"name": "McDonald\u2019s East Point Mall",
+		"address": "3 Simei Street 6, #01-34 Eastpoint Mall",
+		"city": "Singapore",
+		"lat": "1.342806",
+		"long": "103.952974",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0600 - 0000<br\/><br\/>",
+		"phone": "67020605",
+		"region": "east",
+		"types": "",
+		"zip": "528833"
+	},
+	{
+		"id": "4702",
+		"name": "McDonald\u2019s Gardens By The Bay",
+		"address": "18 Marina Gardens Drive #02-04,\r\nGarden By The Bay, Visitor Centre",
+		"city": "Singapore",
+		"lat": "1.2816219",
+		"long": "103.8635596",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nMon-Fri,PH : 1100 - 2100<br>\r\nSat,Sun,PH Eve : 0900 - 2100<br><br>\r\n<b>McCafe:<\/b><br>\r\nMon-Fri,PH : 1100 - 2100<br>\r\nSat,Sun,PH Eve : 0900 - 2100<br><br>\r\n<b>Dessert Kiosk :<\/b><br>\r\nClosed",
+		"phone": "64432704",
+		"region": "central",
+		"types": [
+			"3",
+			"6"
+		],
+		"zip": "018954"
+	},
+	{
+		"id": "5179",
+		"name": "McDonald\u2019s Pasir Ris Central",
+		"address": "1 Pasir Ris Central Street 3 #01-28\/29 White Sands",
+		"city": "Singapore",
+		"lat": "1.372567",
+		"long": "103.9486106",
+		"op_hours": "<b>Main Store: <\/b><br>\r\nSun to Thu,PH : 0600 - 0100<br>\r\nFri,Sat,PH Eve : 0600 - 0200<br><br>\r\n<b>Dessert Kiosk: <\/b><br>\r\nClosed",
+		"phone": "63853180",
+		"region": "central",
+		"types": [
+			"3"
+		],
+		"zip": "518457"
+	},
+	{
+		"id": "5218",
+		"name": "McDonald\u2019s Paya Lebar Square",
+		"address": "60 Paya Lebar Road, Provisional Unit\r\n#01-68\/69\/74\/75\/76\/K3\r\nPaya Lebar Square",
+		"city": "Singapore",
+		"lat": "1.318780",
+		"long": "103.892637",
+		"op_hours": " <b>Main Store:<\/b><\/br>\r\nDaily : 0600 - 0100<br><br>\r\n <b>Dessert Kiosk:<\/b><br>\r\nClosed<br><br>",
+		"phone": "6341 6809",
+		"region": "east",
+		"types": [
+			"3"
+		],
+		"zip": "409051"
+	},
+	{
+		"id": "5243",
+		"name": "McDonald\u2019s Waterway Point",
+		"address": "83 Punggol Central, #B2-07 West Wing, Waterway Point",
+		"city": "Singapore",
+		"lat": "1.4065407",
+		"long": "103.902078",
+		"op_hours": "<b>Main Store: <\/b><br>\r\nSun to Thu,PH : 0600 - 0200<br>\r\nFri,Sat,PH Eve : 24 Hours<br><br>\r\n<b>Dessert Kiosk: <\/b><br>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br>\r\nDaily : 0600 - 0000<br><br>\r\n",
+		"phone": "63857853",
+		"region": "central",
+		"types": [
+			"2",
+			"3",
+			"6"
+		],
+		"zip": "828761"
+	},
+	{
+		"id": "5560",
+		"name": "McDonald\u2019s SAFRA Punggol",
+		"address": "9 Sentul Crescent, #03-05",
+		"city": "Singapore",
+		"lat": "1.409996",
+		"long": "103.906149",
+		"op_hours": "<b>Main Store: <\/b><br>\r\nDaily : 0600 - 0200<br\/><br>\r\n<b>Drive Thru: <\/b><br>\r\nDaily : 0600 - 0200<br\/><br>\r\n",
+		"phone": "63856275",
+		"region": "central",
+		"types": [
+			"2",
+			"4",
+			"5"
+		],
+		"zip": "828654"
+	},
+	{
+		"id": "5607",
+		"name": "McDonald\u2019s Marine Cove",
+		"address": "Marine Cove,1000 East Coast Parkway\r\nEast Coast Park #01-05",
+		"city": "Singapore",
+		"lat": "1.3017584",
+		"long": "103.9151423",
+		"op_hours": "<b>Main store:<\/b><br>\r\nSun-Thu,PH : 0600 - 2300<br>\r\nFri,Sat,PH Eve : 0600 - 0000<br><br>\r\n<b>McCafe:<\/b> <br>\r\nSun-Thu,PH : 0600 - 2300<br>\r\nFri,Sat,PH Eve : 0600 \u2013 0000<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed<\/br>",
+		"phone": "62430471",
+		"region": "central",
+		"types": [
+			"3",
+			"6",
+			"7"
+		],
+		"zip": "449876"
+	},
+	{
+		"id": "5686",
+		"name": "McDonald\u2019s Compass 1",
+		"address": "1 Sengkang Square\r\n#B1-13",
+		"city": "Singapore",
+		"lat": "1.391922",
+		"long": "103.8948292",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2300<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed",
+		"phone": "63863601",
+		"region": "central",
+		"types": [
+			"3"
+		],
+		"zip": "545078"
+	},
+	{
+		"id": "52015",
+		"name": "McDonald\u2019s Hillion Mall",
+		"address": "17 Petir Road, # B1 \u2013 25 Hillion Mall",
+		"city": "Singapore",
+		"lat": "1.378425",
+		"long": "103.763069",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0000<br\/>\r\nFri,Sat,PH Eve : 0600 - 0200<br\/><br\/>\r\n<b>Dessert Kiosk:<\/b><br\/>\r\nClosed<br>\r\n",
+		"phone": "6219 9169",
+		"region": "central",
+		"types": [
+			"3"
+		],
+		"zip": "678278"
+	},
+	{
+		"id": "52016",
+		"name": "McDonald\u2019s Downtown East",
+		"address": "1 Pasir Ris Close #01-338 Downtown East",
+		"city": "Singapore",
+		"lat": "1.377114",
+		"long": "103.955096",
+		"op_hours": "<b>Main store:<\/b><br>\r\nSun to Thu,PH : 0700 - 0000<br>\r\nFri,Sat,PH Eve : 0700 \u2013 0200<br><br>\r\n<b>McCafe:<\/b><br>\r\nMon to Fri,PH : 1100 - 0000<br>\r\nSat,SunPH Eve : 0800 \u2013 0000<br>",
+		"phone": "63853065",
+		"region": "east",
+		"types": [
+			"6"
+		],
+		"zip": "519599"
+	},
+	{
+		"id": "52043",
+		"name": "McDonald\u2019s Loyang Point",
+		"address": "Block 258 Pasir Ris Street 21\r\n#01-25, Loyang Point",
+		"city": "Singapore",
+		"lat": "1.366840097",
+		"long": "103.964500800",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 2300<br\/><br\/>\r\n<!--<span style=\"background-color: yellow;\">Store will be closed on the following dates for renovation works :<br>30 Nov\u201920 0700 hours to 30 Nov\u201920  0000 hours<\/span>-->",
+		"phone": "63868963",
+		"region": "central",
+		"types": "",
+		"zip": "510258"
+	},
+	{
+		"id": "52187",
+		"name": "McDonald\u2019s Shell Tampines",
+		"address": "9 Tampines Avenue 2 S 529731",
+		"city": "Singapore",
+		"lat": "1.349050",
+		"long": "103.947722",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0200<br\/>\r\nFri, Sat,PH Eve : 24 Hours<br><br>\r\n<b>Drive Thru:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0200<br\/>\r\nFri, Sat,PH Eve : 24 Hours<br><br>\r\n\r\n",
+		"phone": "64446912",
+		"region": "central",
+		"types": [
+			"2",
+			"4"
+		],
+		"zip": ""
+	},
+	{
+		"id": "52279",
+		"name": "McDonald\u2019s Keat Hong",
+		"address": "818 Choa Chu Kang Avenue 1#01-02",
+		"city": "Singapore",
+		"lat": "1.378318",
+		"long": "103.748810",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0200<br\/>\r\nFri, Sat,PH Eve : 24 Hours",
+		"phone": "67602660",
+		"region": "central",
+		"types": [
+			"2"
+		],
+		"zip": "680818"
+	},
+	{
+		"id": "802",
+		"name": "McDonald\u2019s Bendemeer",
+		"address": "22 Boon Keng Road\r\n#01-01",
+		"city": "Singapore",
+		"lat": "1.3179072",
+		"long": "103.8615321",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun-Thu,PH : 0600 - 0200<br\/>\r\nFri, Sat,PH Eve : 24 Hours<br><br>",
+		"phone": "62982250",
+		"region": "central",
+		"types": [
+			"2"
+		],
+		"zip": "330022"
+	},
+	{
+		"id": "512",
+		"name": "McDonald\u2019s Bedok Mall",
+		"address": "311 New Upper Changi Road Unit\r\n#01-10\/11 Bedok Mall",
+		"city": "Singapore",
+		"lat": "1.325081",
+		"long": "103.929578",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun-Thu,PH : 0600 - 0000<br\/>\r\nFri,Sat,PH Eve : 0600 - 0100<br\/><br\/>\r\n<b>Dessert Kiosk:<\/b><br\/>\r\nClosed<br><br>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0600 - 0000<br\/><br\/>\r\n",
+		"phone": "68449818",
+		"region": "east",
+		"types": [
+			"3",
+			"6"
+		],
+		"zip": "467360"
+	},
+	{
+		"id": "52544",
+		"name": "McDonald\u2019s Shell Hougang",
+		"address": "600 Hougang Avenue 3, #01-01",
+		"city": "Singapore",
+		"lat": "1.3493017",
+		"long": "103.8902031",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0800 - 2300<br>\r\nFri,Sat,PH Eve : 0800 - 0000<br><br>\r\n<b>Drive Thru:<\/b><br\/>\r\nSun to Thu,PH : 0800 - 2300<br>\r\nFri,Sat,PH Eve : 0800 - 0000<br>",
+		"phone": "65815339",
+		"region": "central",
+		"types": [
+			"2",
+			"4"
+		],
+		"zip": "538846"
+	},
+	{
+		"id": "52965",
+		"name": "McDonald\u2019s Punggol Oasis",
+		"address": "681 Punggol Drive, #02-37\/38 Oasis Terraces",
+		"city": "Singapore",
+		"lat": "1.4025682",
+		"long": "103.9129331",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0630 - 0000<br\/><br\/>\r\n<b>McCafe:<\/b><br\/>\r\nDaily : 0630 \u2013 0000<br\/><br\/>\r\n<!--<span style=\"background-color: yellow;\">Store will be closed on the following dates for renovation works :<br><br>5 Oct\u201920 (2300 hours) to 7 Oct\u201920 (1100 hours)<\/span>-->",
+		"phone": "65132520",
+		"region": "central",
+		"types": [
+			"6"
+		],
+		"zip": "820681"
+	},
+	{
+		"id": "53351",
+		"name": "McDonald\u2019s WoodGrove",
+		"address": "30 Woodlands Avenue 1, #01-06 The Woodgrove",
+		"city": "Singapore",
+		"lat": "1.429129295",
+		"long": "103.780865000",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 0000<br\/><br\/>",
+		"phone": "68350885",
+		"region": "north",
+		"types": "",
+		"zip": "739065"
+	},
+	{
+		"id": "53804",
+		"name": "McDonald\u2019s Aperia Mall",
+		"address": "12 Kallang Avenue Aperia #01-24",
+		"city": "Singapore",
+		"lat": "1.310431991",
+		"long": "103.864460297",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nMon-Fri : 0730 - 2000<br\/>\r\nSat,Sun,PH : Closed<br\/><br\/>",
+		"phone": "62412729",
+		"region": "central",
+		"types": "",
+		"zip": "339511"
+	},
+	{
+		"id": "54044",
+		"name": "McDonald\u2019s Buangkok Square",
+		"address": "Blk 991 Buangkok Link #01-14",
+		"city": "Singapore",
+		"lat": "1.384168000",
+		"long": "103.881605000",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2300",
+		"phone": "65703540",
+		"region": "north",
+		"types": "",
+		"zip": "530991"
+	},
+	{
+		"id": "54288",
+		"name": "McDonald\u2019s Funan Centre",
+		"address": "107 North Bridge Road, Funan #01-16\/17\/21",
+		"city": "Singapore",
+		"lat": "1.291519",
+		"long": "103.849785",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0800 - 2300<br\/>\r\n\r\n\r\n",
+		"phone": "69520352",
+		"region": "central",
+		"types": "",
+		"zip": "179105"
+	},
+	{
+		"id": "54391",
+		"name": "McDonald\u2019s Yishun Blossom Spring",
+		"address": "461 Yishun Avenue 6 Blossom Spring Yishun #01-03",
+		"city": "Singapore",
+		"lat": "1.428758000",
+		"long": "103.849942000",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 0000<br\/><br\/>\r\n",
+		"phone": "62193598",
+		"region": "central",
+		"types": "",
+		"zip": "760461"
+	},
+	{
+		"id": "54682",
+		"name": "McDonald\u2019s Zhongshan Mall",
+		"address": "20 Ah Hood Road #01-16 Singapore",
+		"city": "Singapore",
+		"lat": "1.326810889",
+		"long": "103.846542300",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nSun to Thu,PH : 0730 - 0000<\/br>\r\nFri,Sat,PH Eve : 24 Hours<\/br>\r\n",
+		"phone": "66942568",
+		"region": "central",
+		"types": [
+			"2"
+		],
+		"zip": "329984"
+	},
+	{
+		"id": "54912",
+		"name": "McDonald\u2019s Vista Point",
+		"address": "<span style=\"font-family: 'Calibri',sans-serif;color: black\">Blk 548 Woodlands Drive 44 #01-20 <\/span>\r\n\r\n<span style=\"font-family: 'Calibri',sans-serif;color: black\">Vista Point Singapore 730548<\/span>",
+		"city": "Singapore",
+		"lat": "1.431075383",
+		"long": "103.794174400",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nDaily : 0700 - 0000<br\/><br\/>",
+		"phone": "6760 0915   ",
+		"region": "central",
+		"types": "",
+		"zip": "730548"
+	},
+	{
+		"id": "56353",
+		"name": "McDonald\u2019s Tampines (Kiosk)",
+		"address": "Blk 513 Tampines Central 1 #01-150",
+		"city": "Singapore",
+		"lat": "1.354111",
+		"long": "103.942702",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 0700 - 2300<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed",
+		"phone": "67851082",
+		"region": "east",
+		"types": [
+			"3"
+		],
+		"zip": "521512"
+	},
+	{
+		"id": "56384",
+		"name": "McDonald\u2019s Choa Chu Kang 4 (Kiosk)",
+		"address": "10 Choa Chu Kang Avenue 4\r\n#01-21\r\nCold Kiosk at Choa Chu Kang MRT Station",
+		"city": "Singapore",
+		"lat": "1.3853684",
+		"long": "103.7442814",
+		"op_hours": "<b>Main Store:<\/b><br>\r\nDaily : 1000 - 2000<br><br>\r\n<b>Dessert Kiosk:<\/b><br>\r\nClosed",
+		"phone": "67698603",
+		"region": "north",
+		"types": "",
+		"zip": "689810"
+	},
+	{
+		"id": "56572",
+		"name": "McDonald\u2019s LeQuest",
+		"address": "4 Bukit Batok Street 41 #01-42 to #01-45, #01-50 to #01-54",
+		"city": "Singapore",
+		"lat": "1.355609617",
+		"long": "103.741207428",
+		"op_hours": "<b>Main Store:<\/b><br\/>\r\nSun to Thu,PH : 0600 - 0200<br\/>\r\nFri, Sat,PH Eve : 24 Hours",
+		"phone": "67193100",
+		"region": "west",
+		"types": [
+			"2"
+		],
+		"zip": "657991"
+	},
+	{
+		"id": "56616",
+		"name": "McDonald\u2019s Canberra",
+		"address": "Blk 133 Canberra View, #01-01 to\u00a0 #01-03",
+		"city": "Singapore",
+		"lat": "1.443196000",
+		"long": "103.830308000",
+		"op_hours": "<b>Main store:<\/b><br>\r\nDaily : 0700 - 0200<br><br>\r\n<b>McCafe:<\/b> <br>\r\nDaily : 0700 - 0200<br>",
+		"phone": "66839116",
+		"region": "north",
+		"types": [
+			"6",
+			"7"
+		],
+		"zip": "750133"
+	},
+	{
+		"id": "57545",
+		"name": "McDonald\u2019s Shell Havelock",
+		"address": "548 Havelock Road",
+		"city": "Singapore",
+		"lat": "1.289811258",
+		"long": "103.832483100",
+		"op_hours": "",
+		"phone": "94371405",
+		"region": "central",
+		"types": "",
+		"zip": "169637"
+	},
+	{
+		"id": "57598",
+		"name": "McDonald\u2019s Tampines Green View",
+		"address": "Blk 614 Tampines North Drive 1, #01-09",
+		"city": "Singapore",
+		"lat": "1.365490000",
+		"long": "103.936636000",
+		"op_hours": "Daily : 0700 - 0000",
+		"phone": "67196675",
+		"region": "east",
+		"types": "",
+		"zip": "520614"
+	},
+	{
+		"id": "57649",
+		"name": "McDonald\u2019s Greenridge Shopping Centre",
+		"address": "<strong>Blk 524A Jelapang Road #01-02A Greenridge Shopping Centre Singapore 671524<\/strong>",
+		"city": "Singapore",
+		"lat": "",
+		"long": "",
+		"op_hours": "",
+		"phone": "",
+		"region": "west",
+		"types": "",
+		"zip": ""
+	}
+]

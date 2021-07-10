@@ -4,28 +4,18 @@
 // Pass in currentLatitude and currentLongitude as HTTP GET:
 // GET http://localhost:3000/outlets?currentLatitude=1.3104680812609208&currentLongitude=103.86246226812166
 // Use currentLatitude and currentLongitude in the SQL statement
-require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = 3000;
 
 app.use(express.static('html')); //dir name
 
-const knex = require('knex')({
-    client: 'mysql',
-    connection: {
-      host : process.env.DB_HOST,
-      database : process.env.DB_NAME,
-      user : process.env.DB_USER,
-      password : process.env.DB_PASSWORD
-    }
-});
+const db = require("./db-config.js");
 
-// Create a new Route http://localhost:3000/outlets
+// Create a new Route http://nearme.aliciatay.com/outlets
 // Return the 2D array outlets as JSON
-app.get('/outlets', (req, res) => {
+app.get('/outlets', async (req, res) => {
     const results = {
-        sectionTitle: req.query.searchWord,
         outlets: [],
         currentLocation: {
             latitude: parseFloat(req.query.currentLatitude),
@@ -33,46 +23,87 @@ app.get('/outlets', (req, res) => {
         }
     };
 
-    //retrieves the brand name for the results that will follow
-    // knex('brands')
-    // .where('BrandId', 1)
-    // .select('BrandName')
-    // .then(function(rows) {
-    //     results.sectionTitle = rows[0]['BrandName'];
-    // });
+    let selectedBrands = [];
 
-    //retrieves details of outlets sorted by increasing distance from user's current position
-    //then sends everything as JSON
-    const part1 = "SELECT o.OutletId, o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.BrandId, b.BrandName, ";
-    const part2 = "DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance FROM outlets o INNER JOIN brands b USING(BrandId) ORDER BY distance ASC";
-    const fullQuery = part1.concat(part2);
+    await db.transaction(async trx => {
+        //retrieves the brand name for the results that will follow
+        if (req.query.brand.length > 0) {
+            console.log("Find Brand ID for:", req.query.brand);
+            const brands = await db('brands')
+                .where('ShortName', req.query.brand)
+                .select('BrandId', 'BrandName')
+                .transacting(trx);
 
-    knex.raw(fullQuery, [results.currentLocation.latitude, results.currentLocation.longitude])
-        .then(function(rows) {
-            rows[0].forEach((row) => {
-                results.outlets.push({ 
-                    name: row['OutletName'], 
-                    distance: row['distance'], 
-                    postal: row['Postal'], 
-                    contact: row['Contact'], 
-                    closing: row['Closing']
-                });
-            });
+            if (brands.length === 0) {
+                console.log("Could not find brand in DB.");
+                res.send(results);
+                return;
+            }
+
+            console.log('Brands', brands)
+            selectedBrands.push(brands[0]['BrandId']);
+            results.sectionTitle = brands[0]['BrandName'];
+        } else if (req.query.category.length > 0) {
+            console.log("Find Category ID for:", req.query.category);
+
+            const category = await db('categories')
+                .where('CodeName', req.query.category)
+                .select('CategoryId', 'CategoryName')
+                .transacting(trx);
+
+            if (category.length === 0) {
+                console.log("Could not find category in DB.");
+                res.send(results);
+                return;
+            }
+
+            results.sectionTitle = category[0]['CategoryName'];
+            
+            const brand_mapping = await db('brand_categories')
+                .where('CategoryId', category[0]['CategoryId'])
+                .select('BrandId')
+                .transacting(trx);
+
+            if (brand_mapping.length === 0) {
+                console.log("Could not find any brand for this category in DB.");
+                res.send(results);
+                return;
+            }
+            brand_mapping.forEach( brand_category => {
+                selectedBrands.push(brand_category['BrandId']);
+            })
+        }
+
+        const queryParts = [];
+        queryParts.push("SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance");
+        queryParts.push("FROM outlets o INNER JOIN brands b USING(BrandId)");
+        queryParts.push("WHERE o.BrandId IN (?)");
+        queryParts.push("ORDER BY distance ASC");
+
+        const queryParams = [results.currentLocation.latitude, results.currentLocation.longitude, selectedBrands];
+
+        const outlets = await db.raw(queryParts.join(" "), queryParams)
+            .transacting(trx);
+            
+        if (outlets[0].length === 0) {
+            console.log("Could not find outlets in DB.");
             res.send(results);
-        })
-        .catch((error) => console.error(error));
-        // .finally(() => knex.destroy());
-});
+            return;
+        }
 
-// app.use(express.urlencoded({
-//     extended: true
-//   }));
-  
-//   app.use(express.json());
-  
-//   app.post('/outlets', (req, res) => {
-//     res.send(req.body.searchWord); //sends back the word that was searched
-// });
+        outlets[0].forEach((outlet) => {
+            results.outlets.push({ 
+                name: outlet['OutletName'], 
+                brandShortName: outlet['ShortName'],
+                distance: outlet['distance'], 
+                postal: outlet['Postal'], 
+                contact: outlet['Contact'], 
+                closing: outlet['Closing']
+            });
+        });
+        res.send(results);
+    })
+});
 
 app.listen(port, () => {
   console.log(`NearMe app listening on port ${port}!`)

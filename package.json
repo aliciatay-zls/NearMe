@@ -9,17 +9,19 @@
     "express": "^4.17.1",
     "jsdom": "^16.6.0",
     "knex": "^0.95.6",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {},
   "scripts": {
     "dev": "nodemon rest_api.js",
-    "parser": "node parser.js",
+    "parse-kfc": "node parser_kfc.js",
+    "parse-mcd": "node parser_mcd.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {
     "watch": [
-      "html/index.html",
+      "html",
       "rest_api.js"
     ]
   },
