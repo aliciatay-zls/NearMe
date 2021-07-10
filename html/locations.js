@@ -22,12 +22,29 @@ function geoGetCurrentLocation() {
     }
 }
 
+var updateSearchOptions = function() {
+    if ($("#brandSelect").val() == "") {
+        $("#categorySelect").prop("disabled", false);
+    } else {
+        $("#categorySelect").prop("disabled", "disabled");
+    }
+    if ($("#categorySelect").val() == "") {
+        $("#brandSelect").prop("disabled", false);
+    } else {
+        $("#brandSelect").prop("disabled", "disabled");
+    }
+}
+    
+$(updateSearchOptions);
+$("#brandSelect").change(updateSearchOptions);
+$("#categorySelect").change(updateSearchOptions);
+
 $(document).ready(function() {
     geoGetCurrentLocation();
 
     $(":submit").click(function(event) {
         event.preventDefault(); //prevent the form from posting
-        $("#outletResults").html("");
+        $("#outletResults").html(""); //flush previously displayed results
 
         var params = {
             brand: $("#brandSelect").val(),
