@@ -23,13 +23,12 @@ app.get('/outlets', async (req, res) => {
         }
     };
 
-    let selectedBrands = null;
+    let selectedBrands = [];
 
-    //retrieves the brand name for the results that will follow
-    if (req.query.brand.length > 0) {
-        await db.transaction(async trx => {
-            console.log("Find Brand ID for:", req.query.brand)
-
+    await db.transaction(async trx => {
+        //retrieves the brand name for the results that will follow
+        if (req.query.brand.length > 0) {
+            console.log("Find Brand ID for:", req.query.brand);
             const brands = await db('brands')
                 .where('ShortName', req.query.brand)
                 .select('BrandId', 'BrandName')
@@ -40,45 +39,70 @@ app.get('/outlets', async (req, res) => {
                 res.send(results);
                 return;
             }
-      
+
             console.log('Brands', brands)
-            selectedBrands = [ brands[0]['BrandId'] ];
+            selectedBrands.push(brands[0]['BrandId']);
             results.sectionTitle = brands[0]['BrandName'];
+        } else if (req.query.category.length > 0) {
+            console.log("Find Category ID for:", req.query.category);
 
-            const queryParts = [];
-            queryParts.push("SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance");
-            queryParts.push("FROM outlets o INNER JOIN brands b USING(BrandId)");
-            queryParts.push("WHERE o.BrandId IN (?)");
-            queryParts.push("ORDER BY distance ASC");
-
-            const queryParams = [results.currentLocation.latitude, results.currentLocation.longitude, selectedBrands];
-
-            const outlets = await db.raw(queryParts.join(" "), queryParams)
+            const category = await db('categories')
+                .where('CodeName', req.query.category)
+                .select('CategoryId', 'CategoryName')
                 .transacting(trx);
-                
-            if (outlets[0].length === 0) {
-                console.log("Could not find outlets in DB.");
+
+            if (category.length === 0) {
+                console.log("Could not find category in DB.");
                 res.send(results);
                 return;
             }
 
-            outlets[0].forEach((outlet) => {
-                results.outlets.push({ 
-                    name: outlet['OutletName'], 
-                    brandShortName: outlet['ShortName'],
-                    distance: outlet['distance'], 
-                    postal: outlet['Postal'], 
-                    contact: outlet['Contact'], 
-                    closing: outlet['Closing']
-                });
-            });
-            res.send(results);
-        })
-    }
+            results.sectionTitle = category[0]['CategoryName'];
+            
+            const brand_mapping = await db('brand_categories')
+                .where('CategoryId', category[0]['CategoryId'])
+                .select('BrandId')
+                .transacting(trx);
 
-    if (req.query.category.length > 0) {
-        // To be added
-    }
+            if (brand_mapping.length === 0) {
+                console.log("Could not find any brand for this category in DB.");
+                res.send(results);
+                return;
+            }
+            brand_mapping.forEach( brand_category => {
+                selectedBrands.push(brand_category['BrandId']);
+            })
+        }
+
+        const queryParts = [];
+        queryParts.push("SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance");
+        queryParts.push("FROM outlets o INNER JOIN brands b USING(BrandId)");
+        queryParts.push("WHERE o.BrandId IN (?)");
+        queryParts.push("ORDER BY distance ASC");
+
+        const queryParams = [results.currentLocation.latitude, results.currentLocation.longitude, selectedBrands];
+
+        const outlets = await db.raw(queryParts.join(" "), queryParams)
+            .transacting(trx);
+            
+        if (outlets[0].length === 0) {
+            console.log("Could not find outlets in DB.");
+            res.send(results);
+            return;
+        }
+
+        outlets[0].forEach((outlet) => {
+            results.outlets.push({ 
+                name: outlet['OutletName'], 
+                brandShortName: outlet['ShortName'],
+                distance: outlet['distance'], 
+                postal: outlet['Postal'], 
+                contact: outlet['Contact'], 
+                closing: outlet['Closing']
+            });
+        });
+        res.send(results);
+    })
 });
 
 app.listen(port, () => {
