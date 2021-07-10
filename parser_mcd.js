@@ -4,7 +4,12 @@ const dbManager = require("./db_manager.js");
 
 // Global variables specific to McDonald's
 const url = "https://www.mcdonalds.com.sg/wp/wp-admin/admin-ajax.php?action=store_locator_locations";
-
+const shortName = "mcd";
+const urlObj = new URL(url);
+const brandDetails = [
+    {brandName: urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').toUpperCase().trim(),
+    shortName: shortName}
+];
 
 // Requests the JSON object to be parsed.
 fetch(url, {
@@ -27,11 +32,11 @@ fetch(url, {
   "mode": "cors"
 })
 .then(res => res.json())
-.then(jsonObj => parseForLatLong(jsonObj, dbManager));
+.then(jsonObj => parseForLatLong(jsonObj, dbManager.writeOutletsToDb));
 
 // Parses the JSON object for the outlet details for McDonald's,
 // then writes the collected data into locationsDB.
-function parseForLatLong(allOutlets, writeToDb) {
+function parseForLatLong(allOutlets) {
     const data = [];
 
     for (let outlet of allOutlets) {
@@ -77,5 +82,5 @@ function parseForLatLong(allOutlets, writeToDb) {
         data.push(entry);
     };
 
-    writeToDb(data);
+    dbManager.writeOutletsToDb(data, brandDetails);
 }

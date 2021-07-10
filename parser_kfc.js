@@ -5,7 +5,12 @@ const dbManager = require("./db_manager.js");
 
 // Global variables specific to KFC
 const url = "https://www.kfc.com.sg/Location/Search";
-
+const shortName = "kfc";
+const urlObj = new URL(url);
+const brandDetails = [
+    {brandName: urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').toUpperCase().trim(),
+    shortName: shortName}
+];
 
 // Requests the page, checks the response header and collects raw html
 // before converting it into a DOM to be parsed.
@@ -34,7 +39,7 @@ https
     response.on('end', () => {
         try {
             const dom = new jsdom.JSDOM(rawData);
-            parseForLatLong(dom, dbManager);
+            parseForLatLong(dom);
         } catch (e) {
             console.error(e.message);
         }
@@ -47,7 +52,7 @@ https
 
 // Parses the DOM object for the outlet details for KFC,
 // then writes the collected data into locationsDB.
-function parseForLatLong(domObj, writeToDb) {
+function parseForLatLong(domObj) {
     const data = [];
 
     const allOutlets = domObj.window.document.querySelectorAll("div.restaurantDetails");
@@ -88,5 +93,5 @@ function parseForLatLong(domObj, writeToDb) {
         data.push(entry);
     }
 
-    writeToDb(data);
+    dbManager.writeOutletsToDb(data, brandDetails);
 }
