@@ -25,52 +25,44 @@ app.get('/outlets', async (req, res) => {
 
     let selectedBrands = [];
 
+    // Retrieves the IDs of the brands relevant to the user's search
     await db.transaction(async trx => {
-        //retrieves the brand name for the results that will follow
         if (req.query.brand.length > 0) {
             console.log("Find Brand ID for:", req.query.brand);
-            const brands = await db('brands')
+            const brand = await db('brands')
                 .where('ShortName', req.query.brand)
                 .select('BrandId', 'BrandName')
                 .transacting(trx);
 
-            if (brands.length === 0) {
+            if (brand.length === 0) {
                 console.log("Could not find brand in DB.");
                 res.send(results);
                 return;
             }
 
-            console.log('Brands', brands)
-            selectedBrands.push(brands[0]['BrandId']);
-            results.sectionTitle = brands[0]['BrandName'];
+            console.log('Brand', brand);
+            results.sectionTitle = brand[0]['BrandName'];
+            selectedBrands.push(brand[0]['BrandId']);
+
         } else if (req.query.category.length > 0) {
-            console.log("Find Category ID for:", req.query.category);
-
-            const category = await db('categories')
-                .where('CodeName', req.query.category)
-                .select('CategoryId', 'CategoryName')
+            console.log("Find IDs of brands for:", req.query.category);
+            const brands = await db('brand_categories')
+                .innerJoin('brands', 'brands.BrandId', '=', 'brand_categories.BrandId')
+                .innerJoin('categories', 'categories.CategoryId', '=', 'brand_categories.CategoryId')
+                .where('categories.CodeName', req.query.category)
+                .select('brands.BrandId', 'brands.BrandName', 'categories.CategoryName')
                 .transacting(trx);
 
-            if (category.length === 0) {
-                console.log("Could not find category in DB.");
+            if (brands.length === 0) {
+                console.log("Could not find any brands for this category in DB.");
                 res.send(results);
                 return;
             }
 
-            results.sectionTitle = category[0]['CategoryName'];
-            
-            const brand_mapping = await db('brand_categories')
-                .where('CategoryId', category[0]['CategoryId'])
-                .select('BrandId')
-                .transacting(trx);
-
-            if (brand_mapping.length === 0) {
-                console.log("Could not find any brand for this category in DB.");
-                res.send(results);
-                return;
-            }
-            brand_mapping.forEach( brand_category => {
-                selectedBrands.push(brand_category['BrandId']);
+            console.log('Brands', brands);
+            results.sectionTitle = brands[0]['CategoryName'];
+            brands.forEach( brand => {
+                selectedBrands.push(brand['BrandId']);
             })
         }
 
