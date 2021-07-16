@@ -80,7 +80,7 @@ function parseForLatLong(allOutlets) {
         }
 
         data.push(entry);
-    };
+    }
 
     dbManager.writeOutletsToDb(data, brandDetails);
 }
