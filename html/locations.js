@@ -49,6 +49,7 @@ $(document).ready(function() {
         var params = {
             brand: $("#brandSelect").val(),
             category: $("#categorySelect").val(),
+            radius: $("#radiusSelect").val(),
             currentLatitude: currentLatitude,
             currentLongitude: currentLongitude
         };
@@ -57,7 +58,7 @@ $(document).ready(function() {
         $.getJSON(url, params, function(data) {
             var toDisplay = [];
             if (data.outlets.length == 0) {
-                toDisplay.push("Could not find brand in DB.");
+                toDisplay.push(data.errorMessage);
             } else {
                 $.each(data.outlets, function(key, val) {
                     toDisplay.push( "<li id='" + key + "'>" + val.name + " (" + val.distance + ")</li>" );
