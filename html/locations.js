@@ -57,9 +57,8 @@ $(document).ready(function() {
 
         $.getJSON(url, params, function(data) {
             var toDisplay = [];
-            if (data.outlets.length == 0) {
-                toDisplay.push(data.errorMessage);
-            } else {
+            toDisplay.push("<b>" + data.messageToUser + "</b><br></br>");
+            if (data.outlets.length != 0) {
                 $.each(data.outlets, function(key, val) {
                     toDisplay.push( "<li id='" + key + "'>" + val.name + " (" + val.distance + ")</li>" );
                 });
