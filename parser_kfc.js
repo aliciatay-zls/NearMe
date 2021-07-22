@@ -94,7 +94,6 @@ function parseForLatLong(domObj) {
         entry.Closing = outlet.getAttribute("data-timing").trim();
 
         data.push(entry);
-        console.log(entry);
     }
 
     dbManager.writeOutletsToDb(data, brandDetails);
