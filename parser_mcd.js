@@ -4,10 +4,15 @@ const dbManager = require("./db_manager.js");
 
 // Global variables specific to McDonald's
 const url = "https://www.mcdonalds.com.sg/wp/wp-admin/admin-ajax.php?action=store_locator_locations";
-const shortName = "mcd";
 const urlObj = new URL(url);
+var fullName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').trim();
+fullName = fullName.charAt(0).toUpperCase().concat(fullName.slice(1));
+var temp = [fullName.slice(0,8), fullName.slice(8)];
+temp.splice(1, 0, "\u2019");
+fullName = temp.join('');
+const shortName = "mcd";
 const brandDetails = [
-    {brandName: urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').toUpperCase().trim(),
+    {brandName: fullName,
     shortName: shortName}
 ];
 
@@ -51,14 +56,14 @@ function parseForLatLong(allOutlets) {
 
         let latitude = parseFloat(outlet["lat"].trim());
         if (isNaN(latitude)) {
-            console.log(`Entry for ${entry.name} removed. Latitude unknown/invalid.`);
+            console.log(`Entry for "${entry.OutletName}" removed. Latitude unknown/invalid.`);
             continue;
         }
         entry.Latitude = latitude;
 
         let longitude = parseFloat(outlet["long"].trim());
         if (isNaN(longitude)) {
-            console.log(`Entry for ${entry.name} removed. Longitude unknown/invalid.`);
+            console.log(`Entry for "${entry.OutletName}" removed. Longitude unknown/invalid.`);
             continue;
         }
         entry.Longitude = longitude;

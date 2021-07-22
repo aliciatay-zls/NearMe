@@ -56,15 +56,27 @@ $(document).ready(function() {
         const url = "/outlets";
 
         $.getJSON(url, params, function(data) {
-            var toDisplay = [];
+            var toDisplay = [], entry = [];
             toDisplay.push("<b>" + data.messageToUser + "</b><br></br>");
             if (data.outlets.length != 0) {
                 $.each(data.outlets, function(key, val) {
-                    toDisplay.push( "<li id='" + key + "'>" + val.name + " (" + val.distance + ")</li>" );
+                    entry.push("<li id='", key, "'>", val.name, "</li>",
+                                "<p class='distance'>", val.distance, " km away", "</p>",
+                                "<div class='details'>",
+                                "<p class='details-header'>", "Outlet information", "</p>",
+                                "<ul>",
+                                "<li class='postal'>", "Postal code: ", val.postal, "</li>",
+                                "<li class='contact'>", "Phone: ", val.contact, "</li>",
+                                "<li class='closing'>", "Closes: ", val.closing, "</li>",
+                                "</ul>",
+                                "</div>"
+                    );
+                    toDisplay.push(entry.join(""));
+                    entry = [];
                 });
             }
-            $("<ul/>", {
-                html: toDisplay.join("")
+            $("<ol/>", {
+                html: toDisplay.join('\r\n')
             }).appendTo("#outletResults");
         }).fail(function() {
             console.error("failed");

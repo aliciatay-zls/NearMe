@@ -4,10 +4,12 @@ const dbManager = require("./db_manager.js");
 
 // Global variables specific to Fairprice
 const url = "https://public-api.omni.fairprice.com.sg/stores";
-const shortName = "nfp";
 const urlObj = new URL(url);
+var fullName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace("public-api.omni", '').replace(/\./g, '').trim();
+fullName = fullName.charAt(0).toUpperCase().concat(fullName.slice(1));
+const shortName = "nfp";
 const brandDetails = [
-    {brandName: urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace("public-api.omni", '').replace(/\./g, '').toUpperCase().trim(),
+    {brandName: fullName,
     shortName: shortName}
 ];
 
@@ -48,6 +50,7 @@ https
 
 function parseForLatLong(jsonObj) {
     const data = [];
+    const brandName = brandDetails[0].brandName.concat(" ");
 
     for (let outlet of jsonObj["data"]["fpstores"]) {
         let entry = {};
@@ -57,18 +60,18 @@ function parseForLatLong(jsonObj) {
             console.log(`Entry for outlet ID ${outlet["id"]} removed. Outlet name unknown.`);
             continue;
         }
-        entry.OutletName = name;
+        entry.OutletName = brandName.concat(name);
 
         let latitude = parseFloat(outlet["lat"]);
         if (isNaN(latitude)) {
-            console.log(`Entry for ${entry.name} removed. Latitude unknown/invalid.`);
+            console.log(`Entry for ${entry.OutletName} removed. Latitude unknown/invalid.`);
             continue;
         }
         entry.Latitude = latitude;
 
         let longitude = parseFloat(outlet["long"]);
         if (isNaN(longitude)) {
-            console.log(`Entry for ${entry.name} removed. Longitude unknown/invalid.`);
+            console.log(`Entry for ${entry.OutletName} removed. Longitude unknown/invalid.`);
             continue;
         }
         entry.Longitude = longitude;

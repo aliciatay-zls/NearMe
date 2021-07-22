@@ -114,7 +114,7 @@ app.get('/outlets', async (req, res) => {
             results.outlets.push({ 
                 name: outlet['OutletName'], 
                 brandShortName: outlet['ShortName'],
-                distance: outlet['distance'], 
+                distance: outlet['distance'].toPrecision(3), 
                 postal: outlet['Postal'], 
                 contact: outlet['Contact'], 
                 closing: outlet['Closing']

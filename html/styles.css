@@ -1,0 +1,11 @@
+.distance:before {
+    content: "📍 "
+}
+
+.details-header:before {
+    content: "👉 "
+}
+
+#outletResults {
+    white-space: pre;
+}
