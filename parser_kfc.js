@@ -5,10 +5,12 @@ const dbManager = require("./db_manager.js");
 
 // Global variables specific to KFC
 const url = "https://www.kfc.com.sg/Location/Search";
-const shortName = "kfc";
 const urlObj = new URL(url);
+var fullName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').trim();
+fullName = fullName.toUpperCase();
+const shortName = "kfc";
 const brandDetails = [
-    {brandName: urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').toUpperCase().trim(),
+    {brandName: fullName,
     shortName: shortName}
 ];
 
@@ -54,6 +56,7 @@ https
 // then writes the collected data into locationsDB.
 function parseForLatLong(domObj) {
     const data = [];
+    const brandName = brandDetails[0].brandName.concat(" ");
 
     const allOutlets = domObj.window.document.querySelectorAll("div.restaurantDetails");
     for (let outlet of allOutlets) {
@@ -64,12 +67,12 @@ function parseForLatLong(domObj) {
             console.log("Entry removed. Outlet name unknown.");
             continue;
         }
-        entry.OutletName = name;
+        entry.OutletName = brandName.concat(name);
 
         let latitude = outlet.getAttribute("data-latitude").trim();
         latitude = parseFloat(latitude);
         if (isNaN(latitude)) {
-            console.log(`Entry for ${entry.name} removed. Latitude unknown/invalid.`);
+            console.log(`Entry for "${entry.OutletName}" removed. Latitude unknown/invalid.`);
             continue;
         }
         entry.Latitude = latitude;
@@ -77,7 +80,7 @@ function parseForLatLong(domObj) {
         let longitude = outlet.getAttribute("data-longitude").trim();
         longitude = parseFloat(longitude);
         if (isNaN(longitude)) {
-            console.log(`Entry for ${entry.name} removed. Longitude unknown/invalid.`);
+            console.log(`Entry for "${entry.OutletName}" removed. Longitude unknown/invalid.`);
             continue;
         }
         entry.Longitude = longitude;

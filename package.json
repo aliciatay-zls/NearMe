@@ -17,6 +17,8 @@
     "dev": "nodemon rest_api.js",
     "parse-kfc": "node parser_kfc.js",
     "parse-mcd": "node parser_mcd.js",
+    "parse-nfp": "node parser_nfp.js",
+    "setup": "npm run parse-kfc && npm run parse-mcd && npm run parse-nfp && npx knex seed:run && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {

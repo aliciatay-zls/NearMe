@@ -3,25 +3,26 @@
 <head>
     <title>Near Me</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <form action="/outlets">
-        <label for="brandSelect">Choose a brand:</label>
-        <select name="brand" id="brandSelect">
-            <option value="">--Please choose an option--</option>
-            <option value="kfc">KFC</option>
-            <option value="mcd">McDonalds</option>
-            <option value="bgk">Burger King</option>
-            <option value="nfp">NTUC Fairprice</option>
-        </select>
+        <label for="searchWord">Search</label>
+        <input type="text" name="searchWord" id="searchWord" />
 
-        <label for="categorySelect">Choose a category:</label>
-        <select name="category" id="categorySelect">
+        <label for="radiusSelect">Within:</label>
+        <select name="radius" id="radiusSelect">
             <option value="">--Please choose an option--</option>
-            <option value="restaurant">Restaurant</option>
-            <option value="fast_food">Fast Food</option>
-            <option value="supermarket">Supermarket</option>
-            <option value="skating_rink">Skating Rink</option>
+            <option value="0.5">0.5km</option>
+            <option value="1.0">1km</option>
+            <option value="1.5">1.5km</option>
+            <option value="2.0">2km</option>
+            <option value="2.5">2.5km</option>
+            <option value="3.0">3km</option>
+            <option value="3.5">3.5km</option>
+            <option value="4.0">4km</option>
+            <option value="4.5">4.5km</option>
+            <option value="5.0">5km</option>
         </select>
 
         <input type="submit" value="Go!">

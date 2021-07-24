@@ -17,85 +17,85 @@ const db = require("./db-config.js");
 app.get('/outlets', async (req, res) => {
     const results = {
         outlets: [],
+        distanceRadius: 10**9,
         currentLocation: {
             latitude: parseFloat(req.query.currentLatitude),
             longitude: parseFloat(req.query.currentLongitude)
-        }
+        },
+        messageToUser: ""
     };
 
+     //TO-DO: ADD CHECKS WHEN PARAMS ALL EMPTY
+     
     let selectedBrands = [];
 
     await db.transaction(async trx => {
-        //retrieves the brand name for the results that will follow
-        if (req.query.brand.length > 0) {
-            console.log("Find Brand ID for:", req.query.brand);
+        // Retrieves the IDs of the brands relevant to the user's search
+        if (req.query.searchWord.length > 0) {
+            console.log("Find IDs of brands for:", req.query.searchWord);
             const brands = await db('brands')
-                .where('ShortName', req.query.brand)
-                .select('BrandId', 'BrandName')
+                .whereRaw("MATCH (BrandName,Keywords) AGAINST (? IN NATURAL LANGUAGE MODE)", [req.query.searchWord])
+                .select('brands.BrandId', 'brands.BrandName')
                 .transacting(trx);
 
             if (brands.length === 0) {
-                console.log("Could not find brand in DB.");
+                results.messageToUser = "Could not find any brands for this keyword in DB.";
                 res.send(results);
                 return;
             }
 
-            console.log('Brands', brands)
-            selectedBrands.push(brands[0]['BrandId']);
-            results.sectionTitle = brands[0]['BrandName'];
-        } else if (req.query.category.length > 0) {
-            console.log("Find Category ID for:", req.query.category);
-
-            const category = await db('categories')
-                .where('CodeName', req.query.category)
-                .select('CategoryId', 'CategoryName')
-                .transacting(trx);
-
-            if (category.length === 0) {
-                console.log("Could not find category in DB.");
-                res.send(results);
-                return;
-            }
-
-            results.sectionTitle = category[0]['CategoryName'];
-            
-            const brand_mapping = await db('brand_categories')
-                .where('CategoryId', category[0]['CategoryId'])
-                .select('BrandId')
-                .transacting(trx);
-
-            if (brand_mapping.length === 0) {
-                console.log("Could not find any brand for this category in DB.");
-                res.send(results);
-                return;
-            }
-            brand_mapping.forEach( brand_category => {
-                selectedBrands.push(brand_category['BrandId']);
+            console.log('Brands', brands);
+            brands.forEach( brand => {
+                selectedBrands.push(brand['BrandId']);
             })
         }
+
+        // Retrieves and sends the outlets found, if any, in increasing order of distance
+        // and within the specified radius of distance, from the DB
+        if (isNaN(parseFloat(req.query.radius))) {
+            results.messageToUser = "No distance limit selected. Displaying all outlets found."
+        } else {
+            results.distanceRadius = parseFloat(req.query.radius);
+        };
 
         const queryParts = [];
         queryParts.push("SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance");
         queryParts.push("FROM outlets o INNER JOIN brands b USING(BrandId)");
-        queryParts.push("WHERE o.BrandId IN (?)");
+        queryParts.push("WHERE o.BrandId IN (?) AND DISTANCE(?, ?, Latitude, Longitude, 'KM' ) < ?");
         queryParts.push("ORDER BY distance ASC");
 
-        const queryParams = [results.currentLocation.latitude, results.currentLocation.longitude, selectedBrands];
+        const queryParams = [];
+        queryParams.push(results.currentLocation.latitude);
+        queryParams.push(results.currentLocation.longitude);
+        queryParams.push(selectedBrands);
+        queryParams.push(results.currentLocation.latitude);
+        queryParams.push(results.currentLocation.longitude);
+        queryParams.push(results.distanceRadius);
 
-        const outlets = await db.raw(queryParts.join(" "), queryParams)
+        let outlets = await db.raw(queryParts.join(" "), queryParams)
             .transacting(trx);
             
         if (outlets[0].length === 0) {
-            console.log("Could not find outlets in DB.");
-            res.send(results);
-            return;
+            results.messageToUser = `Could not find outlets within ${results.distanceRadius}km from your location.`;
+
+            queryParts[2] = "WHERE o.BrandId IN (?)";
+            queryParts.push("LIMIT 5");
+
+            queryParams.pop();
+            queryParams.pop();
+            queryParams.pop();
+
+            outlets = await db.raw(queryParts.join(" "), queryParams)
+                .transacting(trx);
+                
+            results.messageToUser += "<br>Here are the top 5 nearest to you instead."; //assume any brand/category that exists in DB will always have outlets
         }
 
         outlets[0].forEach((outlet) => {
             results.outlets.push({ 
                 name: outlet['OutletName'], 
                 brandShortName: outlet['ShortName'],
-                distance: outlet['distance'], 
+                distance: outlet['distance'].toPrecision(3), 
                 postal: outlet['Postal'], 
                 contact: outlet['Contact'], 
                 closing: outlet['Closing']
