@@ -21,8 +21,10 @@ CREATE TABLE `brands` (
 	`BrandId` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`BrandName` VARCHAR(100) NOT NULL,
     `ShortName` CHAR(3) NOT NULL,
+    `Keywords` TEXT,
     PRIMARY KEY (`BrandId`),
-    INDEX (`ShortName`)
+    INDEX (`ShortName`),
+    FULLTEXT (`BrandName`, `Keywords`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `outlets` (

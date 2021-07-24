@@ -31,39 +31,20 @@ app.get('/outlets', async (req, res) => {
 
     await db.transaction(async trx => {
         // Retrieves the IDs of the brands relevant to the user's search
-        if (req.query.brand.length > 0) {
-            console.log("Find Brand ID for:", req.query.brand);
-            const brand = await db('brands')
-                .where('ShortName', req.query.brand)
-                .select('BrandId', 'BrandName')
-                .transacting(trx);
-
-            if (brand.length === 0) {
-                results.messageToUser = "Could not find this brand in DB.";
-                res.send(results);
-                return;
-            }
-
-            console.log('Brand', brand);
-            results.sectionTitle = brand[0]['BrandName'];
-            selectedBrands.push(brand[0]['BrandId']);
-        } else if (req.query.category.length > 0) {
-            console.log("Find IDs of brands for:", req.query.category);
-            const brands = await db('brand_categories')
-                .innerJoin('brands', 'brands.BrandId', '=', 'brand_categories.BrandId')
-                .innerJoin('categories', 'categories.CategoryId', '=', 'brand_categories.CategoryId')
-                .where('categories.CodeName', req.query.category)
-                .select('brands.BrandId', 'brands.BrandName', 'categories.CategoryName')
+        if (req.query.searchWord.length > 0) {
+            console.log("Find IDs of brands for:", req.query.searchWord);
+            const brands = await db('brands')
+                .whereRaw("MATCH (BrandName,Keywords) AGAINST (? IN NATURAL LANGUAGE MODE)", [req.query.searchWord])
+                .select('brands.BrandId', 'brands.BrandName')
                 .transacting(trx);
 
             if (brands.length === 0) {
-                results.messageToUser = "Could not find any brands for this category in DB.";
+                results.messageToUser = "Could not find any brands for this keyword in DB.";
                 res.send(results);
                 return;
             }
 
             console.log('Brands', brands);
-            results.sectionTitle = brands[0]['CategoryName'];
             brands.forEach( brand => {
                 selectedBrands.push(brand['BrandId']);
             })

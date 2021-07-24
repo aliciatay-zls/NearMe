@@ -47,8 +47,7 @@ $(document).ready(function() {
         $("#outletResults").html(""); //flush previously displayed results
 
         var params = {
-            brand: $("#brandSelect").val(),
-            category: $("#categorySelect").val(),
+            searchWord: $("#searchWord").val(),
             radius: $("#radiusSelect").val(),
             currentLatitude: currentLatitude,
             currentLongitude: currentLongitude
