@@ -10,7 +10,7 @@ const port = 3000;
 
 app.use(express.static('html')); //dir name
 
-const db = require("./db-config.js");
+const db = require("./db_manager.js").subsequentRuns();
 
 // Create a new Route http://nearme.aliciatay.com/outlets
 // Return the 2D array outlets as JSON
