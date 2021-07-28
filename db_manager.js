@@ -1,4 +1,6 @@
 const config = require("./knexfile.js");
+require('dotenv').config();
+const database = process.env.DB_NAME;
 
 const dbManager = {
     // This function creates and connects to the database.
@@ -16,18 +18,16 @@ const dbManager = {
         
         // Create the database
         // End connection and re-connect with database selected
-        knex.raw('CREATE DATABASE locationsDB').then(function () {
+        knex.raw("CREATE DATABASE ??", database).then(function () {
+            console.log(`"${database}" successfully created.`);
             knex.destroy();
-            require('dotenv').config();
             knex(config.development);
         });
     },
 
     // This function enables a connection to be made to the database.
     subsequentRuns: function() {
-        const knex = require("knex");
-        require('dotenv').config();
-        return knex(config.development);
+        return knex = require("knex")(config.development);
     },
 
     // This function connects, writes data, then ends connection to the database.
@@ -48,6 +48,14 @@ const dbManager = {
           console.log(inserts.length + ' new outlets saved.')
         })
         db.destroy();
+    },
+
+    drop: function() {
+        const knex = require("knex")(config.development);
+        knex.raw("DROP DATABASE IF EXISTS ??", database).then(function () {
+            console.log(`"${database}" successfully dropped.`);
+            knex.destroy();
+        });
     }
 };
 
