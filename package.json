@@ -15,15 +15,15 @@
   "devDependencies": {},
   "scripts": {
     "dev": "nodemon rest_api.js",
-    "parse-kfc": "node parser_kfc.js",
-    "parse-mcd": "node parser_mcd.js",
-    "parse-nfp": "node parser_nfp.js",
+    "parse-kfc": "node -e \"require('./parser_kfc.js')()\"",
+    "parse-mcd": "node -e \"require('./parser_mcd.js')()\"",
+    "parse-nfp": "node -e \"require('./parser_nfp.js')()\"",
     "db:create": "node create_db.js",
     "db:drop": "node drop_db.js",
     "db:setup": "knex migrate:latest",
     "db:reset": "knex migrate:rollback",
     "db:teardown": "npm run db:reset && npm run db:drop",
-    "db:populate": "npm run parse-kfc && npm run parse-mcd && npm run parse-nfp && npx knex seed:run",
+    "db:populate": "node run_parsers.js && knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {

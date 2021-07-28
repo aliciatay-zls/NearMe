@@ -2,53 +2,73 @@ const https = require("https");
 const dbManager = require("./db_manager.js");
 
 
-// Global variables specific to Fairprice
-const url = "https://public-api.omni.fairprice.com.sg/stores";
-const urlObj = new URL(url);
-var fullName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace("public-api.omni", '').replace(/\./g, '').trim();
-fullName = fullName.charAt(0).toUpperCase().concat(fullName.slice(1));
-const shortName = "nfp";
-const brandDetails = [
-    {brandName: fullName,
-    shortName: shortName}
-];
-
-https
-.get(url, (response) => {
-    const {statusCode} = response;
-    const contentType = response.headers["content-type"];
-
-    let error;
-    if (statusCode != 200) {
-        error = new Error("Request failed.\n" + `Status code: ${statusCode}`);
-    } else if (!/^application\/json/.test(contentType)) {
-        error = new Error("Expected: json.\n" + `Actual: ${contentType}`);
-    }
-    if (error) {
-        console.error(error.message);
-        response.resume();
-        return;
-    }
-
-    let rawData = "";
-    response.on("data", (chunk) => {
-        rawData += chunk;
-    });
-
-    response.on('end', () => {
-        try {
-            const jsonObj = JSON.parse(rawData);
-            parseForLatLong(jsonObj);
-        } catch (e) {
-            console.error(e.message);
+// Generates the brand name and its short form for parsing.
+function getBrandDetails(url, shortName) {
+    return new Promise((resolve, reject) => {
+        try{
+            const urlObj = new URL(url);
+            var fullName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace("public-api.omni", '').replace(/\./g, '').trim();
+            fullName = fullName.charAt(0).toUpperCase().concat(fullName.slice(1));
+            const successObj = {
+                msg: "Success",
+                data: [
+                {brandName: fullName,
+                shortName: shortName}
+                ]
+            };
+            resolve(successObj);
+        } catch(err) {
+            const failureObj = {
+                msg: err.message
+            };
+            reject(failureObj);
         }
-    })
-})
-.on("error", (e) => {
-    console.error(`Got error: ${e.message}`);
-});
+    });
+}
 
-function parseForLatLong(jsonObj) {
+
+// Requests the page, checks the response header and gets a JSON object to be parsed.
+function getData(url, brandDetails) {
+    https
+    .get(url, (response) => {
+        const {statusCode} = response;
+        const contentType = response.headers["content-type"];
+
+        let error;
+        if (statusCode != 200) {
+            error = new Error("Request failed.\n" + `Status code: ${statusCode}`);
+        } else if (!/^application\/json/.test(contentType)) {
+            error = new Error("Expected: json.\n" + `Actual: ${contentType}`);
+        }
+        if (error) {
+            console.error(error.message);
+            response.resume();
+            return;
+        }
+
+        let rawData = "";
+        response.on("data", (chunk) => {
+            rawData += chunk;
+        });
+
+        response.on('end', () => {
+            try {
+                const jsonObj = JSON.parse(rawData);
+                parseForLatLong(jsonObj, brandDetails);
+            } catch (e) {
+                console.error(e.message);
+            }
+        })
+    })
+    .on("error", (e) => {
+        console.error(`Got error: ${e.message}`);
+    });
+}
+
+
+// Parses the JSON object for the outlet details of Fairprice,
+// then writes the collected data into locationsDB.
+function parseForLatLong(jsonObj, brandDetails) {
     const data = [];
     const brandName = brandDetails[0].brandName.concat(" ");
 
@@ -98,3 +118,16 @@ function parseForLatLong(jsonObj) {
 
     dbManager.writeOutletsToDb(data, brandDetails);
 }
+
+
+// Runner function.
+function parseNfp() {
+    const url = "https://public-api.omni.fairprice.com.sg/stores";
+    const shortName = "nfp";
+    getBrandDetails(url, shortName)
+    .then((results) => getData(url, results.data))
+    .catch((failureObj) => console.error("Error:", failureObj.msg))
+    .finally(() => console.log("parsed Fairprice"));
+}
+
+module.exports = parseNfp;

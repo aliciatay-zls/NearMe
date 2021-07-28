@@ -3,58 +3,74 @@ const jsdom = require("jsdom");
 const dbManager = require("./db_manager.js");
 
 
-// Global variables specific to KFC
-const url = "https://www.kfc.com.sg/Location/Search";
-const urlObj = new URL(url);
-var fullName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').trim();
-fullName = fullName.toUpperCase();
-const shortName = "kfc";
-const brandDetails = [
-    {brandName: fullName,
-    shortName: shortName}
-];
+// Generates the brand name and its short form for parsing.
+function getBrandDetails(url, shortName) {
+    return new Promise((resolve, reject) => {
+        try{
+            const urlObj = new URL(url);
+            var fullName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').trim();
+            fullName = fullName.toUpperCase();
+            const successObj = {
+                msg: "Success",
+                data: [
+                {brandName: fullName,
+                shortName: shortName}
+                ]
+            };
+            resolve(successObj);
+        } catch(err) {
+            const failureObj = {
+                msg: err.message
+            };
+            reject(failureObj);
+        }
+    });
+}
+
 
 // Requests the page, checks the response header and collects raw html
 // before converting it into a DOM to be parsed.
-https
-.get(url, (response) => {
-    const {statusCode} = response;
-    const contentType = response.headers["content-type"];
+function getData(url, brandDetails) {
+    https
+    .get(url, (response) => {
+        const {statusCode} = response;
+        const contentType = response.headers["content-type"];
 
-    let error;
-    if (statusCode != 200) {
-        error = new Error("Request failed.\n" + `Status code: ${statusCode}`);
-    } else if (!/^text\/html/.test(contentType)) {
-        error = new Error("Expected: html.\n" + `Actual: ${contentType}`);
-    }
-    if (error) {
-        console.error(error.message);
-        response.resume();
-        return;
-    }
-
-    let rawData = "";
-    response.on("data", (chunk) => {
-        rawData += chunk;
-    });
-
-    response.on('end', () => {
-        try {
-            const dom = new jsdom.JSDOM(rawData);
-            parseForLatLong(dom);
-        } catch (e) {
-            console.error(e.message);
+        let error;
+        if (statusCode != 200) {
+            error = new Error("Request failed.\n" + `Status code: ${statusCode}`);
+        } else if (!/^text\/html/.test(contentType)) {
+            error = new Error("Expected: html.\n" + `Actual: ${contentType}`);
         }
+        if (error) {
+            console.error(error.message);
+            response.resume();
+            return;
+        }
+
+        let rawData = "";
+        response.on("data", (chunk) => {
+            rawData += chunk;
+        });
+
+        response.on('end', () => {
+            try {
+                const dom = new jsdom.JSDOM(rawData);
+                parseForLatLong(dom, brandDetails);
+            } catch (e) {
+                console.error(e.message);
+            }
+        })
     })
-})
-.on("error", (e) => {
-    console.error(`Got error: ${e.message}`);
-});
+    .on("error", (e) => {
+        console.error(`Got error: ${e.message}`);
+    });
+}
 
 
 // Parses the DOM object for the outlet details for KFC,
 // then writes the collected data into locationsDB.
-function parseForLatLong(domObj) {
+function parseForLatLong(domObj, brandDetails) {
     const data = [];
     const brandName = brandDetails[0].brandName.concat(" ");
 
@@ -98,3 +114,16 @@ function parseForLatLong(domObj) {
 
     dbManager.writeOutletsToDb(data, brandDetails);
 }
+
+
+// Runner function.
+function parseKfc() {
+    const url = "https://www.kfc.com.sg/Location/Search";
+    const shortName = "kfc";
+    getBrandDetails(url, shortName)
+    .then((results) => getData(url, results.data))
+    .catch((failureObj) => console.error("Error:", failureObj.msg))
+    .finally(() => console.log("parsed KFC"));
+}
+
+module.exports = parseKfc;
