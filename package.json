@@ -18,8 +18,9 @@
     "parse-kfc": "node parser_kfc.js",
     "parse-mcd": "node parser_mcd.js",
     "parse-nfp": "node parser_nfp.js",
-    "db:create": "echo Creating new DB && node create_db.js",
-    "db:setup": "npm run parse-kfc && npm run parse-mcd && npm run parse-nfp && npx knex seed:run && npm run dev",
+    "db:create": "node create_db.js",
+    "db:setup": "npx knex migrate:latest",
+    "db:populate": "npm run parse-kfc && npm run parse-mcd && npm run parse-nfp && npx knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {
