@@ -1,6 +1,7 @@
 
 exports.up = function(knex) {
     return knex.schema
+    .raw("SET GLOBAL log_bin_trust_function_creators = 1")
     .raw(`
         CREATE FUNCTION DISTANCE( lat1 DOUBLE, lon1 DOUBLE, lat2 DOUBLE, lon2 DOUBLE, unit ENUM( 'MILE', 'KILOMETER', 'MI', 'KM' ) )
         RETURNS DOUBLE

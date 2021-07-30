@@ -120,10 +120,12 @@ function parseForLatLong(jsonObj, brandDetails) {
 function parseNfp() {
     const url = "https://public-api.omni.fairprice.com.sg/stores";
     const shortName = "nfp";
+    const keywordsList = "ntuc, supermarket, market, fp, fair price, groceries, grocery, fairprice, amenities";
     getBrandDetails(url, shortName)
     .then((results) => getData(url, results.data))
     .then(async (results) => {
         await dbManager.writeOutletsToDb(results.outlets, results.brand);
+        await dbManager.updateKeywordsInDb(keywordsList, shortName);
         return Promise.resolve("Parsed Fairprice");
     })
     .catch((err) => console.error("Error:", err.message));

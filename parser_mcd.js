@@ -116,10 +116,12 @@ function parseForLatLong(allOutlets, brandDetails) {
 function parseMcd() {
     const url = "https://www.mcdonalds.com.sg/wp/wp-admin/admin-ajax.php?action=store_locator_locations";
     const shortName = "mcd";
+    const keywordsList = "mcd, restaurant, mcdonald's, mcdonalds, macdonalds, hamburger, i'm loving it, burger, cheeseburger, fast food";
     getBrandDetails(url, shortName)
     .then((results) => getData(url, results.data))
     .then(async (results) => {
         await dbManager.writeOutletsToDb(results.outlets, results.brand);
+        await dbManager.updateKeywordsInDb(keywordsList, shortName);
         return Promise.resolve("Parsed mcd");
     })
     .catch((err) => console.error("Error:", err.message));

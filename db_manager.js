@@ -46,10 +46,26 @@ const dbManager = {
                 .transacting(trx)
       
           console.log(inserts.length + ' new outlets saved.')
-        })
+        });
         db.destroy();
     },
 
+    // This function writes the given keywords to the `brands` table under the given brand.
+    updateKeywordsInDb: async function(keywords, shortName) {
+        const db = this.subsequentRuns();
+        await db.transaction(async trx => {
+            console.log("Updating keywords for:", shortName);
+            await db("brands")
+                .where("ShortName", "=", shortName)
+                .update("Keywords", keywords)
+                .transacting(trx);
+            const keywordsList = keywords.split(",");
+        console.log(keywordsList.length, "keywords added:", keywordsList.toString());
+        });
+        db.destroy();
+    },
+
+    // This function drops and ends connection to the database.
     drop: function() {
         const knex = require("knex")(config.development);
         knex.raw("DROP DATABASE IF EXISTS ??", database).then(function () {

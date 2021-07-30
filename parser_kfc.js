@@ -116,10 +116,12 @@ function parseForLatLong(domObj, brandDetails) {
 function parseKfc() {
     const url = "https://www.kfc.com.sg/Location/Search";
     const shortName = "kfc";
+    const keywordsList = "kfc, restaurant, fried chicken, finger lickin good, chicken, fast food";
     getBrandDetails(url, shortName)
     .then((results) => getData(url, results.data))
     .then(async (results) => {
         await dbManager.writeOutletsToDb(results.outlets, results.brand);
+        await dbManager.updateKeywordsInDb(keywordsList, shortName);
         return Promise.resolve("Parsed KFC");
     })
     .catch((err) => console.error("Error:", err.message));
