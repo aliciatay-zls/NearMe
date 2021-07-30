@@ -1,4 +1,4 @@
-const https = require("https");
+const fetch = require("node-fetch");
 const dbManager = require("./db_manager.js");
 
 
@@ -29,39 +29,33 @@ function getBrandDetails(url, shortName) {
 
 // Requests the page, checks the response header and gets a JSON object to be parsed.
 function getData(url, brandDetails) {
-    https
-    .get(url, (response) => {
-        const {statusCode} = response;
-        const contentType = response.headers["content-type"];
-
-        let error;
-        if (statusCode != 200) {
-            error = new Error("Request failed.\n" + `Status code: ${statusCode}`);
-        } else if (!/^application\/json/.test(contentType)) {
-            error = new Error("Expected: json.\n" + `Actual: ${contentType}`);
-        }
-        if (error) {
-            console.error(error.message);
-            response.resume();
-            return;
-        }
-
-        let rawData = "";
-        response.on("data", (chunk) => {
-            rawData += chunk;
-        });
-
-        response.on('end', () => {
-            try {
-                const jsonObj = JSON.parse(rawData);
-                parseForLatLong(jsonObj, brandDetails);
-            } catch (e) {
-                console.error(e.message);
-            }
-        })
+    return fetch("https://public-api.omni.fairprice.com.sg/stores", {
+        "headers": {
+          "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+          "accept-language": "en-US,en;q=0.9,de;q=0.8",
+          "cache-control": "max-age=0",
+          "sec-ch-ua": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+          "sec-ch-ua-mobile": "?0",
+          "sec-fetch-dest": "document",
+          "sec-fetch-mode": "navigate",
+          "sec-fetch-site": "none",
+          "sec-fetch-user": "?1",
+          "upgrade-insecure-requests": "1",
+          "cookie": "visid_incap_197681=fvTVyk2WTcWzkjChexv8ryhXxGAAAAAAQUIPAAAAAAASatd7CMHKB1tr5j4PSExO; _gcl_au=1.1.836759756.1623480106; ins_fairprice_userid=1623480110044b312c1e447.b0b233a1; ins_fairprice_listing_catalog=en_US%3AMDA0; visid_incap_2096998=Y1Kp5UPTRtulE4n3TpkiMQaCyWAAAAAAQUIPAAAAAAAgUB7r3JafnSYhFz4kWG/u; ins-storage-version=4; auth_token=; _ga_DEWMQW7L3M=GS1.1.1626149366.1.0.1626149368.0; _ga=GA1.3.2079080817.1623480106; _ga_J1DDCJKLXQ=GS1.1.1626168508.14.0.1626168508.0; incap_ses_1234_2096998=selpAWp7oA8n5a7Y1QwgEUrxA2EAAAAAonspX+3zBHnvgVmbvYs3zg=="
+        },
+        "referrerPolicy": "strict-origin-when-cross-origin",
+        "body": null,
+        "method": "GET",
+        "mode": "cors"
     })
-    .on("error", (e) => {
-        console.error(`Got error: ${e.message}`);
+    .then(res => res.text())
+    .then(rawHtml => {
+        try {
+            const jsonObj = JSON.parse(rawHtml);
+            return parseForLatLong(jsonObj, brandDetails);
+        } catch (err) {
+            console.error(err.message);
+        }
     });
 }
 
@@ -115,8 +109,10 @@ function parseForLatLong(jsonObj, brandDetails) {
 
         data.push(entry);
     }
-
-    dbManager.writeOutletsToDb(data, brandDetails);
+    return Promise.resolve({
+        outlets: data, 
+        brand: brandDetails
+    });
 }
 
 
@@ -126,8 +122,11 @@ function parseNfp() {
     const shortName = "nfp";
     getBrandDetails(url, shortName)
     .then((results) => getData(url, results.data))
-    .catch((failureObj) => console.error("Error:", failureObj.msg))
-    .finally(() => console.log("parsed Fairprice"));
+    .then(async (results) => {
+        await dbManager.writeOutletsToDb(results.outlets, results.brand);
+        return Promise.resolve("Parsed Fairprice");
+    })
+    .catch((err) => console.error("Error:", err.message));
 }
 
 module.exports = parseNfp;

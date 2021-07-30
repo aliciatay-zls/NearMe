@@ -32,7 +32,7 @@ function getBrandDetails(url, shortName) {
 
 // Requests the JSON object to be parsed.
 function getData(url, brandDetails) {
-    fetch(url, {
+    return fetch(url, {
     "headers": {
         "accept": "application/json, text/javascript, */*; q=0.01",
         "accept-language": "en-US,en;q=0.9,de;q=0.8",
@@ -52,7 +52,9 @@ function getData(url, brandDetails) {
     "mode": "cors"
     })
     .then(res => res.json())
-    .then(jsonObj => parseForLatLong(jsonObj, brandDetails));
+    .then(jsonObj => {
+        return parseForLatLong(jsonObj, brandDetails);
+    });
 }
 
 
@@ -103,8 +105,10 @@ function parseForLatLong(allOutlets, brandDetails) {
 
         data.push(entry);
     }
-
-    dbManager.writeOutletsToDb(data, brandDetails);
+    return Promise.resolve({
+        outlets: data, 
+        brand: brandDetails
+    });
 }
 
 
@@ -114,8 +118,11 @@ function parseMcd() {
     const shortName = "mcd";
     getBrandDetails(url, shortName)
     .then((results) => getData(url, results.data))
-    .catch((failureObj) => console.error("Error:", failureObj.msg))
-    .finally(() => console.log("parsed McDonald's"));
+    .then(async (results) => {
+        await dbManager.writeOutletsToDb(results.outlets, results.brand);
+        return Promise.resolve("Parsed mcd");
+    })
+    .catch((err) => console.error("Error:", err.message));
 }
 
 module.exports = parseMcd;

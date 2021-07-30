@@ -1,4 +1,4 @@
-const https = require("https");
+const fetch = require("node-fetch");
 const jsdom = require("jsdom");
 const dbManager = require("./db_manager.js");
 
@@ -31,39 +31,33 @@ function getBrandDetails(url, shortName) {
 // Requests the page, checks the response header and collects raw html
 // before converting it into a DOM to be parsed.
 function getData(url, brandDetails) {
-    https
-    .get(url, (response) => {
-        const {statusCode} = response;
-        const contentType = response.headers["content-type"];
-
-        let error;
-        if (statusCode != 200) {
-            error = new Error("Request failed.\n" + `Status code: ${statusCode}`);
-        } else if (!/^text\/html/.test(contentType)) {
-            error = new Error("Expected: html.\n" + `Actual: ${contentType}`);
-        }
-        if (error) {
-            console.error(error.message);
-            response.resume();
-            return;
-        }
-
-        let rawData = "";
-        response.on("data", (chunk) => {
-            rawData += chunk;
-        });
-
-        response.on('end', () => {
-            try {
-                const dom = new jsdom.JSDOM(rawData);
-                parseForLatLong(dom, brandDetails);
-            } catch (e) {
-                console.error(e.message);
-            }
-        })
+    return fetch(url, {
+    "headers": {
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "accept-language": "en-US,en;q=0.9,de;q=0.8",
+        "cache-control": "max-age=0",
+        "sec-ch-ua": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-fetch-dest": "document",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-site": "none",
+        "sec-fetch-user": "?1",
+        "upgrade-insecure-requests": "1",
+        "cookie": "_gcl_au=1.1.973224319.1623480306; _ga=GA1.3.261762845.1623480306; __qca=P0-746513972-1623480306139; KFCSG.A.SID=3fsr5fonvrdjgjguutyhk4oo; KFCSG.ReMe=False; KFCSG.IMS=False; KFCSG.A.SID_n=3fsr5fonvrdjgjguutyhk4oo; _gid=GA1.3.1667014086.1627623594; _gat_UA-9403339-2=1; AWSALB=VfYsv8Xp6yv8CljvrqozCBRpksr+gZmqMUbM6To4pv9AQV4bP2cqK9YBXv/Ppyv/plLhSehswM+uwA1EM6GLcckSHZVW9vGXUaibMP6PjXfrqX8jwI1Af9B4fq7v; AWSALBCORS=VfYsv8Xp6yv8CljvrqozCBRpksr+gZmqMUbM6To4pv9AQV4bP2cqK9YBXv/Ppyv/plLhSehswM+uwA1EM6GLcckSHZVW9vGXUaibMP6PjXfrqX8jwI1Af9B4fq7v"
+    },
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "body": null,
+    "method": "GET",
+    "mode": "cors"
     })
-    .on("error", (e) => {
-        console.error(`Got error: ${e.message}`);
+    .then(res => res.text())
+    .then(rawHtml => {
+        try {
+            const dom = new jsdom.JSDOM(rawHtml);
+            return parseForLatLong(dom, brandDetails);
+        } catch (err) {
+            console.error(err.message);
+        }
     });
 }
 
@@ -111,8 +105,10 @@ function parseForLatLong(domObj, brandDetails) {
 
         data.push(entry);
     }
-
-    dbManager.writeOutletsToDb(data, brandDetails);
+    return Promise.resolve({
+        outlets: data, 
+        brand: brandDetails
+    });
 }
 
 
@@ -122,8 +118,11 @@ function parseKfc() {
     const shortName = "kfc";
     getBrandDetails(url, shortName)
     .then((results) => getData(url, results.data))
-    .catch((failureObj) => console.error("Error:", failureObj.msg))
-    .finally(() => console.log("parsed KFC"));
+    .then(async (results) => {
+        await dbManager.writeOutletsToDb(results.outlets, results.brand);
+        return Promise.resolve("Parsed KFC");
+    })
+    .catch((err) => console.error("Error:", err.message));
 }
 
 module.exports = parseKfc;
