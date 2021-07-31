@@ -3,34 +3,53 @@
 <head>
     <title>Near Me</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form action="/outlets">
-        <label for="searchWord">Search</label>
-        <input type="text" name="searchWord" id="searchWord" />
+    <section class="section">
+        <div class="container">
+          <h1 class="title">
+            Near Me
+          </h1>
 
-        <label for="radiusSelect">Within:</label>
-        <select name="radius" id="radiusSelect">
-            <option value="">--Please choose an option--</option>
-            <option value="0.5">0.5km</option>
-            <option value="1.0">1km</option>
-            <option value="1.5">1.5km</option>
-            <option value="2.0">2km</option>
-            <option value="2.5">2.5km</option>
-            <option value="3.0">3km</option>
-            <option value="3.5">3.5km</option>
-            <option value="4.0">4km</option>
-            <option value="4.5">4.5km</option>
-            <option value="5.0">5km</option>
-        </select>
+          <form action="/outlets">
+            <div id="search-bar" class="form-inputs">
+                <label for="searchWord">Search</label>
+                <input type="text" name="searchWord" id="searchWord" />
+            </div>
+    
+            <div id="distance-select" class="form-inputs">
+            <label for="radiusSelect">Within:</label>
+            <select name="radius" id="radiusSelect">
+                <option value="">--Please choose an option--</option>
+                <option value="0.5">0.5km</option>
+                <option value="1.0">1km</option>
+                <option value="1.5">1.5km</option>
+                <option value="2.0">2km</option>
+                <option value="2.5">2.5km</option>
+                <option value="3.0">3km</option>
+                <option value="3.5">3.5km</option>
+                <option value="4.0">4km</option>
+                <option value="4.5">4.5km</option>
+                <option value="5.0">5km</option>
+            </select>
+            </div>
+    
+            <div id="submit-button" class="form-inputs">
+                <input type="submit" value="Go!">
+            </div>
+        </form>
+        <p id="locationStatus">Your location: </p>
+    
+        <h3>Results</h3>
+        <div id="outletResults"></div>
+          
+        </div>
+      </section>
 
-        <input type="submit" value="Go!">
-    </form>
-    <p id="locationStatus">Your location: </p>
-
-    <h3>Results</h3>
-    <div id="outletResults"></div>
     <script src="locations.js"></script>
 </body>
 </html>

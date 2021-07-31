@@ -1,3 +1,5 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+
 .distance:before {
     content: "📍 "
 }
@@ -8,4 +10,13 @@
 
 #outletResults {
     white-space: pre;
+}
+
+.is-empty {
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.help-block, .is-empty {
+    color: red;
 }

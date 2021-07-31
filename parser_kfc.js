@@ -1,100 +1,79 @@
-const https = require("https");
+const Parser = require("./parser");
 const jsdom = require("jsdom");
-const dbManager = require("./db_manager.js");
 
-
-// Global variables specific to KFC
-const url = "https://www.kfc.com.sg/Location/Search";
-const urlObj = new URL(url);
-var fullName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').trim();
-fullName = fullName.toUpperCase();
-const shortName = "kfc";
-const brandDetails = [
-    {brandName: fullName,
-    shortName: shortName}
-];
-
-// Requests the page, checks the response header and collects raw html
-// before converting it into a DOM to be parsed.
-https
-.get(url, (response) => {
-    const {statusCode} = response;
-    const contentType = response.headers["content-type"];
-
-    let error;
-    if (statusCode != 200) {
-        error = new Error("Request failed.\n" + `Status code: ${statusCode}`);
-    } else if (!/^text\/html/.test(contentType)) {
-        error = new Error("Expected: html.\n" + `Actual: ${contentType}`);
-    }
-    if (error) {
-        console.error(error.message);
-        response.resume();
-        return;
+class KFCParser extends Parser {
+    static get defaultURL() {
+        return "https://www.kfc.com.sg/Location/Search";
     }
 
-    let rawData = "";
-    response.on("data", (chunk) => {
-        rawData += chunk;
-    });
+    static get defaultBrandDetails() {
+        return {
+            BrandName: "KFC",
+            ShortName: "kfc",
+            Keywords: "kfc, restaurant, fried chicken, finger lickin good, chicken, fast food"
+        }
+    }
 
-    response.on('end', () => {
+    constructor() {
+        super(KFCParser.defaultURL, KFCParser.defaultBrandDetails)
+    }
+
+    getRows(rawHtml) {
         try {
-            const dom = new jsdom.JSDOM(rawData);
-            parseForLatLong(dom);
-        } catch (e) {
-            console.error(e.message);
+            const dom = new jsdom.JSDOM(rawHtml);
+            const allOutlets = dom.window.document.querySelectorAll("div.restaurantDetails");
+            
+            const data = [];
+            for (let outlet of allOutlets) {
+                data.push(this.parseRow(outlet));
+            }
+
+            return data;
+        } catch (err) {
+            console.error(err.message);
         }
-    })
-})
-.on("error", (e) => {
-    console.error(`Got error: ${e.message}`);
-});
+    }  
 
-
-// Parses the DOM object for the outlet details for KFC,
-// then writes the collected data into locationsDB.
-function parseForLatLong(domObj) {
-    const data = [];
-    const brandName = brandDetails[0].brandName.concat(" ");
-
-    const allOutlets = domObj.window.document.querySelectorAll("div.restaurantDetails");
-    for (let outlet of allOutlets) {
-        let entry = {};
-
-        let name = outlet.getAttribute("data-restaurantname").trim();
+    // All these functions are not async because they do not use any async calls
+    getOutletName(outletNode) {
+        let name = outletNode.getAttribute("data-restaurantname").trim();
         if (name.length == 0) {
-            console.log("Entry removed. Outlet name unknown.");
-            continue;
+            throw Error("Entry removed. Outlet name unknown.");
         }
-        entry.OutletName = brandName.concat(name);
+        return `${this.brandDetails.BrandName} ${name}`;
+    }
 
-        let latitude = outlet.getAttribute("data-latitude").trim();
+    getLatitude(outletNode) {
+        let latitude = outletNode.getAttribute("data-latitude").trim();
         latitude = parseFloat(latitude);
         if (isNaN(latitude)) {
-            console.log(`Entry for "${entry.OutletName}" removed. Latitude unknown/invalid.`);
-            continue;
+            throw Error(`Entry for "${entry.OutletName}" removed. Latitude unknown/invalid.`);
         }
-        entry.Latitude = latitude;
-
-        let longitude = outlet.getAttribute("data-longitude").trim();
-        longitude = parseFloat(longitude);
-        if (isNaN(longitude)) {
-            console.log(`Entry for "${entry.OutletName}" removed. Longitude unknown/invalid.`);
-            continue;
-        }
-        entry.Longitude = longitude;
-
-        let postalCode = outlet.getAttribute("data-address-pincode").trim();
-        entry.Postal = postalCode.replace(/[^0-9]/g, '');
-
-        let contactNum = outlet.getAttribute("data-phoneno").trim();
-        entry.Contact = contactNum.replace(/\s/g, '');
-
-        entry.Closing = outlet.getAttribute("data-timing").trim();
-
-        data.push(entry);
+        return latitude;
     }
 
-    dbManager.writeOutletsToDb(data, brandDetails);
+    getLongitude(outletNode) {
+        let longitude = outletNode.getAttribute("data-longitude").trim();
+        longitude = parseFloat(longitude);
+        if (isNaN(longitude)) {
+            throw Error(`Entry for "${entry.OutletName}" removed. Longitude unknown/invalid.`);
+        }
+        return longitude;
+    }
+
+    getPostal(outletNode) {
+        let postalCode = outletNode.getAttribute("data-address-pincode").trim();
+        return postalCode.replace(/[^0-9]/g, '');
+    }
+
+    getContact(outletNode) {
+        let contactNum = outletNode.getAttribute("data-phoneno").trim();
+        return contactNum.replace(/\s/g, '');
+    }
+
+    getClosing(outletNode) {
+        return outletNode.getAttribute("data-timing").trim();
+    }
 }
+
+module.exports = KFCParser;
