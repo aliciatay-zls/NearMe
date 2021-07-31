@@ -7,9 +7,12 @@
 </head>
 <body>
     <form action="/outlets">
-        <label for="searchWord">Search</label>
-        <input type="text" name="searchWord" id="searchWord" />
+        <div id="search-bar" class="form-inputs">
+            <label for="searchWord">Search</label>
+            <input type="text" name="searchWord" id="searchWord" />
+        </div>
 
+        <div id="distance-select" class="form-inputs">
         <label for="radiusSelect">Within:</label>
         <select name="radius" id="radiusSelect">
             <option value="">--Please choose an option--</option>
@@ -24,8 +27,11 @@
             <option value="4.5">4.5km</option>
             <option value="5.0">5km</option>
         </select>
+        </div>
 
-        <input type="submit" value="Go!">
+        <div id="submit-button" class="form-inputs">
+            <input type="submit" value="Go!">
+        </div>
     </form>
     <p id="locationStatus">Your location: </p>
 

@@ -9,3 +9,12 @@
 #outletResults {
     white-space: pre;
 }
+
+.is-empty {
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.help-block, .is-empty {
+    color: red;
+}
