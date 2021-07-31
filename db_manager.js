@@ -4,7 +4,7 @@ const database = process.env.DB_NAME;
 
 const dbManager = {
     // This function creates and connects to the database.
-    firstRun: function() {      
+    firstRun: function() {
         // Connect without selecting a database
         var firstConnection = {
             host : process.env.DB_HOST,
@@ -12,10 +12,10 @@ const dbManager = {
             password : process.env.DB_PASSWORD
         };
         var knex = require('knex')({
-            client: 'mysql',
+            client: 'mysql2',
             connection: firstConnection
         });
-        
+
         // Create the database
         // End connection and re-connect with database selected
         knex.raw("CREATE DATABASE ??", database).then(function () {
@@ -38,13 +38,13 @@ const dbManager = {
             const ids = await db('brands')
                 .insert(brandDetails, 'id')
                 .transacting(trx)
-      
+
             console.log('IDs', ids)
             outletsToBeAdded.forEach(outlet => outlet.BrandId = ids[0])
             const inserts = await db('outlets')
                 .insert(outletsToBeAdded)
                 .transacting(trx)
-      
+
           console.log(inserts.length + ' new outlets saved.')
         });
         db.destroy();
