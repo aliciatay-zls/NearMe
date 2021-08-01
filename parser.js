@@ -8,7 +8,7 @@ class Parser {
         this.isDevMode = isDevMode;
     }
 
-    getRows(rawHtml) {
+    getRows(rawData) {
         throw Error('Please implement the getRows method');
     }
 

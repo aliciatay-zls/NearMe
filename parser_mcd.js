@@ -1,130 +1,80 @@
-const fetch = require("node-fetch");
-const dbManager = require("./db_manager.js");
+const Parser = require("./parser");
 
+class McdParser extends Parser {
+    static get defaultURL() {
+        return "https://www.mcdonalds.com.sg/wp/wp-admin/admin-ajax.php?action=store_locator_locations";
+    }
 
-// Generates the brand name and its short form for parsing.
-function getBrandDetails(url, shortName) {
-    return new Promise((resolve, reject) => {
-        try{
-            const urlObj = new URL(url);
-            var fullName = urlObj.hostname.replace("www", '').replace("com", '').replace("sg", '').replace(/\./g, '').trim();
-            fullName = fullName.charAt(0).toUpperCase().concat(fullName.slice(1));
-            var temp = [fullName.slice(0,8), fullName.slice(8)];
-            temp.splice(1, 0, "\u2019");
-            fullName = temp.join('');
-            const successObj = {
-                msg: "Success",
-                data: [
-                {brandName: fullName,
-                shortName: shortName}
-                ]
-            };
-            resolve(successObj);
-        } catch(err) {
-            const failureObj = {
-                msg: err.message
-            };
-            reject(failureObj);
+    static get defaultBrandDetails() {
+        return {
+            BrandName: "McDonald\u2019s",
+            ShortName: "mcd",
+            Keywords: "mcd, restaurant, mcdonald's, mcdonalds, macdonalds, hamburger, i'm loving it, burger, cheeseburger, fast food"
         }
-    });
-}
+    }
 
+    constructor() {
+        super(McdParser.defaultURL, McdParser.defaultBrandDetails);
+    }
 
-// Requests the JSON object to be parsed.
-function getData(url, brandDetails) {
-    return fetch(url, {
-    "headers": {
-        "accept": "application/json, text/javascript, */*; q=0.01",
-        "accept-language": "en-US,en;q=0.9,de;q=0.8",
-        "content-type": "application/json",
-        "sec-ch-ua": "\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"91\", \"Chromium\";v=\"91\"",
-        "sec-ch-ua-mobile": "?0",
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-        "x-requested-with": "XMLHttpRequest",
-        "cookie": "PHPSESSID=83c7094d8b521fbf681ffbc675fda00c; _gcl_au=1.1.180086750.1625450966; __utma=268858861.664024032.1625450969.1625450969.1625450969.1; __utmc=268858861; __utmz=268858861.1625450969.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); __utmt=1; __utmb=268858861.7.10.1625450969"
-    },
-    "referrer": "https://www.mcdonalds.com.sg/locate-us/",
-    "referrerPolicy": "strict-origin-when-cross-origin",
-    "body": "[]",
-    "method": "POST",
-    "mode": "cors"
-    })
-    .then(res => res.json())
-    .then(jsonObj => {
-        return parseForLatLong(jsonObj, brandDetails);
-    });
-}
+    getRows(allOutlets) {
+        const data = [];
+        for (let outlet of allOutlets) {
+            try {
+                data.push(this.parseRow(outlet));
+            } catch (err) {
+                console.error(err.message);
+                continue;
+            }
+        }
+        return data;
+    }  
 
-
-// Parses the JSON object for the outlet details for McDonald's,
-// then writes the collected data into locationsDB.
-function parseForLatLong(allOutlets, brandDetails) {
-    const data = [];
-
-    for (let outlet of allOutlets) {
-        let entry = {};
-
-        let name = outlet["name"].trim();
+    getOutletName(outletObj) {
+        let name = outletObj["name"].trim();
         if (name.length == 0) {
-            console.log("Entry removed. Outlet name unknown.");
-            continue;
+            throw Error("Entry removed. Outlet name unknown.");
         }
-        entry.OutletName = name;
+        return name;
+    }
 
-        let latitude = parseFloat(outlet["lat"].trim());
+    getLatitude(outletObj) {
+        let latitude = parseFloat(outletObj["lat"].trim());
         if (isNaN(latitude)) {
-            console.log(`Entry for "${entry.OutletName}" removed. Latitude unknown/invalid.`);
-            continue;
+            throw Error(`Entry for "${this.getOutletName(outletObj)}" removed. Latitude unknown/invalid.`);
         }
-        entry.Latitude = latitude;
+        return latitude;
+    }
 
-        let longitude = parseFloat(outlet["long"].trim());
+    getLongitude(outletObj) {
+        let longitude = parseFloat(outletObj["long"].trim());
         if (isNaN(longitude)) {
-            console.log(`Entry for "${entry.OutletName}" removed. Longitude unknown/invalid.`);
-            continue;
+            throw Error(`Entry for "${this.getOutletName(outletObj)}" removed. Longitude unknown/invalid.`);
         }
-        entry.Longitude = longitude;
+        return longitude;
+    }
 
-        let postalCode = outlet["zip"].trim();
-        entry.Postal = postalCode.replace(/[^0-9]/g, '');
+    getPostal(outletObj) {
+        let postalCode = outletObj["zip"].trim();
+        return postalCode.replace(/[^0-9]/g, '');
+    }
 
-        let contactNum = outlet["phone"].trim();
-        entry.Contact = contactNum.replace(/\s/g, '');
+    getContact(outletObj) {
+        let contactNum = outletObj["phone"].trim();
+        return contactNum.replace(/\s|(\+65)/g, '');
+    }
 
-        let closingText = outlet["op_hours"].replace(/(<([^>]+)>)/ig, '').trim();
+    getClosing(outletObj) {
+        let closingText = outletObj["op_hours"].replace(/(<([^>]+)>)/ig, '').trim();
         closingText = closingText.replace(/<--|-->/ig, '');
         closingText = closingText.replace(/, |,/ig, '/'); //order matters
         let closingHtml = closingText.replace(/\r\n|\r|\n/g, '<br>');
         if (closingHtml.length == 0) {
-            entry.Closing = "Opening hours unavailable.";
+            return "Opening hours unavailable.";
         } else {
-            entry.Closing = closingHtml;
+           return closingHtml;
         }
-
-        data.push(entry);
     }
-    return Promise.resolve({
-        outlets: data, 
-        brand: brandDetails
-    });
 }
 
-
-// Runner function.
-function parseMcd() {
-    const url = "https://www.mcdonalds.com.sg/wp/wp-admin/admin-ajax.php?action=store_locator_locations";
-    const shortName = "mcd";
-    const keywordsList = "mcd, restaurant, mcdonald's, mcdonalds, macdonalds, hamburger, i'm loving it, burger, cheeseburger, fast food";
-    getBrandDetails(url, shortName)
-    .then((results) => getData(url, results.data))
-    .then(async (results) => {
-        await dbManager.writeOutletsToDb(results.outlets, results.brand);
-        await dbManager.updateKeywordsInDb(keywordsList, shortName);
-        return Promise.resolve("Parsed mcd");
-    })
-    .catch((err) => console.error("Error:", err.message));
-}
-
-module.exports = parseMcd;
+module.exports = McdParser;
