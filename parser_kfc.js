@@ -2,78 +2,78 @@ const Parser = require("./parser");
 const jsdom = require("jsdom");
 
 class KFCParser extends Parser {
-    static get defaultURL() {
-        return "https://www.kfc.com.sg/Location/Search";
+  static get defaultURL() {
+    return "https://www.kfc.com.sg/Location/Search";
+  }
+
+  static get defaultBrandDetails() {
+    return {
+      BrandName: "KFC",
+      ShortName: "kfc",
+      Keywords: "kfc, restaurant, fried chicken, finger lickin good, chicken, fast food"
     }
+  }
 
-    static get defaultBrandDetails() {
-        return {
-            BrandName: "KFC",
-            ShortName: "kfc",
-            Keywords: "kfc, restaurant, fried chicken, finger lickin good, chicken, fast food"
-        }
+  constructor() {
+    super(KFCParser.defaultURL, KFCParser.defaultBrandDetails)
+  }
+
+  getRows(rawHtml) {
+    try {
+      const dom = new jsdom.JSDOM(rawHtml);
+      const allOutlets = dom.window.document.querySelectorAll("div.restaurantDetails");
+      
+      const data = [];
+      for (let outlet of allOutlets) {
+        data.push(this.parseRow(outlet));
+      }
+
+      return data;
+    } catch (err) {
+      console.error(err.message);
     }
+  }  
 
-    constructor() {
-        super(KFCParser.defaultURL, KFCParser.defaultBrandDetails)
+  // All these functions are not async because they do not use any async calls
+  getOutletName(outletNode) {
+    let name = outletNode.getAttribute("data-restaurantname").trim();
+    if (name.length == 0) {
+      throw Error("Entry removed. Outlet name unknown.");
     }
+    return `${this.brandDetails.BrandName} ${name}`;
+  }
 
-    getRows(rawHtml) {
-        try {
-            const dom = new jsdom.JSDOM(rawHtml);
-            const allOutlets = dom.window.document.querySelectorAll("div.restaurantDetails");
-            
-            const data = [];
-            for (let outlet of allOutlets) {
-                data.push(this.parseRow(outlet));
-            }
-
-            return data;
-        } catch (err) {
-            console.error(err.message);
-        }
-    }  
-
-    // All these functions are not async because they do not use any async calls
-    getOutletName(outletNode) {
-        let name = outletNode.getAttribute("data-restaurantname").trim();
-        if (name.length == 0) {
-            throw Error("Entry removed. Outlet name unknown.");
-        }
-        return `${this.brandDetails.BrandName} ${name}`;
+  getLatitude(outletNode) {
+    let latitude = outletNode.getAttribute("data-latitude").trim();
+    latitude = parseFloat(latitude);
+    if (isNaN(latitude)) {
+      throw Error(`Entry for "${entry.OutletName}" removed. Latitude unknown/invalid.`);
     }
+    return latitude;
+  }
 
-    getLatitude(outletNode) {
-        let latitude = outletNode.getAttribute("data-latitude").trim();
-        latitude = parseFloat(latitude);
-        if (isNaN(latitude)) {
-            throw Error(`Entry for "${entry.OutletName}" removed. Latitude unknown/invalid.`);
-        }
-        return latitude;
+  getLongitude(outletNode) {
+    let longitude = outletNode.getAttribute("data-longitude").trim();
+    longitude = parseFloat(longitude);
+    if (isNaN(longitude)) {
+      throw Error(`Entry for "${entry.OutletName}" removed. Longitude unknown/invalid.`);
     }
+    return longitude;
+  }
 
-    getLongitude(outletNode) {
-        let longitude = outletNode.getAttribute("data-longitude").trim();
-        longitude = parseFloat(longitude);
-        if (isNaN(longitude)) {
-            throw Error(`Entry for "${entry.OutletName}" removed. Longitude unknown/invalid.`);
-        }
-        return longitude;
-    }
+  getPostal(outletNode) {
+    let postalCode = outletNode.getAttribute("data-address-pincode").trim();
+    return postalCode.replace(/[^0-9]/g, '');
+  }
 
-    getPostal(outletNode) {
-        let postalCode = outletNode.getAttribute("data-address-pincode").trim();
-        return postalCode.replace(/[^0-9]/g, '');
-    }
+  getContact(outletNode) {
+    let contactNum = outletNode.getAttribute("data-phoneno").trim();
+    return contactNum.replace(/\s/g, '');
+  }
 
-    getContact(outletNode) {
-        let contactNum = outletNode.getAttribute("data-phoneno").trim();
-        return contactNum.replace(/\s/g, '');
-    }
-
-    getClosing(outletNode) {
-        return outletNode.getAttribute("data-timing").trim();
-    }
+  getClosing(outletNode) {
+    return outletNode.getAttribute("data-timing").trim();
+  }
 }
 
 module.exports = KFCParser;
