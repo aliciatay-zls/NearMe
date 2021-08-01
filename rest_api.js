@@ -25,7 +25,9 @@ app.get('/outlets', async (req, res) => {
         messageToUser: ""
     };
 
-     //TO-DO: ADD CHECKS WHEN PARAMS ALL EMPTY
+    if (!isNaN(parseFloat(req.query.radius))) {
+        results.distanceRadius = parseFloat(req.query.radius);
+    }
      
     let selectedBrands = [];
 
@@ -52,12 +54,6 @@ app.get('/outlets', async (req, res) => {
 
         // Retrieves and sends the outlets found, if any, in increasing order of distance
         // and within the specified radius of distance, from the DB
-        if (isNaN(parseFloat(req.query.radius))) {
-            results.messageToUser = "No distance limit selected. Displaying all outlets found."
-        } else {
-            results.distanceRadius = parseFloat(req.query.radius);
-        };
-
         const queryParts = [];
         queryParts.push("SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance");
         queryParts.push("FROM outlets o INNER JOIN brands b USING(BrandId)");
@@ -88,7 +84,7 @@ app.get('/outlets', async (req, res) => {
             outlets = await db.raw(queryParts.join(" "), queryParams)
                 .transacting(trx);
                 
-            results.messageToUser += "<br>Here are the top 5 nearest to you instead."; //assume any brand/category that exists in DB will always have outlets
+            results.messageToUser.concat("<br>Here are the top 5 nearest to you instead."); //assume any brand/category that exists in DB will always have outlets
         }
 
         outlets[0].forEach((outlet) => {
