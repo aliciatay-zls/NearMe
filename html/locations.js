@@ -8,8 +8,8 @@ async function geoGetCurrentLocation() {
             navigator.geolocation.getCurrentPosition(resolve, reject);
         });
     
-        currentLatitude = pos.coords.longitude;
-        currentLongitude = pos.coords.latitude;
+        currentLatitude = pos.coords.latitude;
+        currentLongitude = pos.coords.longitude;
     
         return true;
     } catch (error) {
@@ -22,7 +22,7 @@ $(document).ready(async function() {
     console.log(isGetLocationSuccessful);
     if (!isGetLocationSuccessful) {
         $("<div class='help-block'>Try allowing location services for NearMe or refreshing the page.</div>")
-        .appendTo("#locationStatus");
+        .appendTo("#outletResults");
     }
 
     $(":submit").click(function(event) {
