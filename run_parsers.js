@@ -1,9 +1,11 @@
 const KFCParser = require("./parser_kfc.js");
-// const parseMcd = require("./parser_mcd.js");
-// const parseNfp = require("./parser_nfp.js");
+const McdParser = require("./parser_mcd.js");
+const NfpParser = require("./parser_nfp.js");
 
 const parsers = [
-    new KFCParser()
+    new KFCParser(),
+    new McdParser(),
+    new NfpParser()
 ];
 
 async function run() {
