@@ -52,7 +52,7 @@ class Parser {
       let data = [];
       if (this.isDevMode === true) {
         // TODO: FS read
-        data = this.getRows(fileContents);
+        // data = this.getRows(fileContents);
       } else {
         const response = await axios.get(this.url);
         data = this.getRows(response.data);

@@ -47,7 +47,7 @@ class KFCParser extends Parser {
     let latitude = outletNode.getAttribute("data-latitude").trim();
     latitude = parseFloat(latitude);
     if (isNaN(latitude)) {
-      throw Error(`Entry for "${entry.OutletName}" removed. Latitude unknown/invalid.`);
+      throw Error(`Entry for "${this.getOutletName(outletNode)}" removed. Latitude unknown/invalid.`);
     }
     return latitude;
   }
@@ -56,7 +56,7 @@ class KFCParser extends Parser {
     let longitude = outletNode.getAttribute("data-longitude").trim();
     longitude = parseFloat(longitude);
     if (isNaN(longitude)) {
-      throw Error(`Entry for "${entry.OutletName}" removed. Longitude unknown/invalid.`);
+      throw Error(`Entry for "${this.getOutletName(outletNode)}" removed. Longitude unknown/invalid.`);
     }
     return longitude;
   }

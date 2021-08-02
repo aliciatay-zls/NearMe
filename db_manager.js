@@ -27,7 +27,7 @@ const dbManager = {
 
   // This function enables a connection to be made to the database.
   subsequentRuns: function() {
-    return knex = require("knex")(config.development);
+    return require("knex")(config.development);
   },
 
   // This function connects, writes data, then ends connection to the database.
