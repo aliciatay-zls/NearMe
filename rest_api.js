@@ -18,12 +18,17 @@ app.get('/outlets', async (req, res) => {
   const results = {
     outlets: [],
     distanceRadius: 10**9,
-    currentLocation: {
-      latitude: parseFloat(req.query.currentLatitude),
-      longitude: parseFloat(req.query.currentLongitude)
-    },
+    currentLocation: {},
     messageToUser: ""
   };
+
+  try {
+    results.currentLocation.latitude = parseFloat(req.query.currentLatitude);
+    results.currentLocation.longitude = parseFloat(req.query.currentLongitude);
+  } catch (err) {
+    console.log("Server managed to receive request even though lat, long was invalid.");
+    return;
+  } 
 
   if (!isNaN(parseFloat(req.query.radius))) {
     results.distanceRadius = parseFloat(req.query.radius);
@@ -52,21 +57,25 @@ app.get('/outlets', async (req, res) => {
       })
     }
 
-    // Retrieves and sends the outlets found, if any, in increasing order of distance
-    // and within the specified radius of distance, from the DB
+    // Builds and sends a query to the DB, retrieving and sending back outlets within the
+    // user's selected radius of distance and in increasing order of distance.
+    // If none were found, builds and queries again to send back the top five nearest outlets.
     const queryParts = [];
-    queryParts.push("SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance");
-    queryParts.push("FROM outlets o INNER JOIN brands b USING(BrandId)");
-    queryParts.push("WHERE o.BrandId IN (?) AND DISTANCE(?, ?, Latitude, Longitude, 'KM' ) < ?");
-    queryParts.push("ORDER BY distance ASC");
-
+    queryParts.push(
+      "SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance",
+      "FROM outlets o INNER JOIN brands b USING(BrandId)",
+      "WHERE o.BrandId IN (?) AND DISTANCE(?, ?, Latitude, Longitude, 'KM' ) <= ?",
+      "ORDER BY distance ASC"
+    );
     const queryParams = [];
-    queryParams.push(results.currentLocation.latitude);
-    queryParams.push(results.currentLocation.longitude);
-    queryParams.push(selectedBrands);
-    queryParams.push(results.currentLocation.latitude);
-    queryParams.push(results.currentLocation.longitude);
-    queryParams.push(results.distanceRadius);
+    queryParams.push(
+      results.currentLocation.latitude,
+      results.currentLocation.longitude,
+      selectedBrands,
+      results.currentLocation.latitude,
+      results.currentLocation.longitude,
+      results.distanceRadius
+    );
 
     let outlets = await db.raw(queryParts.join(" "), queryParams)
       .transacting(trx);
@@ -74,13 +83,14 @@ app.get('/outlets', async (req, res) => {
     if (outlets[0].length === 0) {
       results.messageToUser = `Could not find outlets within ${results.distanceRadius}km from your location.`;
 
+      // Remove second part of WHERE clause and corresponding parameters
       queryParts[2] = "WHERE o.BrandId IN (?)";
       queryParts.push("LIMIT 5");
-
       queryParams.pop();
       queryParams.pop();
       queryParams.pop();
 
+      // Query DB again
       outlets = await db.raw(queryParts.join(" "), queryParams)
         .transacting(trx);
           
@@ -97,11 +107,11 @@ app.get('/outlets', async (req, res) => {
         closing: outlet['Closing']
       });
     });
-    
+
     res.send(results);
   })
 });
 
 app.listen(port, () => {
-  console.log(`NearMe app listening on port ${port}!`)
+  console.log(`NearMe app listening on port ${port}!`);
 });

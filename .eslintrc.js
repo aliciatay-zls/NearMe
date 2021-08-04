@@ -3,7 +3,8 @@ module.exports = {
         "node": true,
         "commonjs": true,
         "es2021": true,
-        "jquery": true
+        "jquery": true,
+        "html": true
     },
     "extends": [
         "eslint:recommended"

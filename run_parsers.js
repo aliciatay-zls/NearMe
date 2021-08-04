@@ -29,7 +29,7 @@ function main() {
   if (process.argv.length > 2) {
     if (process.argv[2] !== "dev") {
       throw Error(`Argument "${process.argv[2]}" not recognised. 
-      Use "-- dev" or "dev" to  run parsers in dev mode, 
+      Use with " -- dev" or "dev" to  run parsers in dev mode, 
       or leave empty to run in normal mode.`);
     }
     runInDevMode();

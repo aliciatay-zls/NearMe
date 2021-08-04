@@ -6,11 +6,13 @@ let isGetLocationSuccessful = false;
 
 // Messages to be displayed to the user on the webpage
 const locationHelpMessage = `
-  Unable to determine location. This could be due to the following reasons:\n
+  We're sorry! NearMe was unable to determine your location. This could be due to the following reasons:\n
   1) NearMe does not have permission to get your location.
   \t- Allow location services for NearMe in your browser. Then, refresh the page.\n
   2) NearMe has permission, but is unable to get your correct/precise location.
   \t- In your browser's settings, ensure sites are allowed to ask for your location.\n
+  3) Network connectivity issues :(
+  \t- Please try again later.\n
   Refer to the NearMe guide for more information.
 `;
 const noSearchWordMessage = "Enter something to get started.";
@@ -53,7 +55,8 @@ $(document).ready(async function() {
     event.preventDefault();
 
     if (!isGetLocationSuccessful) {
-        return;
+      console.log("User prevented from sending data to server.");
+      return;
     }
 
     // Flush previously displayed results, forget previous errors if any
