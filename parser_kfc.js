@@ -14,8 +14,12 @@ class KFCParser extends Parser {
     }
   }
 
+  static get defaultSampleFilePath() {
+    return super.defaultSampleFilePath.concat("/kfc.html");
+  }
+
   constructor() {
-    super(KFCParser.defaultURL, KFCParser.defaultBrandDetails)
+    super(KFCParser.defaultURL, KFCParser.defaultBrandDetails, KFCParser.defaultSampleFilePath);
   }
 
   getRows(rawHtml) {
@@ -30,7 +34,7 @@ class KFCParser extends Parser {
 
       return data;
     } catch (err) {
-      console.error(err.message);
+      throw Error("Failed to get rows:", err.message);
     }
   }  
 

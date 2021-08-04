@@ -13,11 +13,26 @@ class McdParser extends Parser {
     }
   }
 
-  constructor() {
-    super(McdParser.defaultURL, McdParser.defaultBrandDetails);
+  static get defaultSampleFilePath() {
+    return super.defaultSampleFilePath.concat("/mcd.json");
   }
 
-  getRows(allOutlets) {
+  constructor() {
+    super(McdParser.defaultURL, McdParser.defaultBrandDetails, McdParser.defaultSampleFilePath);
+  }
+
+  getRows(rawJson) {
+    let allOutlets = null;
+    if (this.isDevMode) {
+      try {
+        allOutlets = JSON.parse(rawJson);
+      } catch (err) {
+        throw Error("Failed to convert file contents string into json:", err.message);
+      }
+    } else {
+      allOutlets = rawJson;
+    }
+
     const data = [];
     for (let outlet of allOutlets) {
       try {

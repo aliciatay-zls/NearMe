@@ -13,12 +13,27 @@ class NfpParser extends Parser {
     }
   }
 
-  constructor() {
-    super(NfpParser.defaultURL, NfpParser.defaultBrandDetails);
+  static get defaultSampleFilePath() {
+    return super.defaultSampleFilePath.concat("/nfp.json");
   }
 
-  getRows(jsonObj) {
-    const allOutlets = jsonObj["data"]["fpstores"];
+  constructor() {
+    super(NfpParser.defaultURL, NfpParser.defaultBrandDetails, NfpParser.defaultSampleFilePath);
+  }
+
+  getRows(rawJson) {
+    let allOutlets = null;
+    if (this.isDevMode) {
+      try {
+        allOutlets = JSON.parse(rawJson);
+        allOutlets = allOutlets["data"]["fpstores"];
+      } catch (err) {
+        throw Error("Failed to convert file contents string into json:", err.message);
+      }
+    } else {
+      allOutlets = rawJson["data"]["fpstores"];
+    }
+
     const data = [];
     for (let outlet of allOutlets) {
       try {

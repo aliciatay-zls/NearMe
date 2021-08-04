@@ -1,11 +1,24 @@
 const axios = require('axios').default;
 const dbManager = require("./db_manager.js");
+const fs = require("fs");
 
 class Parser {
-  constructor(url = "", brandDetails = {}, isDevMode = false) {
+  constructor(url = "", brandDetails = {}, sampleFilePath = "") {
     this.url = url;
     this.brandDetails = brandDetails;
-    this.isDevMode = isDevMode;
+    this.isDevMode = false;
+    this.sampleFilePath = sampleFilePath;
+  }
+
+  /**
+   * @param {boolean} arg
+   */
+  set newIsDevMode(arg) {
+    this.isDevMode = arg;
+  }
+
+  static get defaultSampleFilePath() {
+    return "sample";
   }
 
   getRows(rawData) {
@@ -48,23 +61,27 @@ class Parser {
   }
 
   async fetchData() {
-    try {
-      let data = [];
-      if (this.isDevMode === true) {
-        // TODO: FS read
-        // data = this.getRows(fileContents);
-      } else {
+    let data = [];
+    if (this.isDevMode) {
+      try {
+        let fileContents = fs.readFileSync(this.sampleFilePath, "utf8");
+        data = this.getRows(fileContents);
+      } catch (err) {
+        throw Error("Failed to read sample data:", err.message);
+      }
+    } else {
+      try {
         const response = await axios.get(this.url);
         data = this.getRows(response.data);
+      } catch (err) {
+        throw Error("Failed to get data from url:", err.message);
       }
-
-      if (data.length == 0) {
-        throw Error("No data fetched.");
-      }
-      return data;
-    } catch (error) {
-      console.error(error);
     }
+
+    if (data.length == 0) {
+      throw Error("No data fetched.");
+    }
+    return data;
   }
 
   async saveData(outlets) {
@@ -74,8 +91,8 @@ class Parser {
       } else {
         await dbManager.writeOutletsToDb(outlets, this.brandDetails);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      throw Error("Failed to save data:", err.message);
     }
   }
 }
