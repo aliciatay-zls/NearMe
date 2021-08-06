@@ -16,7 +16,7 @@ const locationHelpMessage = `
   Refer to the NearMe guide for more information.
 `;
 const noSearchWordMessage = "Enter something to get started.";
-const noRadiusMessage = "No distance limit selected. Displaying all outlets found.";
+const noRadiusMessage = "No distance limit selected. Showing all outlets found.";
 
 
 // Retrieves the latitude and longitude of the user's current location
@@ -85,7 +85,7 @@ $(document).ready(async function() {
     const url = "/outlets";
     $.getJSON(url, params, function(data) {
       var toDisplay = [], entry = [];
-      toDisplay.push(`<b>${data.messageToUser}</b><br></br>`);
+      toDisplay.push(`<b>${data.messageToUser}</b>`);
       $.each(data.outlets, function(key, val) {
         entry.push(
           "<li id='", key, "'>", val.name, "</li>",

@@ -15,9 +15,10 @@ const db = require("./db_manager.js").subsequentRuns();
 // Create a new Route http://nearme.aliciatay.com/outlets
 // Return the 2D array outlets as JSON
 app.get('/outlets', async (req, res) => {
+  const defaultDistanceRadius = 10**9;
   const results = {
     outlets: [],
-    distanceRadius: 10**9,
+    distanceRadius: defaultDistanceRadius,
     currentLocation: {},
     messageToUser: ""
   };
@@ -37,7 +38,7 @@ app.get('/outlets', async (req, res) => {
   let selectedBrands = [];
 
   await db.transaction(async trx => {
-    // Retrieves the IDs of the brands relevant to the user's search
+    // This part retrieves the IDs of the brands relevant to the user's search
     if (req.query.searchWord.length > 0) {
       console.log("Find IDs of brands for:", req.query.searchWord);
       const brands = await db('brands')
@@ -57,23 +58,27 @@ app.get('/outlets', async (req, res) => {
       })
     }
 
-    // Builds and sends a query to the DB, retrieving and sending back outlets within the
+    // This part builds and sends a query to the DB, retrieving and sending back outlets within the
     // user's selected radius of distance and in increasing order of distance.
     // If none were found, builds and queries again to send back the top five nearest outlets.
     const queryParts = [];
+    const queryParams = [];
+
+    //@@author aliciatay-zls-reused
+    //Reused with minor modifications from http://web.archive.org/web/20170126150533/https://developers.google.com/maps/articles/phpsqlsearch_v3#findnearsql
     queryParts.push(
-      "SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName, DISTANCE(?, ?, Latitude, Longitude, 'KM' ) AS distance",
+      "SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName,",
+      "( 6371 * acos( cos(radians(?)) * cos(radians(Latitude)) * cos(radians(Longitude) - radians(?)) + sin(radians(?)) * sin(radians(Latitude)) ) ) AS distance ",
       "FROM outlets o INNER JOIN brands b USING(BrandId)",
-      "WHERE o.BrandId IN (?) AND DISTANCE(?, ?, Latitude, Longitude, 'KM' ) <= ?",
+      "WHERE o.BrandId IN (?)",
+      "HAVING distance <= ?",
       "ORDER BY distance ASC"
     );
-    const queryParams = [];
     queryParams.push(
       results.currentLocation.latitude,
       results.currentLocation.longitude,
-      selectedBrands,
       results.currentLocation.latitude,
-      results.currentLocation.longitude,
+      selectedBrands,
       results.distanceRadius
     );
 
@@ -81,20 +86,21 @@ app.get('/outlets', async (req, res) => {
       .transacting(trx);
         
     if (outlets[0].length === 0) {
-      results.messageToUser = `Could not find outlets within ${results.distanceRadius}km from your location.`;
+      results.messageToUser = `
+        Could not find outlets within ${results.distanceRadius} km from your location.
+        Here are the top 5 nearest to you instead.
+      `;
 
-      // Remove second part of WHERE clause and corresponding parameters
-      queryParts[2] = "WHERE o.BrandId IN (?)";
+      // Replace parameter for HAVING clause
       queryParts.push("LIMIT 5");
       queryParams.pop();
-      queryParams.pop();
-      queryParams.pop();
+      queryParams.push(defaultDistanceRadius);
 
       // Query DB again
       outlets = await db.raw(queryParts.join(" "), queryParams)
         .transacting(trx);
           
-      results.messageToUser.concat("<br>Here are the top 5 nearest to you instead."); //assume any brand/category that exists in DB will always have outlets
+      results.messageToUser.concat(""); //assume any brand/category that exists in DB will always have outlets
     }
 
     outlets[0].forEach((outlet) => {
