@@ -73,7 +73,56 @@ const dbManager = {
       console.log(keywordsList.length, "keywords added:", keywordsList.toString());
     });
     db.destroy();
+  },
+
+  retrieveRelevantBrands: async function(searchWord) {
+    const db = this.subsequentRuns();
+
+    return await db.transaction(async trx => {
+      console.log("Find IDs of brands for:", searchWord);
+      const brands = await db('brands')
+        .whereRaw("MATCH (BrandName,Keywords) AGAINST (? IN NATURAL LANGUAGE MODE)", searchWord)
+        .select('brands.BrandId', 'brands.BrandName')
+        .transacting(trx);
+      return brands;
+    });
+  },
+
+  retrieveRelevantOutlets: async function(hasNearbyOutlets, params) {
+    const db = this.subsequentRuns();
+    const rawQuery = this.buildRawQueryForOutlets(hasNearbyOutlets);
+
+    return await db.transaction(async trx => {
+      const outlets = await db.raw(rawQuery, params)
+        .transacting(trx);
+      return outlets;
+    });
+  },
+
+  //@@author aliciatay-zls-reused
+  //Reused with minor modifications from http://web.archive.org/web/20170126150533/https://developers.google.com/maps/articles/phpsqlsearch_v3#findnearsql
+  // This function uses the Haversine Forumla to build an in-line MySQL query for
+  // retrieving details of outlets of a searched brand, within a distance and in
+  // increasing order. Used by `retrieveRelevantOutlets`.
+  buildRawQueryForOutlets: function(hasNearbyOutlets) {
+    const queryParts = [];
+    queryParts.push(
+      "SELECT o.OutletName, o.Latitude, o.Longitude, o.Postal, o.Contact, o.Closing, b.ShortName,",
+      "( 6371 * acos( cos(radians(?)) * cos(radians(Latitude)) * cos(radians(Longitude) - radians(?)) + sin(radians(?)) * sin(radians(Latitude)) ) ) AS distance ",
+      "FROM outlets o INNER JOIN brands b USING(BrandId)",
+      "WHERE o.BrandId IN (?)",
+      "HAVING distance <= ?",
+      "ORDER BY distance ASC"
+    );
+
+    // Display only top five
+    if (!hasNearbyOutlets) {
+      queryParts.push("LIMIT 5");
+    }
+
+    return queryParts.join(" ");
   }
+
 };
 
 module.exports = dbManager;
