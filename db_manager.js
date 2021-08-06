@@ -3,9 +3,10 @@ require('dotenv').config();
 const database = process.env.DB_NAME;
 
 const dbManager = {
-  // This function creates and connects to the database.
+  // This function creates and connects to the database by first connecting
+  // to MySQL without selecting a database, then creating the database "locationsDB",
+  // ending connection and re-connecting with database now selected.
   firstRun: function() {
-    // Connect without selecting a database
     var firstConnection = {
       host : process.env.DB_HOST,
       user : process.env.DB_USER,
@@ -16,8 +17,6 @@ const dbManager = {
       connection: firstConnection
     });
 
-    // Create the database
-    // End connection and re-connect with database selected
     knex.raw("CREATE DATABASE ??", database).then(function () {
       console.log(`"${database}" successfully created.`);
       knex.destroy();
@@ -28,6 +27,15 @@ const dbManager = {
   // This function enables a connection to be made to the database.
   subsequentRuns: function() {
     return require("knex")(config.development);
+  },
+
+  // This function drops and ends connection to the database.
+  dropDb: function() {
+    const knex = require("knex")(config.development);
+    knex.raw("DROP DATABASE IF EXISTS ??", database).then(function () {
+      console.log(`"${database}" successfully dropped.`);
+      knex.destroy();
+    });
   },
 
   // This function connects, writes data, then ends connection to the database.
@@ -65,15 +73,6 @@ const dbManager = {
       console.log(keywordsList.length, "keywords added:", keywordsList.toString());
     });
     db.destroy();
-  },
-
-  // This function drops and ends connection to the database.
-  drop: function() {
-    const knex = require("knex")(config.development);
-    knex.raw("DROP DATABASE IF EXISTS ??", database).then(function () {
-      console.log(`"${database}" successfully dropped.`);
-      knex.destroy();
-    });
   }
 };
 
