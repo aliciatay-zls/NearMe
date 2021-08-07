@@ -14,31 +14,47 @@
 		<h1 class="title">Near Me</h1>
 
 		<form action="/outlets">
-			<div id="search-bar" class="form-inputs">
-				<label for="searchWord">Search</label>
-				<input type="text" name="searchWord" id="searchWord" />
+
+			<div class="field is-horizontal">
+				<div class="field-body">
+
+					<div class="field" id="search-bar">
+						<label class="label is-medium" for="searchWord">Find</label>
+						<div class="control">
+							<input class="input is-medium" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
+						</div>
+						<p class="help"></p>
+					</div>
+
+					<div class="field" id="distance-select">
+						<label class="label is-medium" for="radiusSelect">within</label>
+						<div class="control">
+							<div class="select is-medium">
+								<select name="radius" id="radiusSelect">
+									<option value="">___ km</option>
+									<option value="0.5">0.5 km</option>
+									<option value="1.0">1 km</option>
+									<option value="1.5">1.5 km</option>
+									<option value="2.5">2.5 km</option>
+									<option value="3.0">3 km</option>
+									<option value="3.5">3.5 km</option>
+									<option value="4.0">4 km</option>
+									<option value="4.5">4.5 km</option>
+									<option value="5.0">5 km</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="field">
+						<div class="control" id="submit-button">
+							<button type="submit" class="button is-primary is-medium">near me!</button>
+						</div>
+					</div>
+
+				</div>
 			</div>
 
-			<div id="distance-select" class="form-inputs">
-				<label for="radiusSelect">Within:</label>
-				<select name="radius" id="radiusSelect">
-					<option value="">--Please choose an option--</option>
-					<option value="0.5">0.5km</option>
-					<option value="1.0">1km</option>
-					<option value="1.5">1.5km</option>
-					<option value="2.0">2km</option>
-					<option value="2.5">2.5km</option>
-					<option value="3.0">3km</option>
-					<option value="3.5">3.5km</option>
-					<option value="4.0">4km</option>
-					<option value="4.5">4.5km</option>
-					<option value="5.0">5km</option>
-				</select>
-			</div>
-
-			<div id="submit-button" class="form-inputs">
-				<input type="submit" value="Go!">
-			</div>
 		</form>
 
 		<h3>Results</h3>
