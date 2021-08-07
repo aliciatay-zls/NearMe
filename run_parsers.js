@@ -1,16 +1,41 @@
 const KFCParser = require("./parser_kfc.js");
-// const parseMcd = require("./parser_mcd.js");
-// const parseNfp = require("./parser_nfp.js");
+const McdParser = require("./parser_mcd.js");
+const NfpParser = require("./parser_nfp.js");
 
 const parsers = [
-    new KFCParser()
+  new KFCParser(),
+  new McdParser(),
+  new NfpParser()
 ];
 
-async function run() {
-    for (const parser of parsers) {
-        const outlets = await parser.fetchData();
-        await parser.saveData(outlets);
-    }
+async function runInDevMode() {
+  console.log("Running all parsers in dev mode...");
+  for (const parser of parsers) {
+    parser.newIsDevMode = true;
+    const outlets = await parser.fetchData();
+    await parser.saveData(outlets);
+  }
 }
 
-run();
+async function run() {
+  console.log("Running all parsers...");
+  for (const parser of parsers) {
+    const outlets = await parser.fetchData();
+    await parser.saveData(outlets);
+  }
+}
+
+function main() {
+  if (process.argv.length > 2) {
+    if (process.argv[2] !== "dev") {
+      throw Error(`Argument "${process.argv[2]}" not recognised. 
+      Use with " -- dev" or "dev" to  run parsers in dev mode, 
+      or leave empty to run in normal mode.`);
+    }
+    runInDevMode();
+  } else {
+    run();
+  }
+}
+
+main();

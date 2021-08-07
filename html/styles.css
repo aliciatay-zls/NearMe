@@ -1,22 +1,26 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
+input[type=text] {
+  width: 80%;
+}
+
 .distance:before {
-    content: "📍 "
+  content: "📍 "
 }
 
 .details-header:before {
-    content: "👉 "
+  content: "👉 "
 }
 
 #outletResults {
-    white-space: pre;
+  white-space: pre;
 }
 
 .is-empty {
-    border: 2px solid red;
-    border-radius: 4px;
+  border: 2px solid red;
+  border-radius: 4px;
 }
 
 .help-block, .is-empty {
-    color: red;
+  color: red;
 }

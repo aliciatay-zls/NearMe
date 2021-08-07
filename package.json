@@ -13,10 +13,12 @@
     "mysql2": "^2.2.5",
     "node-fetch": "^2.6.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  },
   "scripts": {
+    "start": "node rest_api.js",
     "dev": "nodemon rest_api.js",
-    "parse-all": "node run_parsers.js",
     "parse-kfc": "node -e \"require('./parser_kfc.js')()\"",
     "parse-mcd": "node -e \"require('./parser_mcd.js')()\"",
     "parse-nfp": "node -e \"require('./parser_nfp.js')()\"",
@@ -25,8 +27,7 @@
     "db:setup": "knex migrate:latest",
     "db:reset": "knex migrate:rollback",
     "db:teardown": "npm run db:reset && npm run db:drop",
-    "db:populate": "node run_parsers.js && knex seed:run",
-    "db:seed": "knex seed:run",
+    "db:populate": "node run_parsers.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {
