@@ -2,7 +2,10 @@
   "name": "nearme",
   "version": "0.0.1",
   "description": "A web-based app to find locations of anything near me.",
-  "main": "parser.js",
+  "engines": {
+    "node": "14.x"
+  },
+  "main": "rest_api.js",
   "dependencies": {
     "axios": "^0.21.1",
     "csv-writer": "^1.6.0",

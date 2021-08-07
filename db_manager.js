@@ -20,18 +20,18 @@ const dbManager = {
     knex.raw("CREATE DATABASE ??", database).then(function () {
       console.log(`"${database}" successfully created.`);
       knex.destroy();
-      knex(config.development);
+      knex(config[process.env.NODE_ENV]);
     });
   },
 
   // This function enables a connection to be made to the database.
   subsequentRuns: function() {
-    return require("knex")(config.development);
+    return require("knex")(config[process.env.NODE_ENV]);
   },
 
   // This function drops and ends connection to the database.
   dropDb: function() {
-    const knex = require("knex")(config.development);
+    const knex = require("knex")(config[process.env.NODE_ENV]);
     knex.raw("DROP DATABASE IF EXISTS ??", database).then(function () {
       console.log(`"${database}" successfully dropped.`);
       knex.destroy();
