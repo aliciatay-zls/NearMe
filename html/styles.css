@@ -1,9 +1,9 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+@import "https://cdn.jsdelivr.net/npm/bulma-slider@2.0.4/dist/css/bulma-slider.min.css";
 
 .centered {
   height: 200px;
   width: 400px;
-  /* background: black; */
 
   position: fixed;
   top: 30%;
@@ -17,11 +17,11 @@
 }
 
 .distance:before {
-  content: "📍 "
+  content: "📍 ";
 }
 
 .details-header:before {
-  content: "👉 "
+  content: "👉 ";
 }
 
 #outletResults {

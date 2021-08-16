@@ -50,6 +50,8 @@ $(document).ready(async function() {
     .appendTo("#outletResults");
   }
 
+  bulmaSlider.attach();
+
   $(":submit").click(function(event) {
     // Prevent the form from posting
     event.preventDefault();

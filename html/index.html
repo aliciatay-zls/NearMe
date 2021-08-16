@@ -3,6 +3,7 @@
 <head>
     <title>Near Me</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.4/dist/js/bulma-slider.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -15,14 +16,14 @@
 		<div class="centered">
 			<form action="/outlets">
 
-				<label class="label" for="searchWord" id="title-label">Find</label>
+				<label class="label" for="searchWord" id="title-label">Find...</label>
 				<div class="field is-grouped" id="search-bar">
 					<div class="control is-expanded">
 						<input class="input is-medium" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
 					</div>
 					<p class="help"></p>
 					<div class="control" id="submit-button">
-						<button type="submit" class="button is-medium is-primary">near me!</button>
+						<button type="submit" class="button is-medium has-background-warning-light has-text-warning">near me!</button>
 					</div>
 				</div>
 
@@ -33,20 +34,8 @@
 					<div class="field-body">
 						<div class="field">
 							<div class="control">
-								<div class="select is-medium">
-									<select name="radius" id="radiusSelect">
-										<option value="">___ km</option>
-										<option value="0.5">0.5 km</option>
-										<option value="1.0">1 km</option>
-										<option value="1.5">1.5 km</option>
-										<option value="2.5">2.5 km</option>
-										<option value="3.0">3 km</option>
-										<option value="3.5">3.5 km</option>
-										<option value="4.0">4 km</option>
-										<option value="4.5">4.5 km</option>
-										<option value="5.0">5 km</option>
-									</select>
-								</div>
+								<input class="slider has-output is-fullwidth is-circle" step="0.1" min="0.0" max="5.0" value="1.0" type="range" name="radius" id="radiusSelect" />
+								<output for="radiusSelect">1.0</output>
 							</div>
 						</div>
 					</div>
