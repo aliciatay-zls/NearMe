@@ -1,7 +1,19 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
-input[type=text] {
-  width: 80%;
+.centered {
+  height: 200px;
+  width: 400px;
+  /* background: black; */
+
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+}
+
+#title-label {
+  font-size: 50px;
 }
 
 .distance:before {

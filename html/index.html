@@ -11,51 +11,49 @@
 <body>
 	<section class="section">
 	<div class="container">
-		<h1 class="title">Near Me</h1>
 
-		<form action="/outlets">
+		<div class="centered">
+			<form action="/outlets">
 
-			<div class="field is-horizontal">
-				<div class="field-body">
-
-					<div class="field" id="search-bar">
-						<label class="label is-medium" for="searchWord">Find</label>
-						<div class="control">
-							<input class="input is-medium" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
-						</div>
-						<p class="help"></p>
+				<label class="label" for="searchWord" id="title-label">Find</label>
+				<div class="field is-grouped" id="search-bar">
+					<div class="control is-expanded">
+						<input class="input is-medium" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
 					</div>
+					<p class="help"></p>
+					<div class="control" id="submit-button">
+						<button type="submit" class="button is-medium is-primary">near me!</button>
+					</div>
+				</div>
 
-					<div class="field" id="distance-select">
-						<label class="label is-medium" for="radiusSelect">within</label>
-						<div class="control">
-							<div class="select is-medium">
-								<select name="radius" id="radiusSelect">
-									<option value="">___ km</option>
-									<option value="0.5">0.5 km</option>
-									<option value="1.0">1 km</option>
-									<option value="1.5">1.5 km</option>
-									<option value="2.5">2.5 km</option>
-									<option value="3.0">3 km</option>
-									<option value="3.5">3.5 km</option>
-									<option value="4.0">4 km</option>
-									<option value="4.5">4.5 km</option>
-									<option value="5.0">5 km</option>
-								</select>
+				<div class="field is-horizontal" id="distance-select">
+					<div class="field-label is-medium">
+						<label class="label" for="radiusSelect">within</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="control">
+								<div class="select is-medium">
+									<select name="radius" id="radiusSelect">
+										<option value="">___ km</option>
+										<option value="0.5">0.5 km</option>
+										<option value="1.0">1 km</option>
+										<option value="1.5">1.5 km</option>
+										<option value="2.5">2.5 km</option>
+										<option value="3.0">3 km</option>
+										<option value="3.5">3.5 km</option>
+										<option value="4.0">4 km</option>
+										<option value="4.5">4.5 km</option>
+										<option value="5.0">5 km</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
-
-					<div class="field">
-						<div class="control" id="submit-button">
-							<button type="submit" class="button is-primary is-medium">near me!</button>
-						</div>
-					</div>
-
 				</div>
-			</div>
 
-		</form>
+			</form>
+		</div>
 
 		<h3>Results</h3>
 		<div id="outletResults"></div>
