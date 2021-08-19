@@ -1,21 +1,34 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 @import "https://cdn.jsdelivr.net/npm/bulma-slider@2.0.4/dist/css/bulma-slider.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
 
-.centered {
-  height: 200px;
-  width: 400px;
+/* Search controls */
+#radiusSelect {
+  width: 320px;
+}
 
-  position: fixed;
-  top: 30%;
+#radiusSelectOutput {
+  background: none;
+  color: black;
+  width: 120px;
   left: 50%;
-  margin-top: -100px;
-  margin-left: -200px;
+  margin-left: -60px;
 }
 
-#title-label {
-  font-size: 50px;
+#radiusSelectOutput:after {
+  content: " km away";
 }
 
+.is-empty {
+  border: 2px solid red;
+  border-radius: 4px;
+}
+
+.help-block, .is-empty {
+  color: red;
+}
+
+/* Search results */
 .distance:before {
   content: "📍 ";
 }
@@ -28,11 +41,99 @@
   white-space: pre;
 }
 
-.is-empty {
-  border: 2px solid red;
-  border-radius: 4px;
+/* General */
+.hero-body {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
 }
 
-.help-block, .is-empty {
-  color: red;
+.label, .control > * {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* 
+* Animated background 
+* Taken from: https://codepen.io/vaibhavarora/pen/xmpxjp
+*/
+.section{
+  background: #3399ff;
+}
+
+.circle{
+  position: fixed;
+  border-radius: 50%;
+  background: white;
+  animation: ripple 15s infinite;
+  box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small{
+  width: 200px;
+  height: 200px;
+  left: -100px;
+  bottom: -100px;
+}
+
+.medium{
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  bottom: -200px;
+}
+
+.large{
+  width: 600px;
+  height: 600px;
+  left: -300px;
+  bottom: -300px;
+}
+
+.xlarge{
+  width: 800px;
+  height: 800px;
+  left: -400px;
+  bottom: -400px;
+}
+
+.xxlarge{
+  width: 1000px;
+  height: 1000px;
+  left: -500px;
+  bottom: -500px;
+}
+
+.shade1{
+  opacity: 0.2;
+}
+.shade2{
+  opacity: 0.5;
+}
+
+.shade3{
+  opacity: 0.7;
+}
+
+.shade4{
+  opacity: 0.8;
+}
+
+.shade5{
+  opacity: 0.9;
+}
+
+@keyframes ripple{
+  0%{
+    transform: scale(0.8);
+  }
+  
+  50%{
+    transform: scale(1.2);
+  }
+  
+  100%{
+    transform: scale(0.8);
+  }
 }

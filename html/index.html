@@ -4,49 +4,90 @@
     <title>Near Me</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.4/dist/js/bulma-slider.min.js"></script>
+		<script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<section class="section">
-	<div class="container">
+	
+	<section class="section hero is-fullheight">
+		<div class="circle xxlarge shade1"></div>
+		<div class="circle xlarge shade2"></div>
+		<div class="circle large shade3"></div>
+		<div class="circle mediun shade4"></div>
+		<div class="circle small shade5"></div>
 
-		<div class="centered">
-			<form action="/outlets">
-
-				<label class="label" for="searchWord" id="title-label">Find...</label>
-				<div class="field is-grouped" id="search-bar">
-					<div class="control is-expanded">
-						<input class="input is-medium" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
+		<div class="hero-head">
+			<header class="navbar">
+				<div class="container">
+					<div class="navbar-brand">
+						<span class="navbar-burger" data-target="navbarMenuHeroC">
+							<span></span>
+							<span></span>
+							<span></span>
+						</span>
 					</div>
-					<p class="help"></p>
-					<div class="control" id="submit-button">
-						<button type="submit" class="button is-medium has-background-warning-light has-text-warning">near me!</button>
-					</div>
-				</div>
-
-				<div class="field is-horizontal" id="distance-select">
-					<div class="field-label is-medium">
-						<label class="label" for="radiusSelect">within</label>
-					</div>
-					<div class="field-body">
-						<div class="field">
-							<div class="control">
-								<input class="slider has-output is-fullwidth is-circle" step="0.1" min="0.0" max="5.0" value="1.0" type="range" name="radius" id="radiusSelect" />
-								<output for="radiusSelect">1.0</output>
-							</div>
+					<div id="navbarMenuHeroC" class="navbar-menu">
+						<div class="navbar-end">
+							<a class="navbar-item">
+								FAQ
+							</a>
+							<a class="navbar-item">
+								<span class="icon">
+									<i class="fab fa-github"></i>
+								</span>
+								<span>GitHub</span>
+							</a>
 						</div>
 					</div>
 				</div>
-
-			</form>
+			</header>
 		</div>
 
+		<div class="hero-body">
+			<div class="container">
+				<p class="title">
+					<img src="images/logo-new-removebg-preview.png" width="150" height="100" />
+				</p>
+				<form action="/outlets">
+
+					<div class="field is-horizontal">
+						<div class="field-body">
+							<div class="field">
+								<div class="control" id="search-bar">
+									<input class="input is-medium has-text-centered is-rounded" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
+								</div>
+							</div>
+							<p class="help"></p>
+							<div class="field">
+								<div class="control" id="submit-button">
+									<button type="submit" class="button is-medium is-info is-light is-rounded">
+										<span class="icon is-small">
+											<i class="fas fa-search"></i>
+										</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+	
+					<div class="field">
+						<div class="control">
+							<input class="slider has-output-tooltip is-circle is-large is-light" id="radiusSelect" step="0.1" min="0.0" max="5.0" value="1.0" type="range">
+							<output for="radiusSelect" id="radiusSelectOutput">1.0</output>
+						</div>
+					</div>
+	
+				</form>
+			</div>
+		</div>
+
+		<!-- To fix display of search results-->
 		<h3>Results</h3>
 		<div id="outletResults"></div>
-	</div>
+
 	</section>
 
   <script src="locations.js"></script>
