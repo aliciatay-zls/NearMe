@@ -46,9 +46,9 @@ $(document).ready(async function() {
   console.log("Successfully got location:", isGetLocationSuccessful);
   console.log("Lat, long:", currentLatitude, currentLongitude);
   if (!isGetLocationSuccessful) {
-    // $(`<div class='help-block'>${locationHelpMessage}</div>`)
-    // .appendTo("#outletResults");
-    $(".messages").append(locationHelpMessage);
+    $(`<div class='is-error'>${locationHelpMessage}</div>`)
+    .appendTo(".messages");
+    $("fieldset").attr("disabled", true);
   }
 
   // Forget previous errors if any
