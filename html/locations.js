@@ -46,9 +46,18 @@ $(document).ready(async function() {
   console.log("Successfully got location:", isGetLocationSuccessful);
   console.log("Lat, long:", currentLatitude, currentLongitude);
   if (!isGetLocationSuccessful) {
-    $(`<div class='help-block'>${locationHelpMessage}</div>`)
-    .appendTo("#outletResults");
+    $(`<div class='is-error'>${locationHelpMessage}</div>`)
+    .appendTo(".messages");
+    $("fieldset").attr("disabled", true);
   }
+
+  // Forget previous errors if any
+  $(":text").click(function() {
+    $("#searchWord").removeClass("is-empty");
+    $(".help-block").remove();
+  });
+
+  bulmaSlider.attach();
 
   $(":submit").click(function(event) {
     // Prevent the form from posting
@@ -59,10 +68,8 @@ $(document).ready(async function() {
       return;
     }
 
-    // Flush previously displayed results, forget previous errors if any
+    // Flush previously displayed results
     $("#outletResults").html("");
-    $(".form-inputs").removeClass("is-empty");
-    $(".help-block").remove();
 
     var params = {
       searchWord: $("#searchWord").val(),
@@ -79,36 +86,21 @@ $(document).ready(async function() {
     }
 
     if (isNaN(parseFloat(params.radius))) {
-      $("#outletResults").append(`<b>${noRadiusMessage}</b><br></br>`);
+      $(".messages").append(`<b>${noRadiusMessage}</b><br></br>`);
     }
     
     const url = "/outlets";
     $.getJSON(url, params, function(data) {
-      var toDisplay = [], entry = [];
-      toDisplay.push(`<b>${data.messageToUser}</b>`);
-      $.each(data.outlets, function(key, val) {
-        entry.push(
-          "<li id='", key, "'>", val.name, "</li>",
-          "<p class='distance'>", val.distance, " km away", "</p>",
-          "<div class='details'>",
-          "<p class='details-header'>", "Outlet information", "</p>",
-          "<ul>",
-          "<li class='postal'>", "Postal code: ", val.postal, "</li>",
-          "<li class='contact'>", "Phone: ", val.contact, "</li>",
-          "<li class='closing'>", "Closes: ", val.closing, "</li>",
-          "</ul>",
-          "</div>"
-        );
-        toDisplay.push(entry.join(""));
-        entry = [];
-      });
-      $("<ol/>", {
-        html: toDisplay.join('\r\n')
-      }).appendTo("#outletResults");
+      var template = Handlebars.compile($('#result-row').html());
+      var results = template(data);
+      $("#outletResults").append(`<b>${data.messageToUser}</b>`);
+      $("#outletResults").append(results);
+      $("#search-page").addClass("is-hidden");
+      $("#results-page").removeClass("is-hidden");
     }).fail(function() {
       console.error("Request to server failed");
     }).always(function() {
-      console.log("Request to server complete.");
+      console.log("Request to server completed.");
     });
   });
 });

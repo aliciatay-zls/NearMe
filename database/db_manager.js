@@ -1,4 +1,4 @@
-const config = require("./knexfile.js");
+const config = require("../knexfile.js");
 require('dotenv').config();
 const database = process.env.DB_NAME;
 
