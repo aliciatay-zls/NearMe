@@ -3,6 +3,7 @@
 <head>
     <title>Near Me</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.4/dist/js/bulma-slider.min.js"></script>
 		<script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,12 +14,6 @@
 <body>
 	
 	<section class="section hero is-fullheight">
-		<div class="circle xxlarge shade1"></div>
-		<div class="circle xlarge shade2"></div>
-		<div class="circle large shade3"></div>
-		<div class="circle mediun shade4"></div>
-		<div class="circle small shade5"></div>
-
 		<div class="hero-head">
 			<header class="navbar">
 				<div class="container">
@@ -46,13 +41,13 @@
 			</header>
 		</div>
 
-		<div class="hero-body">
+		<div class="hero-body" id="search-page">
 			<div class="container">
 				<p class="title">
 					<img src="images/logo-new-removebg-preview.png" width="150" height="100" />
 				</p>
-				<form action="/outlets">
 
+				<form action="/outlets">
 					<div class="field is-horizontal">
 						<div class="field-body">
 							<div class="field">
@@ -60,7 +55,6 @@
 									<input class="input is-medium has-text-centered is-rounded" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
 								</div>
 							</div>
-							<p class="help"></p>
 							<div class="field">
 								<div class="control" id="submit-button">
 									<button type="submit" class="button is-medium is-info is-light is-rounded">
@@ -79,17 +73,45 @@
 							<output for="radiusSelect" id="radiusSelectOutput">1.0</output>
 						</div>
 					</div>
-	
 				</form>
+
+				<div class="messages">
+				</div>
 			</div>
 		</div>
 
-		<!-- To fix display of search results-->
-		<h3>Results</h3>
-		<div id="outletResults"></div>
-
+		<div class="hero-body is-hidden" id="results-page">
+			<div class="container">
+				<p class="title">
+					Results
+				</p>
+				<div id="outletResults"></div>
+			</div>
+		</div>
+		
+		<div class="circle xxlarge shade1"></div>
+		<div class="circle xlarge shade2"></div>
+		<div class="circle large shade3"></div>
+		<div class="circle medium shade4"></div>
+		<div class="circle small shade5"></div>
 	</section>
 
   <script src="locations.js"></script>
+
+	<div class="is-hidden">
+		<div id="result-row">
+			<ul>
+				{{#each outlets as |outlet|}}
+					<li>{{outlet.name}}</li>
+					<li class='distance'>{{outlet.distance}}km away</li>
+					<li class='details-header'>Outlet information</li>
+					<li class='postal'>Postal code: {{outlet.postal}}</li>
+					<li class='contact'>Phone: {{outlet.contact}}</li>
+					<li class='closing'>Closes: {{outlet.closing}}</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+
 </body>
 </html>
