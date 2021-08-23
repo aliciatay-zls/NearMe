@@ -3,15 +3,15 @@
 A simple web app that helps you find places near you in Singapore. Try it out [here](https://nearmesg.herokuapp.com) 🧭.
 
 ## Quick Links
-* For Users
-  * Using NearMe
-  * Enabling location services for NearMe
-* For Developers
-  * Requirements
-  * Setup for local testing and development
-  * App constraints
-* FAQ
-* Acknowledgements
+* [For Users](#for-users)
+  * [Using NearMe](#using-nearme)
+  * [Enabling location services for NearMe](#enabling-location-services-for-nearme)
+* [For Developers](#for-developers)
+  * [Requirements](#requirements)
+  * [Setup for local testing and development](#setup-for-local-testing-and-development)
+  * [App constraints](#app-constraints)
+* [FAQ](#faq)
+* [Acknowledgements](#acknowledgements)
 
 &nbsp;
 
@@ -27,7 +27,7 @@ A simple web app that helps you find places near you in Singapore. Try it out [h
 ### Using NearMe
 
 1. In the searchbar, type the keyword of where you want to go. This can be "supermarket", "fast food", "amenities", etc.
-* _NearMe is still under development. Please refer to the FAQ for a list of keywords and places the site currently supports._
+* _NearMe is still under development. Please refer to the [FAQ](#faq) for a list of keywords and places the site currently supports._
 
 2. Using the slider, choose the furthest distance you wouldn't mind travelling.
 
@@ -75,7 +75,7 @@ Before testing and developing locally, please set up the database locally in the
   
     `npm run db:setup`
 
-4. To fill the relations with sample data scraped from [these sites]() (this should take a while):
+4. To fill the relations with sample data scraped from [these sites](#faq) (this step should take a while):
 
     `npm run db:populate`
 
