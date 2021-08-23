@@ -1,24 +1,24 @@
-const Parser = require("./parser");
+const Parser = require("./parser.js");
 
-class NfpParser extends Parser {
+class McdParser extends Parser {
   static get defaultURL() {
-    return "https://public-api.omni.fairprice.com.sg/stores";
+    return "https://www.mcdonalds.com.sg/wp/wp-admin/admin-ajax.php?action=store_locator_locations";
   }
 
   static get defaultBrandDetails() {
     return {
-      BrandName: "Fairprice",
-      ShortName: "nfp",
-      Keywords: "ntuc, supermarket, market, fp, fair price, groceries, grocery, fairprice, amenities"
+      BrandName: "McDonald\u2019s",
+      ShortName: "mcd",
+      Keywords: "mcd, restaurant, mcdonald's, mcdonalds, macdonalds, hamburger, i'm loving it, burger, cheeseburger, fast food"
     }
   }
 
   static get defaultSampleFilePath() {
-    return super.defaultSampleFilePath.concat("/nfp.json");
+    return super.defaultSampleFilePath.concat("/mcd.json");
   }
 
   constructor() {
-    super(NfpParser.defaultURL, NfpParser.defaultBrandDetails, NfpParser.defaultSampleFilePath);
+    super(McdParser.defaultURL, McdParser.defaultBrandDetails, McdParser.defaultSampleFilePath);
   }
 
   getRows(rawJson) {
@@ -26,12 +26,11 @@ class NfpParser extends Parser {
     if (this.isDevMode) {
       try {
         allOutlets = JSON.parse(rawJson);
-        allOutlets = allOutlets["data"]["fpstores"];
       } catch (err) {
         throw Error("Failed to convert file contents string into json:", err.message);
       }
     } else {
-      allOutlets = rawJson["data"]["fpstores"];
+      allOutlets = rawJson;
     }
 
     const data = [];
@@ -43,19 +42,19 @@ class NfpParser extends Parser {
         continue;
       }
     }
-    return data;
-  }
+      return data;
+  }  
 
   getOutletName(outletObj) {
     let name = outletObj["name"].trim();
     if (name.length == 0) {
-      throw Error(`Entry for outlet ID ${outletObj["id"]} removed. Outlet name unknown.`);
+      throw Error("Entry removed. Outlet name unknown.");
     }
-    return `${this.brandDetails.BrandName} ${name}`;
+    return name;
   }
 
   getLatitude(outletObj) {
-    let latitude = parseFloat(outletObj["lat"]);
+    let latitude = parseFloat(outletObj["lat"].trim());
     if (isNaN(latitude)) {
       throw Error(`Entry for "${this.getOutletName(outletObj)}" removed. Latitude unknown/invalid.`);
     }
@@ -63,7 +62,7 @@ class NfpParser extends Parser {
   }
 
   getLongitude(outletObj) {
-    let longitude = parseFloat(outletObj["long"]);
+    let longitude = parseFloat(outletObj["long"].trim());
     if (isNaN(longitude)) {
       throw Error(`Entry for "${this.getOutletName(outletObj)}" removed. Longitude unknown/invalid.`);
     }
@@ -71,7 +70,7 @@ class NfpParser extends Parser {
   }
 
   getPostal(outletObj) {
-    let postalCode = outletObj["postalCode"].trim();
+    let postalCode = outletObj["zip"].trim();
     return postalCode.replace(/[^0-9]/g, '');
   }
 
@@ -81,17 +80,16 @@ class NfpParser extends Parser {
   }
 
   getClosing(outletObj) {
-    let opening = outletObj["fromTime"].trim(), closing = outletObj["toTime"].trim();
-    if (opening.length == 0 && closing.length == 0) {
+    let closingText = outletObj["op_hours"].replace(/(<([^>]+)>)/ig, '').trim();
+    closingText = closingText.replace(/<--|-->/ig, '');
+    closingText = closingText.replace(/, |,/ig, '/'); //order matters
+    let closingHtml = closingText.replace(/\r\n|\r|\n/g, '<br>');
+    if (closingHtml.length == 0) {
       return "Opening hours unavailable.";
-    } else if (opening.length == 0) {
-      return `Closes ${closing}`;
-    } else if (closing.length == 0) {
-      return `Opens ${opening}`;
     } else {
-      return `${opening} - ${closing}`;
+      return closingHtml;
     }
   }
 }
 
-module.exports = NfpParser;
+module.exports = McdParser;

@@ -1,5 +1,5 @@
 const axios = require('axios').default;
-const dbManager = require("./db_manager.js");
+const dbManager = require("../database/db_manager.js");
 const fs = require("fs");
 
 class Parser {

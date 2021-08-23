@@ -22,15 +22,15 @@
   "scripts": {
     "start": "node rest_api.js",
     "dev": "nodemon rest_api.js",
-    "parse-kfc": "node -e \"require('./parser_kfc.js')()\"",
-    "parse-mcd": "node -e \"require('./parser_mcd.js')()\"",
-    "parse-nfp": "node -e \"require('./parser_nfp.js')()\"",
-    "db:create": "node create_db.js",
-    "db:drop": "node drop_db.js",
+    "parse-kfc": "node -e \"require('./parser/parser_kfc.js')()\"",
+    "parse-mcd": "node -e \"require('./parser/parser_mcd.js')()\"",
+    "parse-nfp": "node -e \"require('./parser/parser_nfp.js')()\"",
+    "db:create": "node ./database/create_db.js",
+    "db:drop": "node ./database/drop_db.js",
     "db:setup": "knex migrate:latest",
     "db:reset": "knex migrate:rollback",
     "db:teardown": "npm run db:reset && npm run db:drop",
-    "db:populate": "node run_parsers.js",
+    "db:populate": "node ./parser/run_parsers.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {

@@ -1,4 +1,4 @@
-const Parser = require("./parser");
+const Parser = require("./parser.js");
 const jsdom = require("jsdom");
 
 class KFCParser extends Parser {
