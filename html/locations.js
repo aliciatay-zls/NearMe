@@ -91,10 +91,20 @@ $(document).ready(async function() {
     
     const url = "/outlets";
     $.getJSON(url, params, function(data) {
+      Handlebars.registerHelper('isNewRow', function (index) {
+        return (index % 3 == 0);
+      });
+      Handlebars.registerHelper('isEveryThirdRow', function (index) {
+        return (index % 2 == 0);
+      });    
+
       var template = Handlebars.compile($('#result-row').html());
       var results = template(data);
-      $("#outletResults").append(`<b>${data.messageToUser}</b>`);
+
+      $("#results-description").append(data.messageToUser);
       $("#outletResults").append(results);
+      $("</div>").appendTo("#outletResults");
+
       $("#search-page").addClass("is-hidden");
       $("#results-page").removeClass("is-hidden");
     }).fail(function() {

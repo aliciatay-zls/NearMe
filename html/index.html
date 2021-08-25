@@ -47,18 +47,18 @@
 					<img src="images/logo-new-removebg-preview.png" width="150" height="100" />
 				</p>
 
-				<form action="/outlets">
 				<fieldset>
+				<form action="/outlets">
 					<div class="field is-horizontal">
 						<div class="field-body">
 							<div class="field">
-								<div class="control" id="search-bar">
+								<div class="control">
 									<input class="input is-medium has-text-centered is-rounded" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
 								</div>
 							</div>
 							<div class="field">
-								<div class="control" id="submit-button">
-									<button type="submit" class="button is-medium is-info is-light is-rounded">
+								<div class="control">
+									<button class="button is-medium is-info is-light is-rounded"  id="submit-button" type="submit" >
 										<span class="icon is-small">
 											<i class="fas fa-search"></i>
 										</span>
@@ -74,8 +74,8 @@
 							<output for="radiusSelect" id="radiusSelectOutput">1.0</output>
 						</div>
 					</div>
-				</fieldset>
 				</form>
+				</fieldset>
 
 				<div class="messages">
 				</div>
@@ -83,35 +83,57 @@
 		</div>
 
 		<div class="hero-body is-hidden" id="results-page">
-			<div class="container">
+			<div class="container has-text-centered">
 				<p class="title">
 					Results
 				</p>
+				<div id="results-description"></div>
 				<div id="outletResults"></div>
 			</div>
 		</div>
 		
-		<div class="circle xxlarge shade1"></div>
-		<div class="circle xlarge shade2"></div>
-		<div class="circle large shade3"></div>
-		<div class="circle medium shade4"></div>
-		<div class="circle small shade5"></div>
+		<div class="animated-bgd circle xxlarge shade1"></div>
+		<div class="animated-bgd circle xlarge shade2"></div>
+		<div class="animated-bgd circle large shade3"></div>
+		<div class="animated-bgd circle medium shade4"></div>
+		<div class="animated-bgd circle small shade5"></div>
 	</section>
 
   <script src="locations.js"></script>
 
 	<div class="is-hidden">
 		<div id="result-row">
-			<ul>
-				{{#each outlets as |outlet|}}
-					<li>{{outlet.name}}</li>
-					<li class='distance'>{{outlet.distance}}km away</li>
-					<li class='details-header'>Outlet information</li>
-					<li class='postal'>Postal code: {{outlet.postal}}</li>
-					<li class='contact'>Phone: {{outlet.contact}}</li>
-					<li class='closing'>Closes: {{outlet.closing}}</li>
-				{{/each}}
-			</ul>
+			{{#each outlets as |outlet|}}
+				{{#if (isNewRow @index)}}
+					<div class="tile is-ancestor">
+						<div class="tile is-parent">
+							<article class="tile is-child box">
+								<p class="title">{{outlet.name}}</p>
+								<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
+								<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
+							</article>
+						</div>
+				{{else}}
+					{{#if (isEveryThirdRow @index)}}
+						<div class="tile is-parent">
+							<article class="tile is-child box">
+								<p class="title">{{outlet.name}}</p>
+								<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
+								<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
+							</article>
+						</div>
+						</div>
+					{{else}}
+					<div class="tile is-parent">
+						<article class="tile is-child box">
+							<p class="title">{{outlet.name}}</p>
+							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
+							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
+						</article>
+					</div>
+					{{/if}}
+				{{/if}}
+			{{/each}}
 		</div>
 	</div>
 

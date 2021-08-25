@@ -70,7 +70,7 @@ app.get('/outlets', async (req, res) => {
   if (outlets[0].length === 0) {
     hasNearbyOutlets = false;
     results.messageToUser = `
-      Could not find outlets within ${results.distanceRadius} km from your location.
+      Could not find outlets within ${results.distanceRadius} km from your location.<br>
       Here are the top 5 nearest to you instead.
     `;
 
