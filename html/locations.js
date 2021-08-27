@@ -91,12 +91,15 @@ $(document).ready(async function() {
     
     const url = "/outlets";
     $.getJSON(url, params, function(data) {
-      Handlebars.registerHelper('isNewRow', function (index) {
-        return (index % 3 == 0);
+      Handlebars.registerHelper('isTopThreeResult', function (index) {
+        return (index < 3);
       });
-      Handlebars.registerHelper('isEveryThirdRow', function (index) {
-        return (index % 2 == 0);
-      });    
+      Handlebars.registerHelper('isTopResult', function (index) {
+        return (index == 0);
+      });
+      Handlebars.registerHelper('isStartOfRemainingResults', function(index) {
+        return (index == 3);
+      })
 
       var template = Handlebars.compile($('#result-row').html());
       var results = template(data);

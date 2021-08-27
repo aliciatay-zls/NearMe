@@ -104,35 +104,41 @@
 	<div class="is-hidden">
 		<div id="result-row">
 			{{#each outlets as |outlet|}}
-				{{#if (isNewRow @index)}}
-					<div class="tile is-ancestor">
-						<div class="tile is-parent">
-							<article class="tile is-child box">
-								<p class="title">{{outlet.name}}</p>
-								<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-								<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
-							</article>
-						</div>
-				{{else}}
-					{{#if (isEveryThirdRow @index)}}
-						<div class="tile is-parent">
-							<article class="tile is-child box">
-								<p class="title">{{outlet.name}}</p>
-								<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-								<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
-							</article>
-						</div>
-						</div>
-					{{else}}
-					<div class="tile is-parent">
-						<article class="tile is-child box">
+			{{#if (isTopThreeResult @index)}}
+				{{#if (isTopResult @index)}}
+					<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
+						<div class="column result">
 							<p class="title">{{outlet.name}}</p>
 							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
 							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
-						</article>
+						</div>
+				{{else}}
+					<div class="column result">
+						<p class="title">{{outlet.name}}</p>
+						<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
+						<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
 					</div>
-					{{/if}}
 				{{/if}}
+			{{else}}
+				{{#if (isStartOfRemainingResults @index)}}
+					</div>
+					<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
+						<div class="column result is-half">
+							<p class="title">{{outlet.name}}</p>
+							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
+							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
+						</div>
+					</div>
+				{{else}}
+					<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
+						<div class="column result is-half">
+							<p class="title">{{outlet.name}}</p>
+							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
+							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
+						</div>
+					</div>
+				{{/if}}
+			{{/if}}
 			{{/each}}
 		</div>
 	</div>
