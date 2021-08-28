@@ -70,6 +70,7 @@ $(document).ready(async function() {
 
     // Flush previously displayed results
     $("#outletResults").html("");
+    $("#results-description").html("");
 
     var params = {
       searchWord: $("#searchWord").val(),
@@ -116,4 +117,32 @@ $(document).ready(async function() {
       console.log("Request to server completed.");
     });
   });
+
+  $(":reset").click(function(event) {
+    $("#search-page").removeClass("is-hidden");
+    $("#results-page").addClass("is-hidden");
+    $("#outletResults").html("");
+    $("#results-description").html("");
+  });
+
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      $("#btn-back-to-top").css("display", "block");
+    } else {
+      $("#btn-back-to-top").css("display", "none");
+    }
+  }
+
+  $("#btn-back-to-top").click(function(event) {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  });
+
 });

@@ -14,6 +14,10 @@
 <body>
 	
 	<section class="section hero is-fullheight">
+		<button type="button" class="button is-danger is-light btn-floating btn-lg" id="btn-back-to-top">
+			<i class="fas fa-arrow-up"></i>
+		</button>
+		
 		<div class="hero-head">
 			<header class="navbar">
 				<div class="container">
@@ -84,11 +88,26 @@
 
 		<div class="hero-body is-hidden" id="results-page">
 			<div class="container has-text-centered">
-				<p class="title">
-					Results
-				</p>
-				<div id="results-description"></div>
-				<div id="outletResults"></div>
+				<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
+					<div class="column is-1">
+						<button class="button is-medium is-info is-light" id="back-button" type="reset">
+							<i class="fas fa-arrow-left"></i>&nbsp;back
+						</button>
+					</div>
+					<div class="column is-3">
+						<p class="title">Results</p>
+					</div>
+				</div>
+				<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
+					<div class="column">
+						<div id="results-description"></div>
+					</div>
+				</div>
+				<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
+					<div class="column">
+						<div id="outletResults"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 		
@@ -110,13 +129,13 @@
 						<div class="column result">
 							<p class="title">{{outlet.name}}</p>
 							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
+							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{{outlet.closing}}}</p>
 						</div>
 				{{else}}
 					<div class="column result">
 						<p class="title">{{outlet.name}}</p>
 						<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-						<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
+						<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{{outlet.closing}}}</p>
 					</div>
 				{{/if}}
 			{{else}}
@@ -126,7 +145,7 @@
 						<div class="column result is-half">
 							<p class="title">{{outlet.name}}</p>
 							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
+							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{{outlet.closing}}}</p>
 						</div>
 					</div>
 				{{else}}
@@ -134,7 +153,7 @@
 						<div class="column result is-half">
 							<p class="title">{{outlet.name}}</p>
 							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{outlet.closing}}</p>
+							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{{outlet.closing}}}</p>
 						</div>
 					</div>
 				{{/if}}
