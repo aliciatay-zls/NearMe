@@ -14,7 +14,7 @@
 <body>
 	
 	<section class="section hero is-fullheight">
-		<button type="button" class="button is-danger is-light btn-floating btn-lg" id="btn-back-to-top">
+		<button type="button" class="button is-danger is-light btn-floating btn-lg" id="btn-back-to-top" style="z-index: 1000000;">
 			<i class="fas fa-arrow-up"></i>
 		</button>
 		
@@ -74,8 +74,8 @@
 	
 					<div class="field">
 						<div class="control">
-							<input class="slider has-output-tooltip is-circle is-large is-light" id="radiusSelect" step="0.1" min="0.0" max="5.0" value="1.0" type="range">
-							<output for="radiusSelect" id="radiusSelectOutput">1.0</output>
+							<input class="slider has-output is-circle is-large is-light" id="radiusSelect" step="0.1" min="0.0" max="5.0" value="1.0" type="range">
+							<output for="radiusSelect" id="radiusSelectOutput"><strong>1.0</strong></output>
 						</div>
 					</div>
 				</form>
@@ -111,55 +111,50 @@
 			</div>
 		</div>
 		
-		<div class="animated-bgd circle xxlarge shade1"></div>
-		<div class="animated-bgd circle xlarge shade2"></div>
-		<div class="animated-bgd circle large shade3"></div>
-		<div class="animated-bgd circle medium shade4"></div>
-		<div class="animated-bgd circle small shade5"></div>
+		<div class="circle xxlarge shade1"></div>
+		<div class="circle xlarge shade2"></div>
+		<div class="circle large shade3"></div>
+		<div class="circle medium shade4"></div>
+		<div class="circle small shade5"></div>
 	</section>
 
   <script src="locations.js"></script>
 
 	<div class="is-hidden">
 		<div id="result-row">
-			{{#each outlets as |outlet|}}
-			{{#if (isTopThreeResult @index)}}
-				{{#if (isTopResult @index)}}
-					<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
-						<div class="column result">
-							<p class="title">{{outlet.name}}</p>
-							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{{outlet.closing}}}</p>
-						</div>
-				{{else}}
-					<div class="column result">
-						<p class="title">{{outlet.name}}</p>
-						<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-						<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{{outlet.closing}}}</p>
-					</div>
-				{{/if}}
-			{{else}}
-				{{#if (isStartOfRemainingResults @index)}}
-					</div>
-					<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
-						<div class="column result is-half">
-							<p class="title">{{outlet.name}}</p>
-							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{{outlet.closing}}}</p>
+			<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
+				{{#each topThree}}
+					<div class="column is-one-third">
+						<div class="result">
+							<p class="title">{{name}}</p>
+							<p class="subtitle result-distance"><b>{{distance}} km away</b></p>
+							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{postal}}<br>Phone: {{contact}}<br>Closes: {{{closing}}}</p>
 						</div>
 					</div>
-				{{else}}
+				{{/each}}
+			</div>
+
+			{{#if (hasRemainingOutlets remainingOutlets)}}
+				{{#each remainingOutlets}}
 					<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
-						<div class="column result is-half">
-							<p class="title">{{outlet.name}}</p>
-							<p class="subtitle result-distance"><b>{{outlet.distance}} km away</b></p>
-							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{outlet.postal}}<br>Phone: {{outlet.contact}}<br>Closes: {{{outlet.closing}}}</p>
+						<div class="column is-one-third">
+							<div class="result">
+								<p class="title">{{name}}</p>
+								<p class="subtitle result-distance"><b>{{distance}} km away</b></p>
+								<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{postal}}<br>Phone: {{contact}}<br>Closes: {{{closing}}}</p>	
+							</div>					
 						</div>
 					</div>
-				{{/if}}
+				{{/each}}
 			{{/if}}
-			{{/each}}
 		</div>
+	</div>
+
+	<div class="message-template is-hidden">
+		<!-- {{messageToUser.message}} -->
+		{{#with messageToUser}}
+			{{{message}}}
+		{{/with}}
 	</div>
 
 </body>

@@ -30,11 +30,11 @@
   color: black;
   width: 120px;
   left: 50%;
-  margin-left: -60px;
 }
 
 #radiusSelectOutput:after {
   content: " km away";
+  font-weight: bold;
 }
 
 .is-empty {
@@ -66,17 +66,16 @@
 
 /* General */
 #search-page {
+  z-index: 10000;
   top: 50%;
   left: 50%;
   margin-top: -100px;
   margin-left: -200px;
-}
-
-#search-page {
   position: fixed;
 }
 
 #results-page {
+  z-index: 10000;
   position: relative;
 }
 
