@@ -28,6 +28,7 @@
 #radiusSelectOutput {
   background: none;
   color: black;
+  font-weight: bold;
   width: 120px;
   left: 50%;
 }
@@ -40,6 +41,13 @@
 .is-empty {
   border: 2px solid red;
   border-radius: 4px;
+}
+
+.help-block {
+  text-align:center;
+  width: 100%;
+  height: 15px;
+  clear: both;
 }
 
 .help-block, .is-empty {
@@ -57,11 +65,7 @@
 }
 
 .result-info:before {
-  content: "👉 ";
-}
-
-#outletResults {
-  white-space: pre;
+  content: "🏪 ";
 }
 
 /* General */

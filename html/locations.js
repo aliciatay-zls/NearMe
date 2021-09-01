@@ -2,6 +2,7 @@
 let currentLatitude = null;
 let currentLongitude = null;
 let isGetLocationSuccessful = false;
+let isHelpBlockDisplayed = false;
 
 
 // Messages to be displayed to the user on the webpage
@@ -17,6 +18,7 @@ const locationHelpMessage = `
 `;
 const noSearchWordMessage = "Enter something to get started.";
 const noRadiusMessage = "<strong>No distance limit selected. Showing all outlets found.</strong><br></br>";
+
 
 // Retrieves the latitude and longitude of the user's current location
 async function geoGetCurrentLocation() {
@@ -58,7 +60,8 @@ $(document).ready(async function() {
   // Forget previous errors if any
   $(":text").click(function() {
     $("#searchWord").removeClass("is-empty");
-    $(".help-block").remove();
+    $(".help-block").html("");
+    isHelpBlockDisplayed = false;
   });
 
   bulmaSlider.attach();
@@ -84,9 +87,11 @@ $(document).ready(async function() {
     };
 
     if (params.searchWord.length == 0) {
-      $("#searchWord").addClass("is-empty");
-      $(`<div class='help-block'>${noSearchWordMessage}</div>`)
-      .appendTo("#search-bar"); //TO-FIX
+      if (!isHelpBlockDisplayed) {
+        $("#searchWord").addClass("is-empty");
+        $(".help-block").append(noSearchWordMessage);
+        isHelpBlockDisplayed = true;
+      }
       return;
     }
 

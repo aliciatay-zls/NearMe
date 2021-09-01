@@ -59,6 +59,7 @@
 								<div class="control">
 									<input class="input is-medium has-text-centered is-rounded" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
 								</div>
+								<div class="help-block"></div>
 							</div>
 							<div class="field">
 								<div class="control">
@@ -103,11 +104,7 @@
 						<div id="results-description"></div>
 					</div>
 				</div>
-				<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
-					<div class="column">
-						<div id="outletResults"></div>
-					</div>
-				</div>
+				<div id="outletResults"></div>
 			</div>
 		</div>
 		
@@ -125,10 +122,14 @@
 			<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
 				{{#each topThree}}
 					<div class="column is-one-third">
-						<div class="result">
-							<p class="title">{{name}}</p>
-							<p class="subtitle result-distance"><b>{{distance}} km away</b></p>
-							<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{postal}}<br>Phone: {{contact}}<br>Closes: {{{closing}}}</p>
+						<div class="card result">
+							<div class="card-content">
+								<div class="content">
+									<p class="title">{{name}}</p>
+									<p class="result-distance"><strong>{{distance}} km away</strong></p>
+									<p class="result-info"><strong>Outlet information</strong><br>Postal code: {{postal}}<br>Phone: {{contact}}<br>Closes: {{{closing}}}</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				{{/each}}
@@ -138,11 +139,15 @@
 				{{#each remainingOutlets}}
 					<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
 						<div class="column is-one-third">
-							<div class="result">
-								<p class="title">{{name}}</p>
-								<p class="subtitle result-distance"><b>{{distance}} km away</b></p>
-								<p class="subtitle result-info"><b>Outlet information</b><br>Postal code: {{postal}}<br>Phone: {{contact}}<br>Closes: {{{closing}}}</p>	
-							</div>					
+							<div class="card result">
+								<div class="card-content">
+									<div class="content ">
+										<p class="title">{{name}}</p>
+										<p class="result-distance"><strong>{{distance}} km away</strong></p>
+										<p class="result-info"><strong>Outlet information</strong><br>Postal code: {{postal}}<br>Phone: {{contact}}<br>Closes: {{{closing}}}</p>
+									</div>
+								</div>	
+							</div>
 						</div>
 					</div>
 				{{/each}}
