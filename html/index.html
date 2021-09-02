@@ -45,6 +45,19 @@
 			</header>
 		</div>
 
+		<div class="is-hidden" id="error-banner-location">
+			<article class="message is-danger">
+				<div class="message-header">
+					<p style="margin:auto">We're sorry, NearMe couldn't find ya.</p>
+				</div>
+				<div class="message-body">
+					This is usually due to disabled location services,<br>
+					disallowed permissions or connectivity issues.<br><br>
+					Please refer to <a href="https://github.com/aliciatay-zls/NearMe#faq">here</a> for help.
+				</div>
+			</article>
+		</div>
+
 		<div class="hero-body" id="search-page">
 			<div class="container">
 				<p class="title">
@@ -118,7 +131,7 @@
   <script src="locations.js"></script>
 
 	<div class="is-hidden">
-		<div id="result-row">
+		<div id="results-row">
 			<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
 				{{#each topThree}}
 					<div class="column is-one-third">
@@ -156,10 +169,7 @@
 	</div>
 
 	<div class="message-template is-hidden">
-		<!-- {{messageToUser.message}} -->
-		{{#with messageToUser}}
-			{{{message}}}
-		{{/with}}
+		{{{messageToUser.message}}}
 	</div>
 
 </body>

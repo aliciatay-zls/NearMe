@@ -6,18 +6,7 @@ let isHelpBlockDisplayed = false;
 
 
 // Messages to be displayed to the user on the webpage
-const locationHelpMessage = `
-  We're sorry! NearMe was unable to determine your location. This could be due to the following reasons:<br>
-  1) NearMe does not have permission to get your location.
-  \t- Allow location services for NearMe in your browser. Then, refresh the page.<br>
-  2) NearMe has permission, but is unable to get your correct/precise location.
-  \t- In your browser's settings, ensure sites are allowed to ask for your location.<br>
-  3) Network connectivity issues :(
-  \t- Please try again later.<br>
-  Refer to the NearMe guide for more information.
-`;
 const noSearchWordMessage = "Enter something to get started.";
-const noRadiusMessage = "<strong>No distance limit selected. Showing all outlets found.</strong><br></br>";
 
 
 // Retrieves the latitude and longitude of the user's current location
@@ -46,15 +35,11 @@ $(document).ready(async function() {
   isGetLocationSuccessful = await geoGetCurrentLocation();
   console.log("Successfully got location:", isGetLocationSuccessful);
   console.log("Lat, long:", currentLatitude, currentLongitude);
+  // Display an error message and make site unusable
   if (!isGetLocationSuccessful) {
-    var template = Handlebars.compile($(".message-template").html());
-    var results = template({
-      messageToUser: {
-        message: locationHelpMessage
-      }
-    });
-    $(".messages").append(results);
+    $("#error-banner-location").removeClass("is-hidden");
     $("fieldset").attr("disabled", true);
+    return;
   }
 
   // Forget previous errors if any
@@ -94,16 +79,6 @@ $(document).ready(async function() {
       }
       return;
     }
-
-    if (isNaN(parseFloat(params.radius))) {
-      var template = Handlebars.compile($(".message-template").html());
-      var results = template({
-        messageToUser: {
-          message: noRadiusMessage
-        }
-      });
-      $(".messages").append(results);
-    }
     
     const url = "/outlets";
     $.getJSON(url, params, function(data) {
@@ -119,7 +94,7 @@ $(document).ready(async function() {
 
       let outletsToDisplay = {topThree: topThree, remainingOutlets: remainingOutlets};
       console.log('outletsToDisplay:', outletsToDisplay)
-      var template = Handlebars.compile($('#result-row').html());
+      var template = Handlebars.compile($('#results-row').html());
       var results = template(outletsToDisplay);
 
       $("#results-description").append(data.messageToUser);
@@ -134,6 +109,7 @@ $(document).ready(async function() {
     });
   });
 
+  // Switch page shown when back button is clicked
   $(":reset").click(function(event) {
     $("#search-page").removeClass("is-hidden");
     $("#results-page").addClass("is-hidden");
@@ -141,6 +117,7 @@ $(document).ready(async function() {
     $("#results-description").html("");
   });
 
+  // Functionality for back to top button
   window.onscroll = function () {
     scrollFunction();
   };
