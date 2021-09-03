@@ -48,7 +48,7 @@
 		<div class="is-hidden" id="error-banner-location">
 			<article class="message is-danger">
 				<div class="message-header">
-					<p style="margin:auto">We're sorry, NearMe couldn't find ya.</p>
+					<p style="margin:auto;">We're sorry, NearMe couldn't find ya.</p>
 				</div>
 				<div class="message-body">
 					This is usually due to disabled location services,<br>
@@ -134,8 +134,8 @@
 		<div id="results-row">
 			<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
 				{{#each topThree}}
-					<div class="column is-one-third">
-						<div class="card result">
+					<div class="column result-column is-one-third">
+						<div class="card result-card">
 							<div class="card-content">
 								<div class="content">
 									<p class="title">{{name}}</p>
@@ -158,10 +158,10 @@
 			{{#if (hasRemainingOutlets remainingOutlets)}}
 				{{#each remainingOutlets}}
 					<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
-						<div class="column is-one-third">
-							<div class="card result">
+						<div class="column result-column is-one-third">
+							<div class="card result-card">
 								<div class="card-content">
-									<div class="content ">
+									<div class="content">
 										<p class="title">{{name}}</p>
 										<p class="result-distance">
 											<strong><a href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{distance}} km away</a></strong>

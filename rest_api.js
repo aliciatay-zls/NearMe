@@ -87,13 +87,13 @@ app.get('/outlets', async (req, res) => {
       name: outlet['OutletName'],
       brandShortName: outlet['ShortName'],
       distance: outlet['distance'].toPrecision(3),
-      postal: outlet['Postal'],
-      contact: outlet['Contact'],
-      closing: outlet['Closing'],
       location: {
         latitude: outlet['Latitude'],
         longitude: outlet['Longitude']
-      }
+      },
+      postal: outlet['Postal'],
+      contact: outlet['Contact'],
+      closing: outlet['Closing'],
     });
   });
 
