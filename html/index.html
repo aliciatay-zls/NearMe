@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	
+
 	<section class="section hero is-fullheight">
 		<button type="button" class="button is-danger is-light btn-floating btn-lg" id="btn-back-to-top" style="z-index: 1000000;">
 			<i class="fas fa-arrow-up"></i>
 		</button>
-		
+
 		<div class="hero-head">
 			<header class="navbar">
 				<div class="container">
@@ -85,7 +85,7 @@
 							</div>
 						</div>
 					</div>
-	
+
 					<div class="field">
 						<div class="control">
 							<input class="slider has-output is-circle is-large is-light" id="radiusSelect" step="0.1" min="0.0" max="5.0" value="1.0" type="range">
@@ -120,7 +120,7 @@
 				<div id="outletResults"></div>
 			</div>
 		</div>
-		
+
 		<div class="circle xxlarge shade1"></div>
 		<div class="circle xlarge shade2"></div>
 		<div class="circle large shade3"></div>
@@ -139,8 +139,15 @@
 							<div class="card-content">
 								<div class="content">
 									<p class="title">{{name}}</p>
-									<p class="result-distance"><strong>{{distance}} km away</strong></p>
-									<p class="result-info"><strong>Outlet information</strong><br>Postal code: {{postal}}<br>Phone: {{contact}}<br>Closes: {{{closing}}}</p>
+									<p class="result-distance">
+										<strong><a href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{distance}} km away</a></strong>
+									</p>
+									<p class="result-info">
+										<strong>Outlet information</strong><br>
+										Postal code: <a href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{postal}}</a><br>
+										Phone: <a href="tel:{{contact}}">{{contact}}</a><br>
+										Closes: {{{closing}}}
+									</p>
 								</div>
 							</div>
 						</div>
@@ -156,10 +163,17 @@
 								<div class="card-content">
 									<div class="content ">
 										<p class="title">{{name}}</p>
-										<p class="result-distance"><strong>{{distance}} km away</strong></p>
-										<p class="result-info"><strong>Outlet information</strong><br>Postal code: {{postal}}<br>Phone: {{contact}}<br>Closes: {{{closing}}}</p>
+										<p class="result-distance">
+											<strong><a href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{distance}} km away</a></strong>
+										</p>
+										<p class="result-info">
+											<strong>Outlet information</strong><br>
+											Postal code: <a href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{postal}}</a><br>
+											Phone: <a href="tel:{{contact}}">{{contact}}</a><br>
+											Closes: {{{closing}}}
+										</p>
 									</div>
-								</div>	
+								</div>
 							</div>
 						</div>
 					</div>

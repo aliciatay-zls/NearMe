@@ -34,10 +34,10 @@ app.get('/outlets', async (req, res) => {
   if (!isNaN(parseFloat(req.query.radius))) {
     results.distanceRadius = parseFloat(req.query.radius);
   }
-    
+
   let selectedBrands = [];
 
-  // This part onwards queries the DB and responds with outlets found within user's 
+  // This part onwards queries the DB and responds with outlets found within user's
   // selected radius of distance, in increasing order.
   // If none were found, queries again to respond with the top five nearest outlets.
   if (req.query.searchWord.length > 0) {
@@ -66,7 +66,7 @@ app.get('/outlets', async (req, res) => {
   );
 
   let outlets = await dbManager.retrieveRelevantOutlets(hasNearbyOutlets, queryParams);
-      
+
   if (outlets[0].length === 0) {
     hasNearbyOutlets = false;
     results.messageToUser = `
@@ -83,13 +83,17 @@ app.get('/outlets', async (req, res) => {
   }
 
   outlets[0].forEach((outlet) => {
-    results.outlets.push({ 
-      name: outlet['OutletName'], 
+    results.outlets.push({
+      name: outlet['OutletName'],
       brandShortName: outlet['ShortName'],
-      distance: outlet['distance'].toPrecision(3), 
-      postal: outlet['Postal'], 
-      contact: outlet['Contact'], 
-      closing: outlet['Closing']
+      distance: outlet['distance'].toPrecision(3),
+      postal: outlet['Postal'],
+      contact: outlet['Contact'],
+      closing: outlet['Closing'],
+      location: {
+        latitude: outlet['Latitude'],
+        longitude: outlet['Longitude']
+      }
     });
   });
 
