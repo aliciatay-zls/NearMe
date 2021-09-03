@@ -82,15 +82,20 @@ app.get('/outlets', async (req, res) => {
     outlets = await dbManager.retrieveRelevantOutlets(hasNearbyOutlets, queryParams);
   }
 
+  let outletIndex = 0;
   outlets[0].forEach((outlet) => {
-    results.outlets.push({ 
+    results.outlets.push({
+      index: outletIndex,
       name: outlet['OutletName'], 
       brandShortName: outlet['ShortName'],
-      distance: outlet['distance'].toPrecision(3), 
+      distance: outlet['distance'].toPrecision(3),
+      latitude: outlet['Latitude'],
+      longitude: outlet['Longitude'],
       postal: outlet['Postal'], 
       contact: outlet['Contact'], 
       closing: outlet['Closing']
     });
+    outletIndex++;
   });
 
   res.send(results);

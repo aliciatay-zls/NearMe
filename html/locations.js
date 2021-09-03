@@ -3,6 +3,8 @@ let currentLatitude = null;
 let currentLongitude = null;
 let isGetLocationSuccessful = false;
 let isHelpBlockDisplayed = false;
+const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=";
+const urlParamDelimiter = ",";
 
 
 // Messages to be displayed to the user on the webpage
@@ -102,6 +104,18 @@ $(document).ready(async function() {
 
       $("#search-page").addClass("is-hidden");
       $("#results-page").removeClass("is-hidden");
+
+      $(".result-column").click(function(event) {
+        let outletIndex = $(this).attr("value");
+        let outletLatitude = data.outlets[outletIndex].latitude;
+        let outletLongitude = data.outlets[outletIndex].longitude;
+        var win = window.open(googleMapsUrl.concat(outletLatitude, urlParamDelimiter, outletLongitude), '_blank');
+        if (win) {
+          win.focus();
+        } else {
+          alert("Please allow popups for this website");
+        }
+      });
     }).fail(function() {
       console.error("Request to server failed");
     }).always(function() {
@@ -121,7 +135,6 @@ $(document).ready(async function() {
   window.onscroll = function () {
     scrollFunction();
   };
-
   function scrollFunction() {
     if (
       document.body.scrollTop > 20 ||
@@ -132,7 +145,6 @@ $(document).ready(async function() {
       $("#btn-back-to-top").css("display", "none");
     }
   }
-
   $("#btn-back-to-top").click(function(event) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
