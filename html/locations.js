@@ -102,8 +102,10 @@ $(document).ready(async function() {
       $("#results-description").append(data.messageToUser);
       $("#outletResults").append(results);
 
-      $("#search-page").addClass("is-hidden");
-      $("#results-page").removeClass("is-hidden");
+      $("section").removeClass("search-pg");
+      $("section").addClass("results-pg");
+      $("#search-body").addClass("is-hidden");
+      $("#results-body").removeClass("is-hidden");
       $("#btn-back-to-search").removeClass("is-hidden");
     }).fail(function() {
       console.error("Request to server failed");
@@ -121,8 +123,10 @@ $(document).ready(async function() {
 
   // Switch page shown when back to search button is clicked
   $("#btn-back-to-search").click(function(event) {
-    $("#search-page").removeClass("is-hidden");
-    $("#results-page").addClass("is-hidden");
+    $("section").removeClass("results-pg");
+    $("section").addClass("search-pg");
+    $("#search-body").removeClass("is-hidden");
+    $("#results-body").addClass("is-hidden");
     $("#btn-back-to-search").addClass("is-hidden");
 
     $("#outletResults").html("");

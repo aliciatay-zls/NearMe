@@ -12,15 +12,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<section class="section hero is-fullheight">
-		<button type="button" class="button is-small is-light btn-floating btn-lg" id="btn-back-to-top">
-			<i class="fas fa-arrow-up"></i>&nbsp;Top
-		</button>
-
+	<section class="section hero is-fullheight search-pg">
 		<div class="hero-head">
 			<nav class="navbar" role="navigation" aria-label="main navigation">
 				<div class="navbar-brand">
-					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenuHeroC">
+					<a role="button" class="navbar-burger is-large" aria-label="menu" aria-expanded="false" data-target="navbarMenuHeroC">
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
@@ -66,7 +62,7 @@
 			</article>
 		</div>
 
-		<div class="hero-body" id="search-page">
+		<div class="hero-body" id="search-body">
 			<div class="container">
 				<p class="title">
 					<img src="images/logo-new-removebg-preview.png" width="150" height="100" />
@@ -102,17 +98,17 @@
 					</div>
 				</form>
 				</fieldset>
-
-				<div class="messages">
-				</div>
 			</div>
 		</div>
 
-		<div class="hero-body is-hidden" id="results-page">
+		<div class="hero-body is-hidden" id="results-body">
+			<button type="button" class="button is-small is-light btn-floating btn-lg" id="btn-back-to-top">
+				<i class="fas fa-arrow-up"></i>&nbsp;Top
+			</button>
 			<div class="container has-text-centered">
 				<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
 					<div class="column is-3">
-						<p class="title">Results</p>
+						<p class="title"><strong>Nearest to me</strong></p>
 					</div>
 				</div>
 				<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
@@ -126,7 +122,7 @@
 
 		<div class="loader-wrapper">
 			<span class="loader-icon">
-				<i class="fas fa-spinner fa-pulse fa-4x"></i>
+				<i><img src="images/loading-map2.gif"></img></i>
 			</span>
 		</div>
 	</section>
@@ -138,10 +134,11 @@
 			<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
 				{{#each topThree}}
 					<div class="column result-column is-one-third">
-						<div class="card result-card">
+						<div class="card result-card paper white">
+							<div class="tape-section"></div>
 							<div class="card-content">
 								<div class="content">
-									<p class="title">{{name}}</p>
+									<h2 class="simple-highlight" id="result-icon"><strong>{{name}}</strong></h2>
 									<p class="subtitle result-distance">
 										<strong><a class="hoverable" href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{distance}} km away</a></strong>
 									</p>
@@ -153,6 +150,7 @@
 									</p>
 								</div>
 							</div>
+							<div class="tape-section"></div>
 						</div>
 					</div>
 				{{/each}}
@@ -162,10 +160,11 @@
 				{{#each remainingOutlets}}
 					<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
 						<div class="column result-column is-one-third">
-							<div class="card result-card">
+							<div class="card result-card paper white">
+								<div class="tape-section"></div>
 								<div class="card-content">
 									<div class="content">
-										<p class="title">{{name}}</p>
+										<h2><strong>{{name}}</strong></h2>
 										<p class="subtitle result-distance">
 											<strong><a class="hoverable" href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{distance}} km away</a></strong>
 										</p>
@@ -177,6 +176,7 @@
 										</p>
 									</div>
 								</div>
+								<div class="tape-section"></div>
 							</div>
 						</div>
 					</div>
