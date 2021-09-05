@@ -12,37 +12,46 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
 	<section class="section hero is-fullheight">
-		<button type="button" class="button is-danger is-light btn-floating btn-lg" id="btn-back-to-top" style="z-index: 1000000;">
-			<i class="fas fa-arrow-up"></i>
+		<button type="button" class="button is-small is-light btn-floating btn-lg" id="btn-back-to-top">
+			<i class="fas fa-arrow-up"></i>&nbsp;Top
 		</button>
 
 		<div class="hero-head">
-			<header class="navbar">
-				<div class="container">
-					<div class="navbar-brand">
-						<span class="navbar-burger" data-target="navbarMenuHeroC">
-							<span></span>
-							<span></span>
-							<span></span>
-						</span>
-					</div>
-					<div id="navbarMenuHeroC" class="navbar-menu">
-						<div class="navbar-end">
-							<a class="navbar-item">
-								FAQ
-							</a>
-							<a class="navbar-item" href="https://github.com/aliciatay-zls/NearMe" target="_blank">
-								<span class="icon">
-									<i class="fab fa-github"></i>
-								</span>
-								<span>GitHub</span>
-							</a>
-						</div>
-					</div>
+			<nav class="navbar" role="navigation" aria-label="main navigation">
+				<div class="navbar-brand">
+					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenuHeroC">
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</a>
 				</div>
-			</header>
+
+				<div id="navbarMenuHeroC" class="navbar-menu">
+					<div class="navbar-start">
+						<a class="navbar-item is-hidden" id="btn-back-to-search">
+							<span class="icon">
+								<i class="fas fa-arrow-left"></i>
+							</span>
+							<span class="hoverable">
+								&nbsp;Search
+							</span>
+						</a>
+					</div>
+
+					<div class="navbar-end">
+						<a class="navbar-item" href="https://github.com/aliciatay-zls/NearMe" target="_blank" id="btn-github">
+							<span class="icon">
+								<i class="fab fa-github"></i>
+							</span>
+							<span class="hoverable">
+								GitHub
+							</span>
+						</a>
+					</div>
+
+				</div>
+			</nav>
 		</div>
 
 		<div class="is-hidden" id="error-banner-location">
@@ -51,8 +60,7 @@
 					<p style="margin:auto;">We're sorry, NearMe couldn't find ya.</p>
 				</div>
 				<div class="message-body">
-					This is usually due to disabled location services,<br>
-					disallowed permissions or connectivity issues.<br><br>
+					This is usually due to disabled location services, disallowed permissions or connectivity issues.
 					Please refer to <a href="https://github.com/aliciatay-zls/NearMe#faq">here</a> for help.
 				</div>
 			</article>
@@ -70,13 +78,13 @@
 						<div class="field-body">
 							<div class="field">
 								<div class="control">
-									<input class="input is-medium has-text-centered is-rounded" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
+									<input class="input is-medium is-rounded has-text-centered" type="text" name="searchWord" id="searchWord" placeholder="fast food" />
 								</div>
 								<div class="help-block"></div>
 							</div>
 							<div class="field">
 								<div class="control">
-									<button class="button is-medium is-info is-light is-rounded"  id="submit-button" type="submit" >
+									<button class="button is-medium is-black is-light is-rounded"  id="submit-button" type="submit" >
 										<span class="icon is-small">
 											<i class="fas fa-search"></i>
 										</span>
@@ -88,7 +96,7 @@
 
 					<div class="field">
 						<div class="control">
-							<input class="slider has-output is-circle is-large is-light" id="radiusSelect" step="0.1" min="0.0" max="5.0" value="1.0" type="range">
+							<input class="slider has-output is-light is-circle is-large" id="radiusSelect" step="0.1" min="0.0" max="5.0" value="1.0" type="range">
 							<output for="radiusSelect" id="radiusSelectOutput"><strong>1.0</strong></output>
 						</div>
 					</div>
@@ -103,11 +111,6 @@
 		<div class="hero-body is-hidden" id="results-page">
 			<div class="container has-text-centered">
 				<div class="columns is-centered is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
-					<div class="column is-1">
-						<button class="button is-medium is-info is-light" id="back-button" type="reset">
-							<i class="fas fa-arrow-left"></i>&nbsp;back
-						</button>
-					</div>
 					<div class="column is-3">
 						<p class="title">Results</p>
 					</div>
@@ -121,11 +124,11 @@
 			</div>
 		</div>
 
-		<div class="circle xxlarge shade1"></div>
-		<div class="circle xlarge shade2"></div>
-		<div class="circle large shade3"></div>
-		<div class="circle medium shade4"></div>
-		<div class="circle small shade5"></div>
+		<div class="loader-wrapper">
+			<span class="loader-icon">
+				<i class="fas fa-spinner fa-pulse fa-4x"></i>
+			</span>
+		</div>
 	</section>
 
   <script src="locations.js"></script>
@@ -139,13 +142,13 @@
 							<div class="card-content">
 								<div class="content">
 									<p class="title">{{name}}</p>
-									<p class="result-distance">
-										<strong><a href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{distance}} km away</a></strong>
+									<p class="subtitle result-distance">
+										<strong><a class="hoverable" href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{distance}} km away</a></strong>
 									</p>
 									<p class="result-info">
 										<strong>Outlet information</strong><br>
-										Postal code: <a href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{postal}}</a><br>
-										Phone: <a href="tel:{{contact}}">{{contact}}</a><br>
+										Postal code: <a class="hoverable" href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{postal}}</a><br>
+										Phone: <a class="hoverable" href="tel:{{contact}}">{{contact}}</a><br>
 										Closes: {{{closing}}}
 									</p>
 								</div>
@@ -163,13 +166,13 @@
 								<div class="card-content">
 									<div class="content">
 										<p class="title">{{name}}</p>
-										<p class="result-distance">
-											<strong><a href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{distance}} km away</a></strong>
+										<p class="subtitle result-distance">
+											<strong><a class="hoverable" href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{distance}} km away</a></strong>
 										</p>
 										<p class="result-info">
 											<strong>Outlet information</strong><br>
-											Postal code: <a href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{postal}}</a><br>
-											Phone: <a href="tel:{{contact}}">{{contact}}</a><br>
+											Postal code: <a class="hoverable" href="https://www.google.com/maps/dir/?api=1&destination={{location.latitude}}%2C{{location.longitude}}" target="_blank">{{postal}}</a><br>
+											Phone: <a class="hoverable" href="tel:{{contact}}">{{contact}}</a><br>
 											Closes: {{{closing}}}
 										</p>
 									</div>

@@ -39,9 +39,9 @@ $(document).ready(async function() {
   console.log("Lat, long:", currentLatitude, currentLongitude);
   // Display an error message and make site unusable
   if (!isGetLocationSuccessful) {
+    $(".loader-wrapper").fadeOut("slow");
     $("#error-banner-location").removeClass("is-hidden");
     $("fieldset").attr("disabled", true);
-    return;
   }
 
   // Forget previous errors if any
@@ -51,6 +51,7 @@ $(document).ready(async function() {
     isHelpBlockDisplayed = false;
   });
 
+  $(".loader-wrapper").fadeOut("slow");
   bulmaSlider.attach();
 
   $(":submit").click(function(event) {
@@ -95,7 +96,6 @@ $(document).ready(async function() {
       }
 
       let outletsToDisplay = {topThree: topThree, remainingOutlets: remainingOutlets};
-      console.log('outletsToDisplay:', outletsToDisplay)
       var template = Handlebars.compile($('#results-row').html());
       var results = template(outletsToDisplay);
 
@@ -104,18 +104,7 @@ $(document).ready(async function() {
 
       $("#search-page").addClass("is-hidden");
       $("#results-page").removeClass("is-hidden");
-
-      $(".result-column").click(function(event) {
-        let outletIndex = $(this).attr("value");
-        let outletLatitude = data.outlets[outletIndex].latitude;
-        let outletLongitude = data.outlets[outletIndex].longitude;
-        var win = window.open(googleMapsUrl.concat(outletLatitude, urlParamDelimiter, outletLongitude), '_blank');
-        if (win) {
-          win.focus();
-        } else {
-          alert("Please allow popups for this website");
-        }
-      });
+      $("#btn-back-to-search").removeClass("is-hidden");
     }).fail(function() {
       console.error("Request to server failed");
     }).always(function() {
@@ -123,10 +112,19 @@ $(document).ready(async function() {
     });
   });
 
-  // Switch page shown when back button is clicked
-  $(":reset").click(function(event) {
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function() {
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".navbar-burger").toggleClass("is-active");
+      $(".navbar-menu").toggleClass("is-active");
+  });
+
+  // Switch page shown when back to search button is clicked
+  $("#btn-back-to-search").click(function(event) {
     $("#search-page").removeClass("is-hidden");
     $("#results-page").addClass("is-hidden");
+    $("#btn-back-to-search").addClass("is-hidden");
+
     $("#outletResults").html("");
     $("#results-description").html("");
   });
