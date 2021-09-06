@@ -44,7 +44,7 @@ app.get('/outlets', async (req, res) => {
     const brands = await dbManager.retrieveRelevantBrands(req.query.searchWord);
 
     if (brands.length === 0) {
-      results.messageToUser = "(Could not find any brands for this keyword in DB.)";
+      results.messageToUser = "(Could not find any brands for this keyword in database.)";
       res.send(results);
       return;
     }

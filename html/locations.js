@@ -65,7 +65,7 @@ $(document).ready(async function() {
 
     // Flush previously displayed results
     $("#outletResults").html("");
-    $("#results-description").html("");
+    $("#description-text").html("");
 
     var params = {
       searchWord: $("#searchWord").val(),
@@ -99,7 +99,10 @@ $(document).ready(async function() {
       var template = Handlebars.compile($('#results-row').html());
       var results = template(outletsToDisplay);
 
-      $("#results-description").append(data.messageToUser);
+      if (data.messageToUser.length != 0) {
+        $("#results-description").removeClass("is-hidden");
+        $("#description-text").append(data.messageToUser);
+      }
       $("#outletResults").append(results);
 
       $("section").removeClass("search-pg");
@@ -116,7 +119,6 @@ $(document).ready(async function() {
 
   // Check for click events on the navbar burger icon
   $(".navbar-burger").click(function() {
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
       $(".navbar-burger").toggleClass("is-active");
       $(".navbar-menu").toggleClass("is-active");
   });
@@ -130,7 +132,9 @@ $(document).ready(async function() {
     $("#btn-back-to-search").addClass("is-hidden");
 
     $("#outletResults").html("");
-    $("#results-description").html("");
+    $("#description-text").html("");
+
+    $("#results-description").addClass("is-hidden");
   });
 
   // Functionality for back to top button
