@@ -5,7 +5,9 @@ require('dotenv').config();
 // GET http://localhost:3000/outlets?currentLatitude=1.3104680812609208&currentLongitude=103.86246226812166
 // Use currentLatitude and currentLongitude in the SQL statement
 const express = require('express');
+const secure = require('ssl-express-www');
 const app = express();
+app.use(secure);
 const port = process.env.PORT || 3000;
 
 app.use(express.static('html')); //dir name
