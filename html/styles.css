@@ -226,20 +226,15 @@ a {
 }
 
 /* Backgrounds */
-body, .loader-wrapper {
+body, .results-pg, .loader-wrapper {
   background-image: url("images/bgd-brown-min.jpg");
-  background-size: contain;
+  background-size: cover;
 }
 
 .search-pg {
   background-image: url("images/bgd-footprints-slowed.gif");
   background-size: 45%;
   background-position: 80%;
-}
-
-.results-pg {
-  background-image: url("images/bgd-brown-min.jpg");
-  background-size: contain;
 }
 
 body, .search-pg, .results-pg, .loader-wrapper {
