@@ -61,7 +61,7 @@ For browsers such as Chrome and Firefox:
 1. In the browser, go to Settings > Site settings > Location.
 2. Ensure that location access is turned on for NearMe.
 > 👉 Keywords: "Ask first", "Ask", "Allowed", "Allow", "Always", "Site can ask for your location", "Allowed to see your location", etc.
->
+
 3. Add NearMe to the list of "Allowed" sites.
 
 For browsers such as Safari:
@@ -108,7 +108,7 @@ Before testing and developing locally, please set up the database locally in the
 
 6. NearMe should be up and running by now. Enter `localhost:3000` in your browser to test it out.
 
-![NearMe dev page](docs/nearme-dev-page.PNG)
+![NearMe dev page](nearme-dev-page.PNG)
 
 &nbsp;
 
@@ -137,6 +137,8 @@ Before testing and developing locally, please set up the database locally in the
 * [McDonald's](https://www.mcdonalds.com.sg/locate-us/) (keywords such as "macs", "burger", "fast food")
 * [KFC](https://www.kfc.com.sg/Location/Search) (keywords such as "Kentucky", "fried chicken", "restaurant")
 * [Fairprice](https://www.fairprice.com.sg/store-locator) (keywords such as "NTUC", "groceries", "amenities")
+
+&nbsp;
 
 2. What information of mine does this site save?
 

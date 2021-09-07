@@ -237,7 +237,12 @@ body, .loader-wrapper {
   background-position: 80%;
 }
 
-body, .search-pg, .loader-wrapper {
+.results-pg {
+  background-image: url("images/bgd-brown-min.jpg");
+  background-size: contain;
+}
+
+body, .search-pg, .results-pg, .loader-wrapper {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
