@@ -10,7 +10,7 @@ class KFCParser extends Parser {
     return {
       BrandName: "KFC",
       ShortName: "kfc",
-      Keywords: "kfc, restaurant, fried chicken, finger lickin good, chicken, fast food"
+      Keywords: "kfc, kentucky, fast food, restaurant, fried chicken, wings, coleslaw, fries, fried food, finger lickin good"
     }
   }
 

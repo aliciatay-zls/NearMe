@@ -9,7 +9,7 @@ class McdParser extends Parser {
     return {
       BrandName: "McDonald\u2019s",
       ShortName: "mcd",
-      Keywords: "mcd, restaurant, mcdonald's, mcdonalds, macdonalds, hamburger, i'm loving it, burger, cheeseburger, fast food"
+      Keywords: "macs, mac, mcd, mcdonald's, mcdonalds, macdonalds, fast food, restaurant, hamburger, burger, cheeseburger, fries, fried food, i'm loving it"
     }
   }
 

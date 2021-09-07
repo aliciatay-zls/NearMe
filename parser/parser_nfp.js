@@ -9,7 +9,7 @@ class NfpParser extends Parser {
     return {
       BrandName: "Fairprice",
       ShortName: "nfp",
-      Keywords: "ntuc, supermarket, market, fp, fair price, groceries, grocery, fairprice, amenities"
+      Keywords: "ntuc, fp, fair price, fairprice, supermarket, market, groceries, grocery store, amenities"
     }
   }
 
