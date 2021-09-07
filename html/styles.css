@@ -228,7 +228,7 @@ a {
 /* Backgrounds */
 body, .loader-wrapper {
   background-image: url("images/bgd-brown-min.jpg");
-  background-size: cover;
+  background-size: contain;
 }
 
 .search-pg {

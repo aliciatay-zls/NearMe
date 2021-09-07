@@ -108,7 +108,7 @@ Before testing and developing locally, please set up the database locally in the
 
 6. NearMe should be up and running by now. Enter `localhost:3000` in your browser to test it out.
 
-![NearMe dev page](nearme-dev-page.PNG)
+![NearMe site](nearme-dev-page.png)
 
 &nbsp;
 
